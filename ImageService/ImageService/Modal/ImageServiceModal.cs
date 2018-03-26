@@ -9,13 +9,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Configuration;
 
 namespace ImageService.Modal
 {
     class ImageServiceModal : IImageServiceModal
     {
-        private String outputDir = "/ImageService/outputDir";
+        private String outputDir = ConfigurationManager.AppSettings["OutputDir"];
 
         public string AddFile(string path, out bool result) {
 
