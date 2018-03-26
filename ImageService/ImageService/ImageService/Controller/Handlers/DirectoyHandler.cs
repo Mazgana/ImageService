@@ -23,14 +23,14 @@ namespace ImageService.Controller.Handlers
         private string m_path;                              // The Path of directory
         #endregion
 
+        // The Event That Notifies that the Directory is being closed
+        public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;
+
         public DirectoyHandler(String path, IImageController controller)
         {
             this.m_path = path;
             this.m_controller = controller;
         }
-
-        // The Event That Notifies that the Directory is being closed
-        public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              
 
         // The Function Recieves the directory to Handle
         void StartHandleDirectory(string dirPath)
@@ -39,7 +39,7 @@ namespace ImageService.Controller.Handlers
         }
 
         // The Event that will be activated upon new Command
-        void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
+        public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
 
         }    
