@@ -33,15 +33,15 @@ namespace ImageService.Controller.Handlers
         public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              
 
         // The Function Recieves the directory to Handle
-        void StartHandleDirectory(string dirPath)
+        public void StartHandleDirectory(string dirPath)
         {
 
         }
 
         // The Event that will be activated upon new Command
-        void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
+        public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
 
-        }    
+        }
     }
 }
