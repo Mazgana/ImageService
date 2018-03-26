@@ -33,7 +33,7 @@ namespace ImageService.Controller.Handlers
         }
 
         // The Function Recieves the directory to Handle
-        void StartHandleDirectory(string dirPath)
+        public void StartHandleDirectory(string dirPath)
         {
 
         }
@@ -42,6 +42,6 @@ namespace ImageService.Controller.Handlers
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
 
-        }    
+        }
     }
 }

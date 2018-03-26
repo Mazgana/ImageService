@@ -20,11 +20,21 @@ namespace ImageService.Controller
             m_modal = modal;                    // Storing the Modal Of The System
             commands = new Dictionary<int, ICommand>()
             {
+                { 1 ,new NewFileCommand(modal)}
                 // For Now will contain NEW_FILE_COMMAND
             };
         }
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
+            try {
+                commands[commandID].Execute(args, out resultSuccesful);
+            }
+            catch(Exception e)
+            {
+                resultSuccesful = false;
+                return e.ToString();
+            }
+            return "succesful";
             // Write Code Here
         }
     }
