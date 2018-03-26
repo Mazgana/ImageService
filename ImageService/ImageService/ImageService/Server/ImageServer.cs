@@ -24,21 +24,21 @@ namespace ImageService.Server
         public event EventHandler<DirectoryCloseEventArgs> CloseHandler;
         #endregion
 
-        public void CreateHandler(String directory)
+        public DirectoyHandler CreateHandler(String directory)
         {
             DirectoyHandler h = new DirectoyHandler(directory, m_controller);
             CommandRecieved += h.OnCommandRecieved;
             h.DirectoryClose += CloseHandler;
+
+            return h;
         }
         
         public void SendCommand()
         {
-
         }
 
         public void OnCloseServer(object sender)
         {
-
         }
     }
 }

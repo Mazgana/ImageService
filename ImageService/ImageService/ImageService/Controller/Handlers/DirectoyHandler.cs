@@ -35,6 +35,7 @@ namespace ImageService.Controller.Handlers
         // The Function Recieves the directory to Handle
         public void StartHandleDirectory(string dirPath)
         {
+
         }
 
         // The Event that will be activated upon new Command
