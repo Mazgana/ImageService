@@ -26,6 +26,8 @@ namespace ImageService.Modal
             String dest = outputDir + "/" + year + "/" + month;
             System.IO.Directory.CreateDirectory(dest);
             File.Copy(path, dest);
+            result = true;
+            return "ok";
 
         }
     }
