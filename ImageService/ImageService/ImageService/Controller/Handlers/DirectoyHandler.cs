@@ -10,6 +10,7 @@ using ImageService.Infrastructure.Enums;
 using ImageService.Logging;
 using ImageService.Logging.Modal;
 using System.Text.RegularExpressions;
+using ImageService.Modal.Event;
 
 namespace ImageService.Controller.Handlers
 {
@@ -22,8 +23,25 @@ namespace ImageService.Controller.Handlers
         private string m_path;                              // The Path of directory
         #endregion
 
-        public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              // The Event That Notifies that the Directory is being closed
+        public DirectoyHandler(String path, IImageController controller)
+        {
+            this.m_path = path;
+            this.m_controller = controller;
+        }
 
-        // Implement Here!
+        // The Event That Notifies that the Directory is being closed
+        public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              
+
+        // The Function Recieves the directory to Handle
+        void StartHandleDirectory(string dirPath)
+        {
+
+        }
+
+        // The Event that will be activated upon new Command
+        void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
+        {
+
+        }    
     }
 }
