@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-//using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,15 +18,29 @@ namespace ImageService.Modal
 
         public string AddFile(string path, out bool result) {
 
+            String response = "Image copied successfully.";
+
             try
             {
                 FileInfo imageInfo = new FileInfo(path);
                 DateTime date = imageInfo.CreationTime;
                 String year = date.Year.ToString();
                 String month = date.Month.ToString();
+
                 String dest = outputDir + "/" + year + "/" + month;
-                System.IO.Directory.CreateDirectory(dest);
+                response = CreateFolder(dest, out result);
+                if (result == false)
+                    return response;
+
                 File.Copy(path, dest);
+
+                dest = outputDir + "/Thumbnail/" + year + "/" + month;
+                response = CreateFolder(dest, out result);
+                if (result == false)
+                    return response;
+
+                File.Copy(path, dest);
+                
             } catch (Exception e)
             {
                 result = false;
@@ -35,7 +48,22 @@ namespace ImageService.Modal
             }
 
             result = true;
-            return "Image copied successfully.";
+            return response;
+        }
+
+        public string CreateFolder(string dest, out bool result)
+        {
+            try
+            {
+                System.IO.Directory.CreateDirectory(dest);
+            } catch (Exception e)
+            {
+                result = false;
+                return "faild to create directory.";
+            }
+
+            result = true;
+            return "directory created successfully.";
         }
     }
 }

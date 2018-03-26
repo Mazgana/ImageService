@@ -35,6 +35,8 @@ namespace ImageService.Controller.Handlers
         // The Function Recieves the directory to Handle
         public void StartHandleDirectory(string dirPath)
         {
+            if (m_dirWatcher.WaitForChanged(WatcherChangeTypes.All).Equals(true))
+                StartHandleDirectory(m_path);
 
         }
 
