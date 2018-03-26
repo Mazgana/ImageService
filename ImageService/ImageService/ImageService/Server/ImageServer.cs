@@ -23,5 +23,10 @@ namespace ImageService.Server
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          // The event that notifies about a new Command being recieved
         #endregion
 
+        public void createHandler(String directory)
+        {
+            DirectoyHandler h = new DirectoyHandler(directory, m_controller);
+        }
+
     }
 }
