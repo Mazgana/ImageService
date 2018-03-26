@@ -8,11 +8,11 @@ using System.ServiceProcess;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-//using ImageService.Server;
-//using ImageService.Controller;
+using ImageService.Server;
+using ImageService.Controller;
 using ImageService.Modal;
-//using ImageService.Logging;
-//using ImageService.Logging.Modal;
+using ImageService.Logging;
+using ImageService.Logging.Modal;
 using System.Configuration;
 using ImageService.Infrastructure;
 
@@ -44,10 +44,10 @@ namespace ImageService
     public partial class ImageService : ServiceBase
     {
         private int eventId = 1;
- //       private ImageServer m_imageServer;          // The Image Server
- //       private IImageServiceModal modal;
- //       private IImageController controller;
- //      private ILoggingService logging;
+        private ImageServer m_imageServer;          // The Image Server
+        private IImageServiceModal modal;
+        private IImageController controller;
+       private ILoggingService logging;
 
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
