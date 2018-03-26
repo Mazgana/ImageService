@@ -1,4 +1,4 @@
-﻿//using ImageService.Infrastructure;
+﻿using ImageService.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
