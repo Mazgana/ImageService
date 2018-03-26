@@ -19,16 +19,23 @@ namespace ImageService.Modal
 
         public string AddFile(string path, out bool result) {
 
-            FileInfo imageInfo = new FileInfo(path);
-            DateTime date = imageInfo.CreationTime;
-            String year = date.Year.ToString();
-            String month = date.Month.ToString();
-            String dest = outputDir + "/" + year + "/" + month;
-            System.IO.Directory.CreateDirectory(dest);
-            File.Copy(path, dest);
-            result = true;
-            return "ok";
+            try
+            {
+                FileInfo imageInfo = new FileInfo(path);
+                DateTime date = imageInfo.CreationTime;
+                String year = date.Year.ToString();
+                String month = date.Month.ToString();
+                String dest = outputDir + "/" + year + "/" + month;
+                System.IO.Directory.CreateDirectory(dest);
+                File.Copy(path, dest);
+            } catch (Exception e)
+            {
+                result = false;
+                return e.ToString();
+            }
 
+            result = true;
+            return "Image copied successfully.";
         }
     }
 }

@@ -3,6 +3,7 @@ using ImageService.Controller.Handlers;
 using ImageService.Infrastructure.Enums;
 using ImageService.Logging;
 using ImageService.Modal;
+using ImageService.Modal.Event;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,6 @@ namespace ImageService.Server
         #region Properties
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          // The event that notifies about a new Command being recieved
         #endregion
-
 
     }
 }
