@@ -21,14 +21,13 @@ namespace ImageService.Server
 
         #region Properties
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          // The event that notifies about a new Command being recieved
-        public event EventHandler<DirectoryCloseEventArgs> CloseHandler;
         #endregion
 
         public DirectoyHandler CreateHandler(String directory)
         {
             DirectoyHandler h = new DirectoyHandler(directory, m_controller);
             CommandRecieved += h.OnCommandRecieved;
-            h.DirectoryClose += CloseHandler;
+            h.DirectoryClose += OnCloseServer;
 
             return h;
         }
@@ -37,8 +36,12 @@ namespace ImageService.Server
         {
         }
 
-        public void OnCloseServer(object sender)
+        public void OnCloseServer(object sender, DirectoryCloseEventArgs e)
         {
+            DirectoyHandler dh = (DirectoyHandler)sender;
+            CommandRecieved -= dh.OnCommandRecieved;
+            dh.DirectoryClose -= OnCloseServer;
         }
+    }
     }
 }

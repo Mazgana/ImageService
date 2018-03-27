@@ -35,13 +35,23 @@ namespace ImageService.Controller.Handlers
         // The Function Recieves the directory to Handle
         public void StartHandleDirectory(string dirPath)
         {
+            m_dirWatcher.Path = dirPath;
+            m_dirWatcher.Filter = "*.jpg;*.gif;*.bmp;*.png";
+            m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
+        }
 
+        private static void OnCreated(object sender, FileSystemEventArgs e)
+        {   
         }
 
         // The Event that will be activated upon new Command
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
-
+            if (sender.Equals(this))
+            {
+                bool result;
+                m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
+            }
         }
 
         public void onClose()

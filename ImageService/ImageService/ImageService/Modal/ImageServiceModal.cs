@@ -17,7 +17,6 @@ namespace ImageService.Modal
         private String outputDir = ConfigurationManager.AppSettings["OutputDir"];
 
         public string AddFile(string path, out bool result) {
-
             String response = "Image copied successfully.";
 
             try
@@ -40,7 +39,12 @@ namespace ImageService.Modal
                     return response;
 
                 File.Copy(path, dest);
-                
+                Image image = Image.FromFile(path);
+                int size;
+                Int32.TryParse(ConfigurationManager.AppSettings["thumbnailSize"], out size);
+                Image thumb = image.GetThumbnailImage(size, size, () => false, IntPtr.Zero);
+                thumb.Save(Path.ChangeExtension(imageInfo.FullName, "thumb"));
+
             } catch (Exception e)
             {
                 result = false;
