@@ -34,8 +34,8 @@ namespace ImageService.Server
             handlersList = new List<DirectoyHandler>();
             DirectoyHandler current;
 
-            string directoris = ConfigurationManager.AppSettings["Handler"];
-            string[] handlersDirectories = directoris.Split(';');
+            string directories = ConfigurationManager.AppSettings["Handler"];
+            string[] handlersDirectories = directories.Split(';');
             for (int i = 0; i < handlersDirectories.Length; i++)
             {
                 current = CreateHandler(handlersDirectories[i]);
@@ -45,7 +45,7 @@ namespace ImageService.Server
 
         public DirectoyHandler CreateHandler(String directory)
         {
-            DirectoyHandler h = new DirectoyHandler(directory, this.m_controller);
+            DirectoyHandler h = new DirectoyHandler(directory, m_controller, m_logging);
             CommandRecieved += h.OnCommandRecieved;
             h.DirectoryClose += OnCloseServer;
             h.StartHandleDirectory(directory);

@@ -95,10 +95,10 @@ namespace ImageService
             serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
-            m_imageServer = new ImageServer(logging);
             logging = new LoggingService();
             modal = new ImageServiceModal();
-            controller = new ImageController(modal);
+//            controller = new ImageController(modal);
+            m_imageServer = new ImageServer(logging, modal);
             logging.MessageRecieved += OnMessage;
         }
 
