@@ -16,9 +16,12 @@ namespace ImageService.Commands
             m_modal = modal;            // Storing the Modal
         }
 
+
+        // change!!!!!
         public string Execute(string[] args, out bool result)
         {
-            
+            result = true;
+            return "ok";
         }
     }
 }
