@@ -26,16 +26,16 @@ namespace ImageService.Server
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          
         #endregion
 
-        public ImageServer(IImageController controller, ILoggingService logging)
+        public ImageServer(ILoggingService logging, IImageServiceModal modal)
         {
-            m_logging = logging;
-            m_controller = controller;
+            this.m_logging = logging;
+            this.m_controller = new ImageController(modal);
 
             handlersList = new List<DirectoyHandler>();
             DirectoyHandler current;
 
-            string directories = ConfigurationManager.AppSettings["Handler"];
-            string[] handlersDirectories = directories.Split(';');
+            string directoris = ConfigurationManager.AppSettings["Handler"];
+            string[] handlersDirectories = directoris.Split(';');
             for (int i = 0; i < handlersDirectories.Length; i++)
             {
                 current = CreateHandler(handlersDirectories[i]);
@@ -45,7 +45,7 @@ namespace ImageService.Server
 
         public DirectoyHandler CreateHandler(String directory)
         {
-            DirectoyHandler h = new DirectoyHandler(directory, m_controller, m_logging);
+            DirectoyHandler h = new DirectoyHandler(directory, this.m_controller);
             CommandRecieved += h.OnCommandRecieved;
             h.DirectoryClose += OnCloseServer;
             h.StartHandleDirectory(directory);
