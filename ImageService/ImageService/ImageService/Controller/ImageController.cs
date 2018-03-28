@@ -21,13 +21,12 @@ namespace ImageService.Controller
             commands = new Dictionary<int, ICommand>()
             {
                 { 1 ,new NewFileCommand(modal)}
-                // For Now will contain NEW_FILE_COMMAND
             };
         }
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
             try {
-                commands[commandID].Execute(args, out resultSuccesful);
+                string result = commands[commandID].Execute(args, out resultSuccesful);
             }
             catch(Exception e)
             {

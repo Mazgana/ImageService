@@ -26,15 +26,17 @@ namespace ImageService.Controller.Handlers
         // The Event That Notifies that the Directory is being closed
         public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;
 
-        public DirectoyHandler(String path, IImageController controller)
+        public DirectoyHandler(String path, IImageController controller, ILoggingService logging)
         {
             this.m_path = path;
             this.m_controller = controller;
+            this.m_logging = logging;
         }
 
         // The Function Recieves the directory to Handle
         public void StartHandleDirectory(string dirPath)
         {
+            m_logging.Log("handling directory: " + dirPath, MessageTypeEnum.INFO);
             m_dirWatcher.Path = dirPath;
             m_dirWatcher.Filter = "*.jpg;*.gif;*.bmp;*.png";
             m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
@@ -43,20 +45,24 @@ namespace ImageService.Controller.Handlers
 
         private void OnCreated(object sender, FileSystemEventArgs e)
         {
-            bool result;
-            m_controller.ExecuteCommand(1, new String[] { e.FullPath, e.Name }, out result);
+            OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
         }
 
         // The Event that will be activated upon new Command
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
-            if (this.m_path.Equals(e.RequestDirPath))
-            { 
+            m_logging.Log("recieved command for directory: " + e.RequestDirPath, MessageTypeEnum.INFO);
+            bool result;
+            string execResult = m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
+            if (!result)
+            {
+                m_logging.Log("execition failed. error: " + execResult, MessageTypeEnum.FAIL);
             }
         }
 
         public void onClose()
         {
+            m_logging.Log("closing handler for directory: " + m_path, MessageTypeEnum.INFO);
             DirectoryClose(this, new DirectoryCloseEventArgs(m_path, "closing directory"));
             m_dirWatcher.EnableRaisingEvents = false;
             m_dirWatcher.Dispose();
