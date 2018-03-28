@@ -4,6 +4,7 @@ using ImageService.Infrastructure.Enums;
 using ImageService.Logging;
 using ImageService.Modal;
 using ImageService.Modal.Event;
+using ImageService.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace ImageService.Server
         private IImageController m_controller;
         private ILoggingService m_logging;
         private List<DirectoyHandler> handlersList;
+        private Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
         #endregion
 
         #region Properties
@@ -26,8 +28,10 @@ namespace ImageService.Server
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          
         #endregion
 
-        public ImageServer()
+        public ImageServer(IImageServiceModal modal)
         {
+            this.m_controller = new ImageController(modal);
+
             handlersList = new List<DirectoyHandler>();
             DirectoyHandler current;
 
@@ -51,7 +55,6 @@ namespace ImageService.Server
         
         public void SendCommand()
         {
-
         }
 
         public void OnCloseServer(object sender, DirectoryCloseEventArgs e)
