@@ -95,7 +95,7 @@ namespace ImageService
             serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
-            m_imageServer = new ImageServer();
+            m_imageServer = new ImageServer(logging);
             logging = new LoggingService();
             modal = new ImageServiceModal();
             controller = new ImageController(modal);
@@ -127,6 +127,8 @@ namespace ImageService
             // Update the service state to Running.  
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOPPED;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+
+            m_imageServer.OnCloseServer();
         }
     }
 }

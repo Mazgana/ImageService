@@ -26,8 +26,10 @@ namespace ImageService.Server
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          
         #endregion
 
-        public ImageServer()
+        public ImageServer(ILoggingService logging)
         {
+            m_logging = logging;
+
             handlersList = new List<DirectoyHandler>();
             DirectoyHandler current;
 
@@ -45,6 +47,8 @@ namespace ImageService.Server
             DirectoyHandler h = new DirectoyHandler(directory, this.m_controller);
             CommandRecieved += h.OnCommandRecieved;
             h.DirectoryClose += OnCloseServer;
+            h.StartHandleDirectory(directory);
+            m_logging.Log("starting handler for directory: " + directory, Logging.Modal.MessageTypeEnum.INFO);
 
             return h;
         }
