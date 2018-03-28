@@ -26,9 +26,10 @@ namespace ImageService.Server
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          
         #endregion
 
-        public ImageServer(ILoggingService logging)
+        public ImageServer(ILoggingService logging, IImageServiceModal modal)
         {
-            m_logging = logging;
+            this.m_logging = logging;
+            this.m_controller = new ImageController(modal);
 
             handlersList = new List<DirectoyHandler>();
             DirectoyHandler current;
