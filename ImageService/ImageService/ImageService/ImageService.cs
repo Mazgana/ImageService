@@ -76,10 +76,6 @@ namespace ImageService
 
         protected override void OnStart(string[] args)
         {
-            m_imageServer = new ImageServer();
-            logging = new LoggingService();
-            logging.MessageRecieved += OnMessage;
-
             // Update the service state to Start Pending.  
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
@@ -98,6 +94,12 @@ namespace ImageService
             // Update the service state to Running.  
             serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+
+            m_imageServer = new ImageServer();
+            logging = new LoggingService();
+            modal = new ImageServiceModal();
+            controller = new ImageController(modal);
+            logging.MessageRecieved += OnMessage;
         }
 
         public void OnMessage(object sender, MessageRecievedEventArgs e)

@@ -43,5 +43,5 @@ namespace ImageService.Server
             dh.DirectoryClose -= OnCloseServer;
         }
     }
-    }
 }
+

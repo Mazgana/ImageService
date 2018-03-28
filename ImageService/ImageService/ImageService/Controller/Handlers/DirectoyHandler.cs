@@ -38,24 +38,27 @@ namespace ImageService.Controller.Handlers
             m_dirWatcher.Path = dirPath;
             m_dirWatcher.Filter = "*.jpg;*.gif;*.bmp;*.png";
             m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
+            m_dirWatcher.EnableRaisingEvents = true;
         }
 
-        private static void OnCreated(object sender, FileSystemEventArgs e)
-        {   
+        private void OnCreated(object sender, FileSystemEventArgs e)
+        {
+            bool result;
+            m_controller.ExecuteCommand(1, new String[] { e.FullPath, e.Name }, out result);
         }
 
         // The Event that will be activated upon new Command
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
-            if (sender.Equals(this))
-            {
-                bool result;
-                m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
+            if (this.m_path.Equals(e.RequestDirPath))
+            { 
             }
         }
 
         public void onClose()
         {
+            DirectoryClose(this, new DirectoryCloseEventArgs(m_path, "closing directory"));
+            m_dirWatcher.EnableRaisingEvents = false;
             m_dirWatcher.Dispose();
         }
     }

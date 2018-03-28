@@ -63,7 +63,7 @@ namespace ImageService.Modal
             } catch (Exception e)
             {
                 result = false;
-                return "faild to create directory.";
+                return "faild to create directory. error: "+ e.ToString();
             }
 
             result = true;
