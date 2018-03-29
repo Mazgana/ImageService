@@ -25,16 +25,15 @@ namespace ImageService.Controller
         }
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
-            try {
-                string result = commands[commandID].Execute(args, out resultSuccesful);
-            }
-            catch(Exception e)
+            //check if in dictionairy else result=fail
+            if (commands.ContainsKey(commandID))
+            {
+                return commands[commandID].Execute(args, out resultSuccesful);
+            } else
             {
                 resultSuccesful = false;
-                return e.ToString();
+                return "no such command";
             }
-            return "succesful";
-            // Write Code Here
         }
     }
 }

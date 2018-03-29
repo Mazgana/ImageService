@@ -37,25 +37,35 @@ namespace ImageService.Controller.Handlers
         // The Function Recieves the directory to Handle
         public void StartHandleDirectory(string dirPath)
         {
-            m_logging.Log("handling directory: " + dirPath, MessageTypeEnum.INFO);
-            m_dirWatcher.Path = dirPath;
-            m_dirWatcher.Filter = "*.jpg;*.gif;*.bmp;*.png";
-            m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
-            m_dirWatcher.EnableRaisingEvents = true;
+            if (System.IO.Directory.Exists(dirPath))
+            {
+                m_logging.Log("handling directory: " + dirPath, MessageTypeEnum.INFO);
+                m_dirWatcher.Path = dirPath;
+                m_dirWatcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
+                         | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+                //m_dirWatcher.Filter = "*.jpg;*.gif;*.bmp;*.png";
+                m_dirWatcher.Filter = "*.*";
+                m_dirWatcher.Changed += new FileSystemEventHandler(OnChanged);
+                m_dirWatcher.EnableRaisingEvents = true;
+            }
+            else
+            {
+                m_logging.Log("could not find directory: " + dirPath, MessageTypeEnum.WARNING);
+            }
         }
 
-        private void OnCreated(object sender, FileSystemEventArgs e)
+        private void OnChanged(object sender, FileSystemEventArgs e)
         {
+            m_logging.Log("directory changed: " + e.Name, MessageTypeEnum.INFO);
             OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
         }
-
         // The Event that will be activated upon new Command
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
             m_logging.Log("recieved command for directory: " + e.RequestDirPath, MessageTypeEnum.INFO);
-            bool result;
-            string execResult = m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
-            if (!result)
+            bool resultSuccess;
+            string execResult = m_controller.ExecuteCommand(e.CommandID, e.Args, out resultSuccess);
+            if (!resultSuccess)
             {
                 m_logging.Log("execition failed. error: " + execResult, MessageTypeEnum.FAIL);
             }
