@@ -31,6 +31,7 @@ namespace ImageService.Controller.Handlers
             this.m_path = path;
             this.m_controller = controller;
             this.m_logging = logging;
+            m_dirWatcher = new FileSystemWatcher();
         }
 
         // The Function Recieves the directory to Handle

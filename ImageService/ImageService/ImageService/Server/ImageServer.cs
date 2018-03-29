@@ -23,7 +23,7 @@ namespace ImageService.Server
 
         #region Properties
         // The event that notifies about a new Command being recieved
-        public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          
+        public event EventHandler<CommandRecievedEventArgs> CommandRecieved;         
         #endregion
 
         public ImageServer(ILoggingService logging, IImageServiceModal modal)
@@ -46,9 +46,9 @@ namespace ImageService.Server
         public DirectoyHandler CreateHandler(String directory)
         {
             DirectoyHandler h = new DirectoyHandler(directory, m_controller, m_logging);
-            CommandRecieved += h.OnCommandRecieved;
+            /*CommandRecieved += h.OnCommandRecieved;
             h.DirectoryClose += OnCloseServer;
-            h.StartHandleDirectory(directory);
+            h.StartHandleDirectory(directory);*/
             m_logging.Log("starting handler for directory: " + directory, Logging.Modal.MessageTypeEnum.INFO);
 
             return h;
@@ -57,6 +57,10 @@ namespace ImageService.Server
         public void SendCommand()
         {
 
+        }
+
+        public void CloseServer()
+        {
         }
 
         public void OnCloseServer(object sender, DirectoryCloseEventArgs e)

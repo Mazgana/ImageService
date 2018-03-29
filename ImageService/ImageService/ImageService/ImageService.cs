@@ -72,6 +72,9 @@ namespace ImageService
             }
             eventLog1.Source = eventSourceName;
             eventLog1.Log = logName;
+
+            logging = new LoggingService();
+            logging.MessageRecieved += OnMessage;
         }
 
         protected override void OnStart(string[] args)
@@ -82,7 +85,6 @@ namespace ImageService
             serviceStatus.dwWaitHint = 100000;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
-//            eventLog1.WriteEntry("In OnStart");
             logging.Log("In OnStart", MessageTypeEnum.INFO);
 
             // Set up a timer to trigger every minute.  
@@ -95,11 +97,10 @@ namespace ImageService
             serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
-            logging = new LoggingService();
             modal = new ImageServiceModal();
 //            controller = new ImageController(modal);
             m_imageServer = new ImageServer(logging, modal);
-            logging.MessageRecieved += OnMessage;
+            
         }
 
         public void OnMessage(object sender, MessageRecievedEventArgs e)
@@ -121,14 +122,13 @@ namespace ImageService
             serviceStatus.dwWaitHint = 100000;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
-//            eventLog1.WriteEntry("In onStop.");
             logging.Log("In OnStop", MessageTypeEnum.INFO);
 
             // Update the service state to Running.  
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOPPED;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
-            m_imageServer.OnCloseServer();
+//            m_imageServer.CloseServer();
         }
     }
 }
