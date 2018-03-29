@@ -45,8 +45,8 @@ namespace ImageService.Controller.Handlers
                          | NotifyFilters.FileName | NotifyFilters.DirectoryName;
                 //m_dirWatcher.Filter = "*.jpg;*.gif;*.bmp;*.png";
                 m_dirWatcher.Filter = "*.*";
-                //m_dirWatcher.Changed += new FileSystemEventHandler(OnChanged);
                 m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
+                m_dirWatcher.Changed += new FileSystemEventHandler(OnChanged);
                 m_dirWatcher.EnableRaisingEvents = true;
             }
             else
@@ -58,13 +58,13 @@ namespace ImageService.Controller.Handlers
         private void OnCreated(object sender, FileSystemEventArgs e)
         {
             m_logging.Log("new file created: " + e.Name, MessageTypeEnum.INFO);
-            OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
+           // OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
         }
 
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
             m_logging.Log("directory changed: " + e.Name, MessageTypeEnum.INFO);
-            //OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
+            OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
         }
         // The Event that will be activated upon new Command
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
