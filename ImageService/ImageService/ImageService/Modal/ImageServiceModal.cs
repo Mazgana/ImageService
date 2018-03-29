@@ -18,7 +18,6 @@ namespace ImageService.Modal
 
         public string AddFile(string path, out bool result) {
             String response = "Image copied successfully.";
-            int error = 0;
             try
             {
                 FileInfo imageInfo = new FileInfo(path);
@@ -26,25 +25,20 @@ namespace ImageService.Modal
                 String year = date.Year.ToString();
                 String month = date.Month.ToString();
 
-                error = 1;
-
+                string newFile = Path.GetFileName(path);
                 String dest = outputDir + @"\" + year + @"\" + month;
                 response = CreateFolder(dest, out result);
                 if (result == false)
                     return response;
 
-                File.Copy(path, dest);
-
-                error = 2;
+                File.Copy(path, dest + @"\" + newFile);
 
                 dest = outputDir + @"\Thumbnail\" + year + @"\" + month;
                 response = CreateFolder(dest, out result);
                 if (result == false)
                     return response;
 
-                File.Copy(path, dest);
-
-                error = 3;
+                File.Copy(path, dest + @"\" + "thumb" + newFile);
 
                 Image image = Image.FromFile(path);
                 int size;
@@ -52,12 +46,10 @@ namespace ImageService.Modal
                 Image thumb = image.GetThumbnailImage(size, size, () => false, IntPtr.Zero);
                 thumb.Save(Path.ChangeExtension(imageInfo.FullName, "thumb"));
 
-                error = 4;
-
             } catch (Exception e)
             {
                 result = false;
-                return error + e.ToString();
+                return e.ToString();
             }
 
             result = true;
