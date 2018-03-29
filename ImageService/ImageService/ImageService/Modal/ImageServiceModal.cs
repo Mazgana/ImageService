@@ -26,6 +26,7 @@ namespace ImageService.Modal
                 string year = date.Year.ToString();
                 string month = date.Month.ToString();
 
+                //copying new image to output directory
                 string newFile = Path.GetFileName(path);
                 String dest = outputDir + @"\" + year + @"\" + month;
                 response = CreateFolder(dest, out result);
@@ -34,21 +35,22 @@ namespace ImageService.Modal
 
                 File.Copy(path, dest + @"\" + newFile);
 
+                //creating thumbnail directory
                 dest = outputDir + @"\Thumbnail\" + year + @"\" + month;
                 response = CreateFolder(dest, out result);
                 if (result == false)
                     return response;
 
-                File.Copy(path, dest + @"\" + "thumb-" + newFile);
+                //File.Copy(path, dest + @"\" + "thumb-" + newFile);
 
                 string thumbPath = dest + @"\" + "thumb-" + newFile;
 
-                FileInfo imageInfo = new FileInfo(thumbPath);
-                Image image = Image.FromFile(thumbPath);
+                FileInfo imageInfo = new FileInfo(path);
+                Image image = Image.FromFile(path);
                 int size;
                 Int32.TryParse(ConfigurationManager.AppSettings["thumbnailSize"], out size);
                 Image thumb = image.GetThumbnailImage(size, size, () => false, IntPtr.Zero);
-                thumb.Save(Path.ChangeExtension(imageInfo.FullName, "thumb"));
+                thumb.Save(thumbPath);
 
                 /**              Console.WriteLine(year);
 
