@@ -26,30 +26,54 @@ namespace ImageService.Modal
                 string year = date.Year.ToString();
                 string month = date.Month.ToString();
 
-                Console.WriteLine(year);
-
-                string filename = Path.GetFileName(path);
+                string newFile = Path.GetFileName(path);
                 String dest = outputDir + @"\" + year + @"\" + month;
                 response = CreateFolder(dest, out result);
                 if (result == false)
                     return response;
 
-                File.Copy(path, dest + @"\" + filename);
+                File.Copy(path, dest + @"\" + newFile);
 
                 dest = outputDir + @"\Thumbnail\" + year + @"\" + month;
                 response = CreateFolder(dest, out result);
                 if (result == false)
                     return response;
 
-                string thumbPath = dest + @"\" + "thumb-" + filename;
+                File.Copy(path, dest + @"\" + "thumb-" + newFile);
 
-                Image image = Image.FromFile(path);
+                string thumbPath = dest + @"\" + "thumb-" + newFile;
+
+                FileInfo imageInfo = new FileInfo(thumbPath);
+                Image image = Image.FromFile(thumbPath);
                 int size;
                 Int32.TryParse(ConfigurationManager.AppSettings["thumbnailSize"], out size);
                 Image thumb = image.GetThumbnailImage(size, size, () => false, IntPtr.Zero);
-                FileInfo imageInfo = new FileInfo(thumbPath);
                 thumb.Save(Path.ChangeExtension(imageInfo.FullName, "thumb"));
-                //Path.ChangeExtension(imageInfo.FullName, null);
+
+                /**              Console.WriteLine(year);
+
+                              string filename = Path.GetFileName(path);
+                              String dest = outputDir + @"\" + year + @"\" + month;
+                              response = CreateFolder(dest, out result);
+                              if (result == false)
+                                  return response;
+
+                              File.Copy(path, dest + @"\" + filename);
+
+                              dest = outputDir + @"\Thumbnail\" + year + @"\" + month;
+                              response = CreateFolder(dest, out result);
+                              if (result == false)
+                                  return response;
+
+                              File.Copy(path, dest + @"\" + "thumb" + filename);
+
+                              Image image = Image.FromFile(dest);
+                              int size;
+                              Int32.TryParse(ConfigurationManager.AppSettings["thumbnailSize"], out size);
+                              Image thumb = image.GetThumbnailImage(size, size, () => false, IntPtr.Zero);
+                              FileInfo imageInfo = new FileInfo(dest);
+                              thumb.Save(Path.ChangeExtension(imageInfo.FullName, "thumb"));
+                              //Path.ChangeExtension(imageInfo.FullName, null); **/
 
             } catch (Exception e)
             {
