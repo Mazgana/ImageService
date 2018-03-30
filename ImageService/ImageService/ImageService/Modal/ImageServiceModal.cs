@@ -33,23 +33,22 @@ namespace ImageService.Modal
                 if (result == false)
                     return response;
 
+                //checks if a picture with the same name is already exists in folder. If it does, add the name
+                // of the picture the number of appearence in this folder.
+                int i = 2;
+                while (File.Exists(dest + @"\" + newFile))
+                {
+                    newFile = Path.GetFileNameWithoutExtension(path) + " (" + i + ")" + Path.GetExtension(path);
+                    i++;
+                }
+
                 File.Copy(path, dest + @"\" + newFile);
 
                 //creating thumbnail directory
                 dest = outputDir + @"\Thumbnail\" + year + @"\" + month;
-                response = CreateFolder(dest, out result);
+                response = addingThumbCopyToThumbnailFolder(path, dest, out result);
                 if (result == false)
                     return response;
-
-                //File.Copy(path, dest + @"\" + "thumb-" + newFile);
-                string thumbPath = dest + @"\" + "thumb-" + newFile;
-
-                FileInfo imageInfo = new FileInfo(path);
-                Image image = Image.FromFile(path);
-                int size;
-                Int32.TryParse(ConfigurationManager.AppSettings["thumbnailSize"], out size);
-                Image thumb = image.GetThumbnailImage(size, size, () => false, IntPtr.Zero);
-                thumb.Save(thumbPath);
             } catch (Exception e)
             {
                 result = false;
@@ -76,14 +75,16 @@ namespace ImageService.Modal
 
                     // Parse the date and time. 
                     CultureInfo provider = CultureInfo.InvariantCulture;
-                    return DateTime.ParseExact(text, "yyyy:MM:d H:m:s", provider);
+                   return DateTime.ParseExact(text, "yyyy:MM:d H:m:s", provider);
                 } else
                 {
+                    //If the creation time dosen't exists, the method will return the copy date.
                     return DateTime.Now;
                 }
             }
         }
 
+        //If it doesn't exists - create new folder in the destination path.
         public string CreateFolder(string dest, out bool result)
         {
             try
@@ -97,6 +98,33 @@ namespace ImageService.Modal
 
             result = true;
             return "directory created successfully.";
+        }
+
+        //Create a thumb size copy of the picture and save it in the 'Thumbnail' filder
+        public string addingThumbCopyToThumbnailFolder(string path, string dest, out bool result)
+        {
+            try
+            {
+                string response = CreateFolder(dest, out result);
+                if (result == false)
+                    return response;
+
+                string thumbPath = dest + @"\" + "thumb-" + Path.GetFileName(path);
+
+                FileInfo imageInfo = new FileInfo(path);
+                Image image = Image.FromFile(path);
+                int size;
+                Int32.TryParse(ConfigurationManager.AppSettings["thumbnailSize"], out size);
+                Image thumb = image.GetThumbnailImage(size, size, () => false, IntPtr.Zero);
+                thumb.Save(thumbPath);
+            } catch (Exception e)
+            {
+                result = false;
+                return "faild to create thumb picture in thumbnail folder. error: " + e.ToString();
+            }
+
+            result = true;
+            return "Thumb copy is saved in the 'Thumbnail' folder.";
         }
     }
 }

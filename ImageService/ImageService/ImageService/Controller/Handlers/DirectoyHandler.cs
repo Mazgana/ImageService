@@ -66,6 +66,7 @@ namespace ImageService.Controller.Handlers
             m_logging.Log("directory changed: " + e.Name, MessageTypeEnum.INFO);
             OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
         }
+
         // The Event that will be activated upon new Command
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
@@ -78,10 +79,10 @@ namespace ImageService.Controller.Handlers
             }
         }
 
-        public void onClose()
+        public void onClose(object send, DirectoryCloseEventArgs e)
         {
             m_logging.Log("closing handler for directory: " + m_path, MessageTypeEnum.INFO);
-            DirectoryClose(this, new DirectoryCloseEventArgs(m_path, "closing directory"));
+            DirectoryClose(this, e);
             m_dirWatcher.EnableRaisingEvents = false;
             m_dirWatcher.Dispose();
         }
