@@ -42,7 +42,6 @@ namespace ImageService.Modal
                     return response;
 
                 //File.Copy(path, dest + @"\" + "thumb-" + newFile);
-
                 string thumbPath = dest + @"\" + "thumb-" + newFile;
 
                 FileInfo imageInfo = new FileInfo(path);
@@ -51,32 +50,6 @@ namespace ImageService.Modal
                 Int32.TryParse(ConfigurationManager.AppSettings["thumbnailSize"], out size);
                 Image thumb = image.GetThumbnailImage(size, size, () => false, IntPtr.Zero);
                 thumb.Save(thumbPath);
-
-                /**              Console.WriteLine(year);
-
-                              string filename = Path.GetFileName(path);
-                              String dest = outputDir + @"\" + year + @"\" + month;
-                              response = CreateFolder(dest, out result);
-                              if (result == false)
-                                  return response;
-
-                              File.Copy(path, dest + @"\" + filename);
-
-                              dest = outputDir + @"\Thumbnail\" + year + @"\" + month;
-                              response = CreateFolder(dest, out result);
-                              if (result == false)
-                                  return response;
-
-                              File.Copy(path, dest + @"\" + "thumb" + filename);
-
-                              Image image = Image.FromFile(dest);
-                              int size;
-                              Int32.TryParse(ConfigurationManager.AppSettings["thumbnailSize"], out size);
-                              Image thumb = image.GetThumbnailImage(size, size, () => false, IntPtr.Zero);
-                              FileInfo imageInfo = new FileInfo(dest);
-                              thumb.Save(Path.ChangeExtension(imageInfo.FullName, "thumb"));
-                              //Path.ChangeExtension(imageInfo.FullName, null); **/
-
             } catch (Exception e)
             {
                 result = false;
