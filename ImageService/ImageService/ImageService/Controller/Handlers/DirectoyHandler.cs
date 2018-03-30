@@ -41,11 +41,10 @@ namespace ImageService.Controller.Handlers
             {
                 m_logging.Log("handling directory: " + dirPath, MessageTypeEnum.INFO);
                 m_dirWatcher.Path = dirPath;
-                m_dirWatcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
-                         | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+                //m_dirWatcher.NotifyFilter = NotifyFilters.LastWrite;
                 //m_dirWatcher.Filter = "*.jpg;*.gif;*.bmp;*.png";
-                m_dirWatcher.Filter = "*.*";
-                m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
+                //m_dirWatcher.Filter = "*.*";
+                //m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
                 m_dirWatcher.Changed += new FileSystemEventHandler(OnChanged);
                 m_dirWatcher.EnableRaisingEvents = true;
             }
@@ -54,17 +53,18 @@ namespace ImageService.Controller.Handlers
                 m_logging.Log("could not find directory: " + dirPath, MessageTypeEnum.WARNING);
             }
         }
-
+        /*
         private void OnCreated(object sender, FileSystemEventArgs e)
         {
             m_logging.Log("new file created: " + e.Name, MessageTypeEnum.INFO);
-           // OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
-        }
-
+           OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
+        }*/
+        
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
             m_logging.Log("directory changed: " + e.Name, MessageTypeEnum.INFO);
-            OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
+            m_logging.Log("change type: " + e.ChangeType.GetType(), MessageTypeEnum.INFO);
+                OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
         }
         // The Event that will be activated upon new Command
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
