@@ -35,7 +35,7 @@ namespace ImageService.Controller.Handlers
         }
 
         // The Function Recieves the directory to Handle
-        public void StartHandleDirectory(string dirPath)
+        public bool StartHandleDirectory(string dirPath)
         {
             if (System.IO.Directory.Exists(dirPath))
             {
@@ -47,10 +47,12 @@ namespace ImageService.Controller.Handlers
                 //m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
                 m_dirWatcher.Changed += new FileSystemEventHandler(OnChanged);
                 m_dirWatcher.EnableRaisingEvents = true;
+                return true;    //the directory exists
             }
             else
             {
                 m_logging.Log("could not find directory: " + dirPath, MessageTypeEnum.WARNING);
+                return false;   //the directory isn't exists
             }
         }
         /*

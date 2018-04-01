@@ -46,12 +46,18 @@ namespace ImageService.Server
         public DirectoyHandler CreateHandler(String directory)
         {
             DirectoyHandler h = new DirectoyHandler(directory, m_controller, m_logging);
-            CommandRecieved += h.OnCommandRecieved;
-            h.DirectoryClose += CloseCommand;
-            h.StartHandleDirectory(directory);
-            m_logging.Log("starting handler for directory: " + directory, Logging.Modal.MessageTypeEnum.INFO);
 
-            return h;
+            if (h.StartHandleDirectory(directory))
+            {
+                CommandRecieved += h.OnCommandRecieved;
+                h.DirectoryClose += CloseCommand;
+                m_logging.Log("starting handler for directory: " + directory, Logging.Modal.MessageTypeEnum.INFO);
+
+                return h;
+            } else
+            {
+                return null;
+            }
         }
         
         public void SendCommand(CommandRecievedEventArgs e)
