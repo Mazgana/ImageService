@@ -21,6 +21,7 @@ namespace ImageService.Controller.Handlers
         private ILoggingService m_logging;
         private FileSystemWatcher m_dirWatcher;             // The Watcher of the Dir
         private string m_path;                              // The Path of directory
+        DateTime lastRead = DateTime.MinValue;
         #endregion
 
         // The Event That Notifies that the Directory is being closed
@@ -41,10 +42,6 @@ namespace ImageService.Controller.Handlers
             {
                 m_logging.Log("handling directory: " + dirPath, MessageTypeEnum.INFO);
                 m_dirWatcher.Path = dirPath;
-                //m_dirWatcher.NotifyFilter = NotifyFilters.LastWrite;
-                //m_dirWatcher.Filter = "*.jpg;*.gif;*.bmp;*.png";
-                //m_dirWatcher.Filter = "*.*";
-                //m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
                 m_dirWatcher.Changed += new FileSystemEventHandler(OnChanged);
                 m_dirWatcher.EnableRaisingEvents = true;
                 return true;    //the directory exists
@@ -55,18 +52,26 @@ namespace ImageService.Controller.Handlers
                 return false;   //the directory isn't exists
             }
         }
-        /*
-        private void OnCreated(object sender, FileSystemEventArgs e)
-        {
-            m_logging.Log("new file created: " + e.Name, MessageTypeEnum.INFO);
-           OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
-        }*/
         
         private void OnChanged(object sender, FileSystemEventArgs e)
+        {         
+                DateTime lastWriteTime = File.GetLastWriteTime(e.FullPath);
+                if (lastWriteTime != this.lastRead && isImage(e.FullPath))
+                {
+                    this.lastRead = lastWriteTime;
+                    m_logging.Log("directory changed: " + e.Name, MessageTypeEnum.INFO);
+                    m_logging.Log("change type: " + e.ChangeType.GetType(), MessageTypeEnum.INFO);
+                    OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
+                }
+        }
+
+        private bool isImage(string path)
         {
-            m_logging.Log("directory changed: " + e.Name, MessageTypeEnum.INFO);
-            m_logging.Log("change type: " + e.ChangeType.GetType(), MessageTypeEnum.INFO);
-                OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
+            string ext = new FileInfo(path).Extension;
+            if (ext.Equals(".jpg") || ext.Equals(".png") || ext.Equals(".bmp") || ext.Equals(".gif"))
+                return true;
+
+            return false;
         }
 
         // The Event that will be activated upon new Command

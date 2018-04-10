@@ -42,11 +42,11 @@ namespace ImageService.Modal
                     i++;
                 }
 
-                File.Copy(path, dest + @"\" + newFile);
+                File.Move(path, dest + @"\" + newFile);
 
                 //creating thumbnail directory
-                dest = outputDir + @"\Thumbnail\" + year + @"\" + month;
-                response = addingThumbCopyToThumbnailFolder(path, dest, out result);
+                string thumbDest = outputDir + @"\Thumbnail\" + year + @"\" + month;
+                response = addingThumbCopyToThumbnailFolder(dest + @"\" + newFile, thumbDest, out result);
                 if (result == false)
                     return response;
             } catch (Exception e)
