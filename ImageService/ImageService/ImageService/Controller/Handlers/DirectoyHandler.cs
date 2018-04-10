@@ -35,7 +35,7 @@ namespace ImageService.Controller.Handlers
         }
 
         // The Function Recieves the directory to Handle
-        public void StartHandleDirectory(string dirPath)
+        public bool StartHandleDirectory(string dirPath)
         {
             if (System.IO.Directory.Exists(dirPath))
             {
@@ -47,10 +47,12 @@ namespace ImageService.Controller.Handlers
                 //m_dirWatcher.Created += new FileSystemEventHandler(OnCreated);
                 m_dirWatcher.Changed += new FileSystemEventHandler(OnChanged);
                 m_dirWatcher.EnableRaisingEvents = true;
+                return true;    //the directory exists
             }
             else
             {
                 m_logging.Log("could not find directory: " + dirPath, MessageTypeEnum.WARNING);
+                return false;   //the directory isn't exists
             }
         }
         /*
@@ -66,6 +68,7 @@ namespace ImageService.Controller.Handlers
             m_logging.Log("change type: " + e.ChangeType.GetType(), MessageTypeEnum.INFO);
                 OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
         }
+
         // The Event that will be activated upon new Command
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
@@ -78,10 +81,10 @@ namespace ImageService.Controller.Handlers
             }
         }
 
-        public void onClose()
+        public void onClose(object send, DirectoryCloseEventArgs e)
         {
             m_logging.Log("closing handler for directory: " + m_path, MessageTypeEnum.INFO);
-            DirectoryClose(this, new DirectoryCloseEventArgs(m_path, "closing directory"));
+            DirectoryClose(this, e);
             m_dirWatcher.EnableRaisingEvents = false;
             m_dirWatcher.Dispose();
         }

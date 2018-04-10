@@ -128,7 +128,7 @@ namespace ImageService
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOPPED;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
-//            m_imageServer.CloseServer();
+            m_imageServer.CloseServer();
         }
     }
 }
