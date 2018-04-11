@@ -54,7 +54,7 @@ namespace ImageService.Controller.Handlers
         }
         
         private void OnChanged(object sender, FileSystemEventArgs e)
-        {         
+        {
                 DateTime lastWriteTime = File.GetLastWriteTime(e.FullPath);
                 if (lastWriteTime != this.lastRead && isImage(e.FullPath))
                 {

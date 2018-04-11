@@ -22,7 +22,18 @@ namespace ImageService.Modal
             String response = "Image copied successfully.";
             try
             {
-                DateTime date = GetDateTakenFromImage(path);
+                DateTime date = DateTime.Now;
+                try
+                {
+                  date = GetDateTakenFromImage(path);
+
+                }
+                catch (System.IO.FileNotFoundException)
+                {
+                    result = true;
+                    return "File isn't there - probably already copied.";
+                }
+
                 string year = date.Year.ToString();
                 string month = date.Month.ToString();
 
@@ -49,6 +60,7 @@ namespace ImageService.Modal
                 response = addingThumbCopyToThumbnailFolder(dest + @"\" + newFile, thumbDest, out result);
                 if (result == false)
                     return response;
+
             } catch (Exception e)
             {
                 result = false;
