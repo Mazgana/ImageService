@@ -42,6 +42,7 @@ namespace ImageService.Controller.Handlers
             {
                 m_logging.Log("handling directory: " + dirPath, MessageTypeEnum.INFO);
                 m_dirWatcher.Path = dirPath;
+                DirectoryClose += onClose;
                 m_dirWatcher.Changed += new FileSystemEventHandler(OnChanged);
                 m_dirWatcher.EnableRaisingEvents = true;
                 return true;    //the directory exists
@@ -88,6 +89,7 @@ namespace ImageService.Controller.Handlers
 
         public void onClose(object send, DirectoryCloseEventArgs e)
         {
+            DirectoryClose -= onClose;
             m_logging.Log("closing handler for directory: " + m_path, MessageTypeEnum.INFO);
             DirectoryClose(this, e);
             m_dirWatcher.EnableRaisingEvents = false;
