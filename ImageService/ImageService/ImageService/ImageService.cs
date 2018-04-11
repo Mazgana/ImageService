@@ -98,8 +98,8 @@ namespace ImageService
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
             modal = new ImageServiceModal();
-//            controller = new ImageController(modal);
-            m_imageServer = new ImageServer(logging, modal);
+            controller = new ImageController(modal);
+            m_imageServer = new ImageServer(logging, modal, controller);
             
         }
 

@@ -26,10 +26,10 @@ namespace ImageService.Server
         public event EventHandler<DirectoryCloseEventArgs> CloseCommand;            // The event that notifies that the service is close and that the server should close
         #endregion
 
-        public ImageServer(ILoggingService logging, IImageServiceModal modal)
+        public ImageServer(ILoggingService logging, IImageServiceModal modal, IImageController controller)
         {
             this.m_logging = logging;
-            this.m_controller = new ImageController(modal);
+            this.m_controller = controller;
 
             handlersList = new List<DirectoyHandler>();
             DirectoyHandler current;
