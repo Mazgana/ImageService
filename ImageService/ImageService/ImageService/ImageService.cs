@@ -85,7 +85,7 @@ namespace ImageService
             logging.MessageRecieved += OnMessage;
         }
 
-        //function starts service, initializing service and members.
+        //function starts service initializing service and members.
         protected override void OnStart(string[] args)
         {
             // Update the service state to Start Pending.  

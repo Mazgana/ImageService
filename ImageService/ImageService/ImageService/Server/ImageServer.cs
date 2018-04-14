@@ -50,7 +50,8 @@ namespace ImageService.Server
             if (h.StartHandleDirectory(directory))
             {
                 CommandRecieved += h.OnCommandRecieved;
-                h.DirectoryClose += CloseCommand;
+                h.DirectoryClose += OnCloseServer;
+                CloseCommand += h.onClose;
                 m_logging.Log("starting handler for directory: " + directory, Logging.Modal.MessageTypeEnum.INFO);
 
                 return h;
@@ -73,9 +74,11 @@ namespace ImageService.Server
 
         public void OnCloseServer(object sender, DirectoryCloseEventArgs e)
         {
+            m_logging.Log("removing events. final closing", Logging.Modal.MessageTypeEnum.INFO);
             DirectoyHandler dh = (DirectoyHandler)sender;
             CommandRecieved -= dh.OnCommandRecieved;
             dh.DirectoryClose -= OnCloseServer;
+            CloseCommand -= dh.onClose;
         }
     }
 }
