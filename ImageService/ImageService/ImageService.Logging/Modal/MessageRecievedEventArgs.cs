@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace ImageService.Logging.Modal
 {
+
+    /// <summary>
+    /// In the log file we keep messages with two parts - the message contents and it's type.
+    /// </summary>
     public class MessageRecievedEventArgs : EventArgs
     {
         public MessageTypeEnum Status { get; set; }

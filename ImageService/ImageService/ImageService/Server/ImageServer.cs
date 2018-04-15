@@ -26,20 +26,33 @@ namespace ImageService.Server
         public event EventHandler<DirectoryCloseEventArgs> CloseCommand;            // The event that notifies that the service is close and that the server should close
         #endregion
 
+        /// <summary>
+        /// Image server constructor, create handler for each path in the app config file.
+        /// </summary>
+        /// <param name="logging"> The application's logger </param>
+        /// <param name="modal"> The service modal </param>
+        /// <param name="controller"> The image controller </param>
         public ImageServer(ILoggingService logging, IImageServiceModal modal, IImageController controller)
         {
             this.m_logging = logging;
             this.m_controller = controller;
 
+            //Extract all directories from app config file.
             DirectoyHandler current;
             string directories = ConfigurationManager.AppSettings["Handler"];
             string[] handlersDirectories = directories.Split(';');
+
             for (int i = 0; i < handlersDirectories.Length; i++)
             {
                 current = CreateHandler(handlersDirectories[i]);
             }
         }
 
+        /// <summary>
+        /// Create new handler for the given path.
+        /// </summary>
+        /// <param name="directory"> The folder that the new handler will listen to. </param>
+        /// <returns> The new handler. If the handler's creation failed - return null. </returns>
         public DirectoyHandler CreateHandler(String directory)
         {
             DirectoyHandler h = new DirectoyHandler(directory, m_controller, m_logging);
@@ -58,12 +71,19 @@ namespace ImageService.Server
             }
         }
         
+        /// <summary>
+        /// sending the given command from the server to all the application's handlers.
+        /// </summary>
+        /// <param name="e"> The command. </param>
         public void SendCommand(CommandRecievedEventArgs e)
         {
             m_logging.Log("sending command from server.", Logging.Modal.MessageTypeEnum.INFO);
             CommandRecieved?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Notifie all the handlers that the server is closing.
+        /// </summary>
         public void CloseServer()
         {
             m_logging.Log("closing the server.", Logging.Modal.MessageTypeEnum.INFO);

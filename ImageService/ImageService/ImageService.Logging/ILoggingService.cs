@@ -10,6 +10,8 @@ namespace ImageService.Logging
     public interface ILoggingService
     {
         event EventHandler<MessageRecievedEventArgs> MessageRecieved;
-        void Log(string message, MessageTypeEnum type);           // Logging the Message
+
+        //Adding the message to the log
+        void Log(string message, MessageTypeEnum type);
     }
 }
