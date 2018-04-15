@@ -62,13 +62,12 @@ namespace ImageService.Controller.Handlers
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
                 DateTime lastWriteTime = File.GetLastWriteTime(e.FullPath);//checks if the change is a new file added.
-                if (lastWriteTime != this.lastRead && isImage(e.FullPath))
-                {
+//                if (lastWriteTime != this.lastRead && isImage(e.FullPath))
+//                {
                     this.lastRead = lastWriteTime;
                     m_logging.Log("directory changed: " + e.Name, MessageTypeEnum.INFO);
-                    m_logging.Log("change type: " + e.ChangeType.GetType(), MessageTypeEnum.INFO);
                     OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
-                }
+ //               }
         }
 
         //function checks if given file path is an image
@@ -90,6 +89,8 @@ namespace ImageService.Controller.Handlers
             if (!resultSuccess)
             {
                 m_logging.Log("execition failed. error: " + execResult, MessageTypeEnum.FAIL);
+            }else{
+                m_logging.Log("Image moved succefully", MessageTypeEnum.INFO);
             }
         }
 
