@@ -74,7 +74,7 @@ namespace ImageService.Server
         /// <summary>
         /// sending the given command from the server to all the application's handlers.
         /// </summary>
-        /// <param name="e"> The command. </param>
+        /// <param name="e"> The command that will be sent. </param>
         public void SendCommand(CommandRecievedEventArgs e)
         {
             m_logging.Log("sending command from server.", Logging.Modal.MessageTypeEnum.INFO);
@@ -82,7 +82,7 @@ namespace ImageService.Server
         }
 
         /// <summary>
-        /// Notifie all the handlers that the server is closing.
+        /// Closing the handlers when sever is closing.
         /// </summary>
         public void CloseServer()
         {
@@ -90,6 +90,11 @@ namespace ImageService.Server
             CloseCommand?.Invoke(this, null);
         }
 
+        /// <summary>
+        /// Closing the server - handler will call this function to tell server it closed.
+        /// </summary>
+        /// <param name="sender"> Handler as sender. </param>
+        /// <param name="e"> Information on the handler - dir and a message. </param>
         public void OnCloseServer(object sender, DirectoryCloseEventArgs e)
         {
             DirectoyHandler dh = (DirectoyHandler)sender;
