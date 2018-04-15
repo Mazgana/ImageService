@@ -52,6 +52,10 @@ namespace ImageService
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
 
+        /// <summary>
+        /// service constructor. creating event log and logging service.
+        /// </summary>
+        /// <param name="args"> for source and log name. </param>
         public ImageService (string[] args)
         {
             InitializeComponent();
@@ -77,6 +81,10 @@ namespace ImageService
             logging.MessageRecieved += OnMessage;
         }
 
+        /// <summary>
+        /// starts service
+        /// </summary>
+        /// <param name="args"> for starting service. </param>
         protected override void OnStart(string[] args)
         {
             // Update the service state to Start Pending.  
@@ -102,18 +110,29 @@ namespace ImageService
             m_imageServer = new ImageServer(logging, modal, controller);
             
         }
-
+        /// <summary>
+        /// writing an entry to log.
+        /// </summary>
+        /// <param name="sender"> the class from which the event was invoked to call this function. </param>
+        /// <param name="e"> arguments for a message recieved event. </param>
         public void OnMessage(object sender, MessageRecievedEventArgs e)
         {
             eventLog1.WriteEntry(e.Message);
         }
 
+        /// <summary>
+        /// The Event that will be activated upon timer finishing lapse.
+        /// </summary>
+        /// <param name="sender"> the class from which the event was invoked to call this function. </param>
+        /// <param name="e"> arguments for an elapsed event. </param>
         public void OnTimer(object sender, System.Timers.ElapsedEventArgs args)
-        {
-            // TODO: Insert monitoring activities here.  
+        {  
             eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
         }
 
+        /// <summary>
+        /// stops service
+        /// </summary>
         protected override void OnStop()
         {
             // Update the service state to Start Pending.  
