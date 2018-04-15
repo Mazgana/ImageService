@@ -18,8 +18,6 @@ namespace ImageService.Modal
     {
         private String outputDir = ConfigurationManager.AppSettings["OutputDir"];
 
-        //this function gets a file path and moves the file to output folder according to creation date,
-        // also making a thumbnail copy in matching thumbnail directory.
         public string AddFile(string path, out bool result) {
 
             //Creating the output folder and set it to be hidden.
@@ -30,12 +28,16 @@ namespace ImageService.Modal
             }
 
             String response = "Image copied successfully.";
-            try{
-                //getting file creation date
+            try
+            {
                 DateTime date = DateTime.Now;
-                try{
+                try
+                {
                   date = GetDateTakenFromImage(path);
-                }catch (System.IO.FileNotFoundException){
+
+                }
+                catch (System.IO.FileNotFoundException)
+                {
                     result = true;
                     return "File isn't there - probably already copied.";
                 }
@@ -77,7 +79,7 @@ namespace ImageService.Modal
             return response;
         }
 
-        //retrieves the file creation datetime (image file).
+        //retrieves the datetime WITHOUT loading the whole image
         public static DateTime GetDateTakenFromImage(string path)
         {
             using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
