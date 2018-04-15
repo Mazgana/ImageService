@@ -21,6 +21,14 @@ namespace ImageService.Modal
         //this function gets a file path and moves the file to output folder according to creation date,
         // also making a thumbnail copy in matching thumbnail directory.
         public string AddFile(string path, out bool result) {
+
+            //Creating the output folder and set it to be hidden.
+            if (!Directory.Exists(outputDir))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(outputDir);
+                di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+            }
+
             String response = "Image copied successfully.";
             try{
                 //getting file creation date
