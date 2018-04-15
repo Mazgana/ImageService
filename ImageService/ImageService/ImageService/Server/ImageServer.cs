@@ -21,7 +21,7 @@ namespace ImageService.Server
         #region Members
         private IImageController m_controller;
         private ILoggingService m_logging;
-       // private List<DirectoyHandler> handlersList;
+        private List<DirectoyHandler> handlersList;
         #endregion
 
         #region Properties
@@ -35,7 +35,7 @@ namespace ImageService.Server
             this.m_logging = logging;
             this.m_controller = controller;
 
-           // handlersList = new List<DirectoyHandler>();
+            handlersList = new List<DirectoyHandler>();
             DirectoyHandler current;
 
             string directories = ConfigurationManager.AppSettings["Handler"];
@@ -43,7 +43,7 @@ namespace ImageService.Server
             for (int i = 0; i < handlersDirectories.Length; i++)
             {
                 current = CreateHandler(handlersDirectories[i]);
-            //    handlersList.Add(current);
+                handlersList.Add(current);
             }
         }
 
@@ -74,7 +74,7 @@ namespace ImageService.Server
         public void CloseServer()
         {
             m_logging.Log("closing the server.", Logging.Modal.MessageTypeEnum.INFO);
-            SendCommand(new CommandRecievedEventArgs(2, new string[] {}, "closing the handler."));
+            //SendCommand(new CommandRecievedEventArgs(2, new string[] {}, "closing the handler."));
             CloseCommand?.Invoke(this, null);
         }
 

@@ -24,7 +24,6 @@ namespace ImageService.Controller
             commands = new Dictionary<int, ICommand>() //Adding existing command to Dictionary
             {
                 { 1 ,new NewFileCommand(modal)},
-                { 2 , new CloseHandlerCommand(modal)}
             };
         }
 
