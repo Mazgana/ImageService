@@ -41,19 +41,26 @@ public struct ServiceStatus
 
 namespace ImageService
 {
+    /*
+     * base class in service. starts and stops service.
+     * sends messages to logger.
+     * holds the service's server, modal, controller and logger. 
+     */
     public partial class ImageService : ServiceBase
     {
         private int eventId = 1;
         private ImageServer m_imageServer;          // The Image Server
-        private IImageServiceModal modal;
-        private IImageController controller;
-       private ILoggingService logging;
+        private IImageServiceModal modal;           //The Image Modal
+        private IImageController controller;        // The Image controller
+       private ILoggingService logging;             //The Image logger
 
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
-
+        
+        //class constructor. initializing controller.
         public ImageService (string[] args)
         {
+            //initalizinge componennts, sorce name and log name
             InitializeComponent();
             string eventSourceName = ConfigurationManager.AppSettings["SourceName"];
             string logName = ConfigurationManager.AppSettings["LogName"];
@@ -65,6 +72,7 @@ namespace ImageService
             {
                 logName = args[1];
             }
+            //creating event log
             eventLog1 = new System.Diagnostics.EventLog();
             if (!System.Diagnostics.EventLog.SourceExists(eventSourceName))
             {
@@ -72,11 +80,12 @@ namespace ImageService
             }
             eventLog1.Source = eventSourceName;
             eventLog1.Log = logName;
-
+            //adding event to logger service
             logging = new LoggingService();
             logging.MessageRecieved += OnMessage;
         }
 
+        //function starts service initializing service and members.
         protected override void OnStart(string[] args)
         {
             // Update the service state to Start Pending.  
