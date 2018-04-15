@@ -15,7 +15,7 @@ using ImageService.Modal.Event;
 namespace ImageService.Controller.Handlers
 {
     /*
-     * this class handles a specific directory, monitoring changes and executing it's commands.
+     * his class handles a specific directory, monitoring changes and executing it's commands.
      */ 
     public class DirectoyHandler : IDirectoryHandler
     {

@@ -13,6 +13,9 @@ using System.Configuration;
 
 namespace ImageService.Server
 {
+    /*
+     * Server class. recieves and sends commands. creates and holds all handlers. 
+     */
     public class ImageServer
     {
         #region Members
@@ -26,6 +29,7 @@ namespace ImageService.Server
         public event EventHandler<DirectoryCloseEventArgs> CloseCommand;            // The event that notifies that the service is close and that the server should close
         #endregion
 
+        // constructor.
         public ImageServer(ILoggingService logging, IImageServiceModal modal, IImageController controller)
         {
             this.m_logging = logging;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ImageService.Controller
 {
     /*
-     * the controller class gets a command id and string and executes the specific matching command.
+     * Controller Interface. the controller class gets a command id and string and executes the specific matching command.
      */ 
     public interface IImageController
     {
