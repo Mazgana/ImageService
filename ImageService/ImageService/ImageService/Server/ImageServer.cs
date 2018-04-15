@@ -13,9 +13,6 @@ using System.Configuration;
 
 namespace ImageService.Server
 {
-    /*
-     * Server class. recieves and sends commands. creates and holds all handlers. 
-     */
     public class ImageServer
     {
         #region Members
@@ -29,21 +26,17 @@ namespace ImageService.Server
         public event EventHandler<DirectoryCloseEventArgs> CloseCommand;            // The event that notifies that the service is close and that the server should close
         #endregion
 
-        // constructor.
         public ImageServer(ILoggingService logging, IImageServiceModal modal, IImageController controller)
         {
             this.m_logging = logging;
             this.m_controller = controller;
 
-           // handlersList = new List<DirectoyHandler>();
             DirectoyHandler current;
-
             string directories = ConfigurationManager.AppSettings["Handler"];
             string[] handlersDirectories = directories.Split(';');
             for (int i = 0; i < handlersDirectories.Length; i++)
             {
                 current = CreateHandler(handlersDirectories[i]);
-            //    handlersList.Add(current);
             }
         }
 
@@ -55,7 +48,7 @@ namespace ImageService.Server
             {
                 CommandRecieved += h.OnCommandRecieved;
                 h.DirectoryClose += OnCloseServer;
-                CloseCommand += h.onClose;
+                CloseCommand += h.OnClose;
                 m_logging.Log("starting handler for directory: " + directory, Logging.Modal.MessageTypeEnum.INFO);
 
                 return h;
@@ -74,17 +67,15 @@ namespace ImageService.Server
         public void CloseServer()
         {
             m_logging.Log("closing the server.", Logging.Modal.MessageTypeEnum.INFO);
-            SendCommand(new CommandRecievedEventArgs(2, new string[] {}, "closing the handler."));
             CloseCommand?.Invoke(this, null);
         }
 
         public void OnCloseServer(object sender, DirectoryCloseEventArgs e)
         {
-            m_logging.Log("removing events. final closing", Logging.Modal.MessageTypeEnum.INFO);
             DirectoyHandler dh = (DirectoyHandler)sender;
             CommandRecieved -= dh.OnCommandRecieved;
             dh.DirectoryClose -= OnCloseServer;
-            CloseCommand -= dh.onClose;
+            CloseCommand -= dh.OnClose;
         }
     }
 }

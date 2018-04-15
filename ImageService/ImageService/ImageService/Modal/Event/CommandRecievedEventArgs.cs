@@ -9,10 +9,9 @@ namespace ImageService.Modal.Event
     public class CommandRecievedEventArgs : EventArgs
     {
         public int CommandID { get; set; }      // The Command ID
-        public string[] Args { get; set; }          //Command string arguments(command name)
+        public string[] Args { get; set; }
         public string RequestDirPath { get; set; }  // The Request Directory
 
-        //saving all arguments as members
         public CommandRecievedEventArgs(int id, string[] args, string path)
         {
             CommandID = id;
