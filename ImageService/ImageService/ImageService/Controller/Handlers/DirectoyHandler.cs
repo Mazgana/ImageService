@@ -89,6 +89,7 @@ namespace ImageService.Controller.Handlers
 
         public void onClose(object send, DirectoryCloseEventArgs e)
         {
+           // OnCommandRecieved(this, new CommandRecievedEventArgs(2, new String[] { e.FullPath, e.Name }, e.FullPath));
             DirectoryClose -= onClose;
             m_logging.Log("closing handler for directory: " + m_path, MessageTypeEnum.INFO);
             DirectoryClose(this, e);

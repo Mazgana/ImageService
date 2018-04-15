@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImageService.Modal;
+using ImageService.Controller.Handlers;
 
 namespace ImageService.Commands
 {
     class CloseHandlerCommand : ICommand
     {
-        private IImageServiceModal m_modal;
+        private DirectoyHandler handler;
 
-        public CloseHandlerCommand(IImageServiceModal modal)
+        public CloseHandlerCommand(DirectoyHandler h)
         {
-            m_modal = modal;            // Storing the Modal
+            handler = h;            // Storing the Modal
         }
-
 
         // change!!!!!
         public string Execute(string[] args, out bool result)
