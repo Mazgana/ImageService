@@ -12,6 +12,11 @@ namespace ImageService.Modal.Event
         public string[] Args { get; set; }
         public string RequestDirPath { get; set; }  // The Request Directory
 
+        /// <summary>
+        /// holds argumens for command recieved
+        /// </summary>
+        /// <param name="commandID"> int representing command to be executed. </param>
+        /// <param name="args"> for executing command. </param>
         public CommandRecievedEventArgs(int id, string[] args, string path)
         {
             CommandID = id;

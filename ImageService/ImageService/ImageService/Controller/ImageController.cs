@@ -15,14 +15,26 @@ namespace ImageService.Controller
         private IImageServiceModal m_modal;                      // The Modal Object
         private Dictionary<int, ICommand> commands;
 
+        /// <summary>
+        /// constructor for program controller. saves modal and creates command dictionairy.
+        /// </summary>
+        /// <param name="modal"> program modal for command execution. </param>
         public ImageController(IImageServiceModal modal)
         {
             m_modal = modal;                    // Storing the Modal Of The System
-            commands = new Dictionary<int, ICommand>()
+            commands = new Dictionary<int, ICommand>() //command dictionary to match ID to command.
             {
                 { 1 ,new NewFileCommand(modal)},
             };
         }
+
+        /// <summary>
+        /// function gets arguments and matches command to sender, for execution.
+        /// </summary>
+        /// <param name="commandID"> int representing command to be executed. </param>
+        /// <param name="args"> for executing command. </param>
+        /// <param name="resultSuccessful"> true if execution successfel, else false. </param>
+        /// <returns> command name. </returns>
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
             //check if in dictionairy else result=fail

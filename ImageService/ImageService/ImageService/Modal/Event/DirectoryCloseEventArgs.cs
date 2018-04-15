@@ -13,6 +13,11 @@ namespace ImageService.Modal.Event
 
         public string Message { get; set; }             // The Message That goes to the logger
 
+        /// <summary>
+        /// holds argumens for close command.
+        /// </summary>
+        /// <param name="dirPath"> path of directory to be closed. </param>
+        /// <param name="messages"> for command closing. </param>
         public DirectoryCloseEventArgs(string dirPath, string message)
         {
             DirectoryPath = dirPath;                    // Setting the Directory Name
