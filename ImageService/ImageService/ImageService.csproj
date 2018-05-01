@@ -95,6 +95,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ImageService.Communication\ImageService.Communication.csproj">
+      <Project>{653346c2-28df-48fd-a08a-35924d65115d}</Project>
+      <Name>ImageService.Communication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImageService.Infrastructure\ImageService.Infrastructure.csproj">
       <Project>{e5908aca-7d0f-4a16-8952-ea2255f4c135}</Project>
       <Name>ImageService.Infrastructure</Name>
