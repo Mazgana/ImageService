@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImageService.Infrastructure.Enums
+namespace ImageService.GUI.ViewModels
 {
-    public enum CommandEnum : int
+    class SettingsViewModel
     {
-        NewFileCommand,
-        CloseCommand
     }
 }
