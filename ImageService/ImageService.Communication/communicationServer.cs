@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -10,20 +11,37 @@ namespace ImageService.Communication
 {
     public class CommunicationServer
     {
+        private static CommunicationServer instance;
         private int port;
         private TcpListener listener;
         private IClientHandler ch;
 
-        public CommunicationServer(int port, IClientHandler ch)
+        private CommunicationServer()
         {
-            this.port = port;
-            this.ch = ch;
+            // Read the file and display it line by line.  
+            System.IO.StreamReader file =
+            new System.IO.StreamReader(@"ServerConfiguration.txt");
+            string line = file.ReadLine();
+
+            this.port = Int32.Parse(line.Substring(6, line.Length - 1));
+            file.Close();
+        }
+
+        public static CommunicationServer Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new CommunicationServer();
+                }
+                return instance;
+            }
         }
 
         public void Start()
         {
-            IPEndPoint ep = new
-            IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
             listener = new TcpListener(ep);
 
             listener.Start();
