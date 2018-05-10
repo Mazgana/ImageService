@@ -5,10 +5,12 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using ImageService.Communication.Interfaces;
 
 namespace ImageService.Communication
 {
-    class ClientHandler : IClientHandler    {
+    class ClientHandler : IClientHandler
+    {
         public void HandleClient(TcpClient client)
         {
             new Task(() =>
@@ -20,7 +22,7 @@ namespace ImageService.Communication
                     string commandLine = reader.ReadLine();
                     Console.WriteLine("Got command: {0}", commandLine);
                     //string result = ExecuteCommand(commandLine, client);
-                   // writer.Write(result);
+                    //writer.Write(result);
                 }
                 client.Close();
             }).Start();
