@@ -50,7 +50,8 @@ namespace ImageService.Server
             }
             ClientHandler ch = new ClientHandler();
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
-            this.tcpServer = new TcpServerChannel(5000, ch);
+            this.tcpServer = new TcpServerChannel(5000, ch, m_logging);
+            this.tcpServer.Start();
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageService.Communication;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,8 @@ namespace leah
         static void Main(string[] args)
         {
             Console.WriteLine("main\n");
-            Debugger de = new Debugger();
+            TcpClientChannel client = new TcpClientChannel();
+            Console.WriteLine("end");
         }
     }
 }
