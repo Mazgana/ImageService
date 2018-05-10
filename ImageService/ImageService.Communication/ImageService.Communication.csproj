@@ -47,6 +47,11 @@
     <Compile Include="TcpClientChannel.cs" />
     <Compile Include="TcpServerChannel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ImageService.Logging\ImageService.Logging.csproj">
+      <Project>{ebdb34c6-226a-4528-bcfe-06ef2d03d79d}</Project>
+      <Name>ImageService.Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

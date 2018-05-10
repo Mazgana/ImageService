@@ -9,7 +9,7 @@ using ImageService.Communication.Interfaces;
 
 namespace ImageService.Communication
 {
-    class ClientHandler : IClientHandler
+    public class ClientHandler : IClientHandler
     {
         public void HandleClient(TcpClient client)
         {

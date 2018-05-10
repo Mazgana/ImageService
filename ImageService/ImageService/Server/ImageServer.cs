@@ -1,6 +1,7 @@
 ﻿using ImageService.Controller;
 using ImageService.Controller.Handlers;
 using ImageService.Infrastructure.Enums;
+using ImageService.Communication;
 using ImageService.Logging;
 using ImageService.Modal;
 using ImageService.Modal.Event;
@@ -18,6 +19,7 @@ namespace ImageService.Server
         #region Members
         private IImageController m_controller;
         private ILoggingService m_logging;
+        TcpServerChannel tcpServer;
        // private List<DirectoyHandler> handlersList;
         #endregion
 
@@ -46,6 +48,9 @@ namespace ImageService.Server
             {
                 current = CreateHandler(handlersDirectories[i]);
             }
+            ClientHandler ch = new ClientHandler();
+            m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
+            this.tcpServer = new TcpServerChannel(8000, ch);
         }
 
         /// <summary>
@@ -86,6 +91,7 @@ namespace ImageService.Server
         /// </summary>
         public void CloseServer()
         {
+ //           tcpServer.Stop();
             m_logging.Log("closing the server.", Logging.Modal.MessageTypeEnum.INFO);
             CloseCommand?.Invoke(this, null);
         }
