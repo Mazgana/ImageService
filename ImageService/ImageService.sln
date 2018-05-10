@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageService", "ImageService\ImageService.csproj", "{60E7244B-E6EC-414A-8841-0328AE692AA9}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageService.Infrastructure", "ImageService.Infrastructure\ImageService.Infrastructure.csproj", "{E5908ACA-7D0F-4A16-8952-EA2255F4C135}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageService.Communication", "ImageService.Communication\ImageService.Communication.csproj", "{653346C2-28DF-48FD-A08A-35924D65115D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "leah", "leah\leah.csproj", "{ECF8603B-F4BD-4D93-90CE-4E79EAEB7AF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{653346C2-28DF-48FD-A08A-35924D65115D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{653346C2-28DF-48FD-A08A-35924D65115D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{653346C2-28DF-48FD-A08A-35924D65115D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECF8603B-F4BD-4D93-90CE-4E79EAEB7AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF8603B-F4BD-4D93-90CE-4E79EAEB7AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF8603B-F4BD-4D93-90CE-4E79EAEB7AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF8603B-F4BD-4D93-90CE-4E79EAEB7AF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
