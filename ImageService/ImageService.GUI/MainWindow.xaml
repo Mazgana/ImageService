@@ -11,7 +11,7 @@
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="792" Margin="0,0,0,-1">
             <TabItem Header="Settings">
-                <views:SettingsView></views:SettingsView> 
+                <views:SettingsView DataContext="{Binding SettingsViewModel}"></views:SettingsView> 
             </TabItem>
             <TabItem Header="Log">
                 <views:LogView></views:LogView>
