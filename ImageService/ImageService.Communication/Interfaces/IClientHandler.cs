@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageService.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -9,6 +10,6 @@ namespace ImageService.Communication.Interfaces
 {
     public interface IClientHandler
     {
-        void HandleClient(TcpClient client);
+        void HandleClient(TcpClient client, ILoggingService logg);
     }
 }

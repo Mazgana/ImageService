@@ -16,18 +16,19 @@ namespace ImageService.Communication
         private int port;
         private TcpListener listener;
         private IClientHandler ch;
-        ILoggingService logger;
+        private ILoggingService logger;
 
-        public TcpServerChannel(int port, IClientHandler ch, ILoggingService ls)
+        public TcpServerChannel(int port, IClientHandler ch, ILoggingService logger)
         {
             this.port = port;
             this.ch = ch;
-            this.logger = ls;
+            this.logger = logger;
         }
 
         public void Start()
         {
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+            IPEndPoint ep = new
+           IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
             listener = new TcpListener(ep);
 
             listener.Start();
@@ -38,16 +39,16 @@ namespace ImageService.Communication
                     try
                     {
                         TcpClient client = listener.AcceptTcpClient();
-                        logger.Log("Got new connection", Logging.Modal.MessageTypeEnum.INFO);
-                        ch.HandleClient(client);
+                        logger.Log("Got new connection",Logging.Modal.MessageTypeEnum.INFO);
+                        ch.HandleClient(client, logger);
                     }
                     catch (SocketException)
                     {
+                        logger.Log("could not accept tcp client", Logging.Modal.MessageTypeEnum.FAIL);
                         break;
                     }
                 }
-
- //               logger.Log("Server stopped", Logging.Modal.MessageTypeEnum.WARNING);
+                logger.Log("Server stopped", Logging.Modal.MessageTypeEnum.INFO);
             });
             task.Start();
         }
@@ -56,5 +57,6 @@ namespace ImageService.Communication
         {
             listener.Stop();
         }
+
     }
 }

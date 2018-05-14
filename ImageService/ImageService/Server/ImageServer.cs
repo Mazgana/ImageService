@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using ImageService.Communication.Interfaces;
 
 namespace ImageService.Server
 {
@@ -48,9 +49,9 @@ namespace ImageService.Server
             {
                 current = CreateHandler(handlersDirectories[i]);
             }
-            ClientHandler ch = new ClientHandler();
+            IClientHandler ch = new ClientHandler();
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
-            this.tcpServer = new TcpServerChannel(5000, ch, m_logging);
+            this.tcpServer = new TcpServerChannel(8000,ch, m_logging);
             this.tcpServer.Start();
         }
 
@@ -92,7 +93,7 @@ namespace ImageService.Server
         /// </summary>
         public void CloseServer()
         {
- //           tcpServer.Stop();
+            this.tcpServer.Stop();
             m_logging.Log("closing the server.", Logging.Modal.MessageTypeEnum.INFO);
             CloseCommand?.Invoke(this, null);
         }
