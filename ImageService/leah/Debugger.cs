@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ImageService.Communication;
+using ImageService.Communication.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ImageService.Communication;
 
 namespace leah
 {
@@ -11,7 +12,7 @@ namespace leah
     {
         public Debugger()
         {
-            Console.WriteLine("start\n");
+            Console.WriteLine("start client\n");
             TcpClientChannel client = new TcpClientChannel();
             Console.WriteLine("end");
         }

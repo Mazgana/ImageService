@@ -18,11 +18,11 @@ namespace ImageService.Communication
         private IClientHandler ch;
         ILoggingService logger;
 
-        public TcpServerChannel(int port, IClientHandler ch)
+        public TcpServerChannel(int port, IClientHandler ch, ILoggingService ls)
         {
             this.port = port;
             this.ch = ch;
-//            this.logger = ls;
+            this.logger = ls;
         }
 
         public void Start()
@@ -31,14 +31,14 @@ namespace ImageService.Communication
             listener = new TcpListener(ep);
 
             listener.Start();
-//            logger.Log("Waiting for connections...", Logging.Modal.MessageTypeEnum.INFO);
+            logger.Log("Waiting for connections...", Logging.Modal.MessageTypeEnum.INFO);
             Task task = new Task(() => {
                 while (true)
                 {
                     try
                     {
                         TcpClient client = listener.AcceptTcpClient();
-//                        logger.Log("Got new connection", Logging.Modal.MessageTypeEnum.INFO);
+                        logger.Log("Got new connection", Logging.Modal.MessageTypeEnum.INFO);
                         ch.HandleClient(client);
                     }
                     catch (SocketException)
