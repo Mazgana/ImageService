@@ -18,14 +18,47 @@ namespace ImageService.GUI.Model
         }
         #endregion
 
-        private string m_name;
-        public string Name
+        private string output_dir;
+        public string OutputDirectory
         {
-            get { return m_name; }
+            get { return output_dir; }
             set
             {
-                m_name = value;
-                OnPropertyChanged("Name");
+                output_dir = value;
+                OnPropertyChanged("Output Directory");
+            }
+        }
+
+        private string src_name;
+        public string SourceName
+        {
+            get { return src_name; }
+            set
+            {
+                src_name = value;
+                OnPropertyChanged("Source Name");
+            }
+        }
+
+        private string log_name;
+        public string LogName
+        {
+            get { return log_name; }
+            set
+            {
+                log_name = value;
+                OnPropertyChanged("Log Name");
+            }
+        }
+
+        private string thumb_size;
+        public string ThumbnailSize
+        {
+            get { return thumb_size; }
+            set
+            {
+                thumb_size = value;
+                OnPropertyChanged("Thumbnail Size");
             }
         }
     }
