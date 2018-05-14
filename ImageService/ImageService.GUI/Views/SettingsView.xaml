@@ -8,6 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="AliceBlue">
         <TextBlock HorizontalAlignment="Left" Margin="324,41,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="60" Width="195" FontSize="40" FontWeight="Bold"/>
-
+        <Label x:Name="outputDir" Content="{Binding SettingsModel.Name, Mode=OneWay}"
+               Margin="121,101,223,225"/>
     </Grid>
 </UserControl>
