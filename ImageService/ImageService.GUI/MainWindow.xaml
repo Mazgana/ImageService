@@ -9,14 +9,23 @@
         mc:Ignorable="d"
         Title="" Height="450" Width="800">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="792" Margin="0,0,0,-1">
-            <TabItem Header="Settings">
-                <views:SettingsView DataContext="{Binding SettingsViewModel}"></views:SettingsView> 
+        <TabControl Margin="5">
+            <TabItem Name="SettingsTabItem">
+                <TabItem.Header>
+                    <WrapPanel>
+                        <TextBlock Margin="3" >Settings</TextBlock>
+                    </WrapPanel>
+                </TabItem.Header>
+                <views:SettingsView/>
             </TabItem>
-            <TabItem Header="Log">
-                <views:LogView></views:LogView>
+            <TabItem Name="LogsTabItem">
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Margin="3" >Logs</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <views:LogView/>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>
