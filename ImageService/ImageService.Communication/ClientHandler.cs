@@ -45,7 +45,7 @@ namespace ImageService.Communication
             }).Start();
         }
 
-        public void sendLine(string line)
+        public void SendLine(string line)
         {
             this.writer.WriteLine(line);
         }

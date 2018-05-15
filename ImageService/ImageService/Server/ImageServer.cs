@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using ImageService.Communication.Interfaces;
+using ImageService.Logging.Modal;
 
 namespace ImageService.Server
 {
@@ -21,7 +22,7 @@ namespace ImageService.Server
         private IImageController m_controller;
         private ILoggingService m_logging;
         TcpServerChannel tcpServer;
-       // private List<DirectoyHandler> handlersList;
+        IClientHandler ch;
         #endregion
 
         #region Properties
@@ -49,9 +50,10 @@ namespace ImageService.Server
             {
                 current = CreateHandler(handlersDirectories[i]);
             }
-            IClientHandler ch = new ClientHandler();
+
+            this.ch = new ClientHandler();
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
-            this.tcpServer = new TcpServerChannel(8000,ch, m_logging);
+            this.tcpServer = new TcpServerChannel(8000, ch, m_logging);
             this.tcpServer.Start();
         }
 
@@ -86,6 +88,20 @@ namespace ImageService.Server
         {
             m_logging.Log("sending command from server.", Logging.Modal.MessageTypeEnum.INFO);
             CommandRecieved?.Invoke(this, e);
+        }
+
+        public void GetCommand(CommandRecievedEventArgs e)
+        {
+            m_logging.Log("Getting command from client ad execute it.", Logging.Modal.MessageTypeEnum.INFO);
+            bool resultSuccess;
+            string res = m_controller.ExecuteCommand(e.CommandID, e.Args, out resultSuccess);
+            if (!resultSuccess)
+            {
+                m_logging.Log("execition failed. error: " + res, MessageTypeEnum.FAIL);
+            }
+
+            this.ch.SendLine(res);
+
         }
 
         /// <summary>
