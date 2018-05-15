@@ -11,6 +11,5 @@ namespace ImageService.Communication.Interfaces
     public interface IClientHandler
     {
         void HandleClient(TcpClient client, ILoggingService logg);
-        void SendLine(string line);
     }
 }

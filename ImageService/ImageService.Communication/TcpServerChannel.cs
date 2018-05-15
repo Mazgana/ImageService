@@ -25,6 +25,7 @@ namespace ImageService.Communication
             this.port = port;
             this.ch = ch;
             this.logger = logger;
+            clients = new List<TcpClient>();
         }
 
         public void Start()
@@ -66,10 +67,11 @@ namespace ImageService.Communication
                     NetworkStream stream = client.GetStream();
                     BinaryWriter writer = new BinaryWriter(stream);
                     {
+                        /*
                         string messageInString = JsonConvert.SerializeObject(message);
                         mutex.WaitOne();
                         writer.Write(messageInString);
-                        mutex.ReleaseMutex();
+                        mutex.ReleaseMutex();*/
                     }
                 }
 

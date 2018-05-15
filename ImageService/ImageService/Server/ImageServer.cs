@@ -100,7 +100,7 @@ namespace ImageService.Server
                 m_logging.Log("execition failed. error: " + res, MessageTypeEnum.FAIL);
             }
 
-            this.ch.SendLine(res);
+            //this.ch.SendLine(res);
 
         }
 

@@ -28,7 +28,7 @@ namespace ImageService.Communication
                     logg.Log("waiting for message from client", Logging.Modal.MessageTypeEnum.INFO);
                     string commandLine = reader.ReadLine();
                     logg.Log("Got command", Logging.Modal.MessageTypeEnum.INFO);
-                    CommandRecieved?.Invoke(new MsgRecievedEventArgs(this, commandLine));
+                   // CommandRecieved?.Invoke(new MsgRecievedEventArgs(indexer id, commandLine));
                 }
                 client.Close();
             }).Start();
