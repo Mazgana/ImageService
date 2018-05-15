@@ -1,4 +1,5 @@
 ﻿using ImageService.Communication.Interfaces;
+using ImageService.Communication.Model;
 using ImageService.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace ImageService.Communication
         private TcpListener listener;
         private IClientHandler ch;
         private ILoggingService logger;
+        private List<TcpClient> clients;
 
         public TcpServerChannel(int port, IClientHandler ch, ILoggingService logger)
         {
@@ -28,10 +30,10 @@ namespace ImageService.Communication
         public void Start()
         {
             IPEndPoint ep = new
-           IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+            IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
             listener = new TcpListener(ep);
-
             listener.Start();
+
             logger.Log("Waiting for connections...", Logging.Modal.MessageTypeEnum.INFO);
             Task task = new Task(() => {
                 while (true)
@@ -39,6 +41,7 @@ namespace ImageService.Communication
                     try
                     {
                         TcpClient client = listener.AcceptTcpClient();
+                        this.clients.Add(client);
                         logger.Log("Got new connection",Logging.Modal.MessageTypeEnum.INFO);
                         ch.HandleClient(client, logger);
                     }
@@ -51,6 +54,27 @@ namespace ImageService.Communication
                 logger.Log("Server stopped", Logging.Modal.MessageTypeEnum.INFO);
             });
             task.Start();
+        }
+
+        public void notifyAll(CommandMessage message)
+        {
+
+            new Task(() =>
+            {
+                foreach (TcpClient client in clients)
+                {
+                    NetworkStream stream = client.GetStream();
+                    BinaryWriter writer = new BinaryWriter(stream);
+                    {
+                        string messageInString = JsonConvert.SerializeObject(message);
+                        mutex.WaitOne();
+                        writer.Write(messageInString);
+                        mutex.ReleaseMutex();
+                    }
+                }
+
+            }).Start();
+
         }
 
         public void Stop()

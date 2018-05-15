@@ -7,11 +7,40 @@ using System.Text;
 using System.Threading.Tasks;
 using ImageService.Communication.Interfaces;
 using ImageService.Logging;
+using ImageService.Communication.Model;
 
 namespace ImageService.Communication
 {
     public class ClientHandler : IClientHandler
     {
+
+        public event EventHandler<MsgRecievedEventArgs> CommandRecieved;
+
+        public void HandleClient(TcpClient client, ILoggingService logg)
+        {
+            new Task(() =>
+            {
+                using (NetworkStream stream = client.GetStream())
+                using (StreamReader reader = new StreamReader(stream))
+                using (StreamWriter writer = new StreamWriter(stream))
+                {
+                    writer.AutoFlush = true;
+                    logg.Log("waiting for message from client", Logging.Modal.MessageTypeEnum.INFO);
+                    string commandLine = reader.ReadLine();
+                    logg.Log("Got command", Logging.Modal.MessageTypeEnum.INFO);
+                    CommandRecieved?.Invoke(new MsgRecievedEventArgs(this, commandLine));
+                }
+                client.Close();
+            }).Start();
+        }
+    }
+}
+/*
+namespace ImageService.Communication
+{
+    public class ClientHandler : IClientHandler
+    {
+
         public void HandleClient(TcpClient client, ILoggingService logg)
         {
             new Task(() =>
@@ -42,3 +71,4 @@ namespace ImageService.Communication
         }
     }
 }
+*/

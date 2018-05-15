@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ImageService.Communication.Model
 {
-    class CommandMessage
+    public class CommandMessage
     {
     }
 }
