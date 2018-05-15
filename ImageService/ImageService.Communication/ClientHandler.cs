@@ -13,7 +13,6 @@ namespace ImageService.Communication
 {
     public class ClientHandler : IClientHandler
     {
-
         public event EventHandler<MsgRecievedEventArgs> CommandRecieved;
 
         public void HandleClient(TcpClient client, ILoggingService logg)

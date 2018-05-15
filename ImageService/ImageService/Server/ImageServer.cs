@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using ImageService.Communication.Interfaces;
 using ImageService.Logging.Modal;
+using ImageService.Communication.Model;
 
 namespace ImageService.Server
 {
@@ -22,7 +23,6 @@ namespace ImageService.Server
         private IImageController m_controller;
         private ILoggingService m_logging;
         TcpServerChannel tcpServer;
-        IClientHandler ch;
         #endregion
 
         #region Properties
@@ -51,7 +51,7 @@ namespace ImageService.Server
                 current = CreateHandler(handlersDirectories[i]);
             }
 
-            this.ch = new ClientHandler();
+            IClientHandler ch = new ClientHandler();
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
             this.tcpServer = new TcpServerChannel(8000, ch, m_logging);
             this.tcpServer.Start();
@@ -100,8 +100,8 @@ namespace ImageService.Server
                 m_logging.Log("execition failed. error: " + res, MessageTypeEnum.FAIL);
             }
 
-            //this.ch.SendLine(res);
-
+            CommandMessage respponse = new CommandMessage(e.CommandID, res);
+            this.tcpServer.notifyAll(respponse);
         }
 
         /// <summary>

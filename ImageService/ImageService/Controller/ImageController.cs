@@ -25,6 +25,7 @@ namespace ImageService.Controller
             commands = new Dictionary<int, ICommand>() //command dictionary to match ID to command.
             {
                 { 1 ,new NewFileCommand(modal)},
+                { 2 ,new GetConfigCommand(modal)},
             };
         }
 
