@@ -12,13 +12,17 @@ namespace ImageService.Communication
 {
     public class ClientHandler : IClientHandler
     {
+        NetworkStream stream;
+        StreamReader reader;
+        StreamWriter writer;
+
         public void HandleClient(TcpClient client, ILoggingService logg)
         {
             new Task(() =>
             {
-                using (NetworkStream stream = client.GetStream())
-                using (StreamReader reader = new StreamReader(stream))
-                using (StreamWriter writer = new StreamWriter(stream))
+                this.stream = client.GetStream();
+                this.reader = new StreamReader(stream);
+                this.writer = new StreamWriter(stream);
                 {
                     writer.AutoFlush = true;
                     //   writer.WriteLine("maybe if i write!");
@@ -39,6 +43,11 @@ namespace ImageService.Communication
                 }
                 client.Close();
             }).Start();
+        }
+
+        public void sendLine(string line)
+        {
+            this.writer.WriteLine(line);
         }
     }
 }

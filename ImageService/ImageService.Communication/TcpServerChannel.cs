@@ -28,7 +28,7 @@ namespace ImageService.Communication
         public void Start()
         {
             IPEndPoint ep = new
-           IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+            IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
             listener = new TcpListener(ep);
 
             listener.Start();
@@ -57,6 +57,5 @@ namespace ImageService.Communication
         {
             listener.Stop();
         }
-
     }
 }
