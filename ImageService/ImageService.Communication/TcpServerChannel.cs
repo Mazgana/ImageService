@@ -81,6 +81,5 @@ namespace ImageService.Communication
         {
             listener.Stop();
         }
-
     }
 }
