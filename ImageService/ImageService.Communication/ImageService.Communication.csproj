@@ -53,6 +53,10 @@
     <Compile Include="TcpServerChannel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ImageService.Infrastructure\ImageService.Infrastructure.csproj">
+      <Project>{e5908aca-7d0f-4a16-8952-ea2255f4c135}</Project>
+      <Name>ImageService.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImageService.Logging\ImageService.Logging.csproj">
       <Project>{ebdb34c6-226a-4528-bcfe-06ef2d03d79d}</Project>
       <Name>ImageService.Logging</Name>
