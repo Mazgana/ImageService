@@ -11,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-using ImageService.Communication.Interfaces;
 using ImageService.Logging.Modal;
 using ImageService.Communication.Model;
 
@@ -51,9 +50,10 @@ namespace ImageService.Server
                 current = CreateHandler(handlersDirectories[i]);
             }
 
-            IClientHandler ch = new ClientHandler();
+            ClientHandler ch = new ClientHandler();
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
             this.tcpServer = new TcpServerChannel(8000, ch, m_logging);
+            ch.CommandRecieved += GetCommand;
             this.tcpServer.Start();
         }
 
@@ -90,9 +90,9 @@ namespace ImageService.Server
             CommandRecieved?.Invoke(this, e);
         }
 
-        public void GetCommand(CommandRecievedEventArgs e)
+        public void GetCommand(object sender, CommandRecievedEventArgs e)
         {
-            m_logging.Log("Getting command from client ad execute it.", Logging.Modal.MessageTypeEnum.INFO);
+            m_logging.Log("Getting command from client and execute it.", Logging.Modal.MessageTypeEnum.INFO);
             bool resultSuccess;
             string res = m_controller.ExecuteCommand(e.CommandID, e.Args, out resultSuccess);
             if (!resultSuccess)

@@ -1,42 +1,62 @@
-﻿using System;
+﻿using ImageService.Communication.Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ImageService.Communication
 {
      public class TcpClientChannel
     {
+        TcpClient client;
+
+        private static Mutex mutex = new Mutex();
+
         public TcpClientChannel()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
-            TcpClient client = new TcpClient();
+            client = new TcpClient();
             client.Connect(ep);
             Console.WriteLine("You are connected");
-            using (NetworkStream stream = client.GetStream())
-            using (StreamReader reader = new StreamReader(stream))
-            using (StreamWriter writer = new StreamWriter(stream))
-            {
-                writer.AutoFlush = true;
-               // string resulttry = reader.ReadLine();
-               // Console.WriteLine(" look what i got: " + resulttry);
-                // Send data to server
-                writer.WriteLine("sending message1");
-                writer.WriteLine("sending message2");
-                writer.WriteLine("sending message3");
-                // Get result from server
-                Console.WriteLine("all messages were sent");
-                
-                string result = reader.ReadLine();
-                Console.WriteLine("Got message: ");
-                Console.WriteLine(result);
-            }
-            client.Close();
+        }
 
+        public void SendCommand(CommandMessage message) {
+            new Task(() =>
+            {
+                NetworkStream stream = client.GetStream();
+                BinaryWriter writer = new BinaryWriter(stream);
+                {
+                    string messageInString = JsonConvert.SerializeObject(message);
+                    mutex.WaitOne();
+                    writer.Write(messageInString);
+                    mutex.ReleaseMutex();
+                }
+            }).Start();
+        }
+
+        public void RecieveCommand() {
+            new Task(() =>
+            {
+                NetworkStream stream = client.GetStream();
+                BinaryReader reader = new BinaryReader(stream);
+                {
+                    mutex.WaitOne();
+                    string messageInString = reader.ReadString();
+                    mutex.ReleaseMutex();
+                    CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
+                }
+            }).Start();
+        }
+
+        public void Stop()
+        {
+            client.Close();
         }
     }
 }

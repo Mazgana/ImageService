@@ -8,7 +8,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ImageService.Communication
 {
@@ -57,6 +59,8 @@ namespace ImageService.Communication
             task.Start();
         }
 
+        private static Mutex mutex = new Mutex();
+
         public void notifyAll(CommandMessage message)
         {
 
@@ -67,11 +71,11 @@ namespace ImageService.Communication
                     NetworkStream stream = client.GetStream();
                     BinaryWriter writer = new BinaryWriter(stream);
                     {
-                        /*
+                        
                         string messageInString = JsonConvert.SerializeObject(message);
                         mutex.WaitOne();
                         writer.Write(messageInString);
-                        mutex.ReleaseMutex();*/
+                        mutex.ReleaseMutex();
                     }
                 }
 
