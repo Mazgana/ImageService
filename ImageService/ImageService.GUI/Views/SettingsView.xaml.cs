@@ -22,10 +22,26 @@ namespace ImageService.GUI.Views
     /// </summary>
     public partial class SettingsView : UserControl
     {
+        private SettingsViewModel vm;
+
         public SettingsView()
         {
-            this.DataContext = new SettingsViewModel(new SettingsModel());
+            vm = new SettingsViewModel(new SettingsModel());
+            this.DataContext = vm;
             InitializeComponent();
+        }        private void ItemSelected(object sender, RoutedEventArgs e)
+        {
+            Remove.IsEnabled = true;
+        }
+
+        private void RemoveClick(object sender, RoutedEventArgs e)
+        {
+            string handlerToRemove = handlers.SelectedItem.ToString();
+            bool res = vm.removeHandler(handlerToRemove);
+            if (res)
+            {
+                handlers.Items.Remove(handlers.SelectedItem);
+            }
         }
     }
 }

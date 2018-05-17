@@ -38,5 +38,10 @@ namespace ImageService.GUI.ViewModels
                 this.settingsModel = value;
             }
         }
+
+        public bool removeHandler(string handler)
+        {
+            return this.settingsModel.removeHandler(handler);
+        }
     }
 }
