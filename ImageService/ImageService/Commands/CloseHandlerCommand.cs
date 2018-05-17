@@ -39,7 +39,7 @@ namespace ImageService.Commands
             {
                 sResult = "could not find handler in config";
                 //    newHandlers = "C:\Users\user\Downloads; C: \Users\as\Pictures; C: \Users\as\Videos; C: \Users\user\Desktop\listen";
-                newHandlers = "C:\\Users\\user\\Downloads;C:\\Users\\as\\Pictures";
+                newHandlers = curHandlers;
             }
             config.AppSettings.Settings["Handler"].Value = newHandlers;
             config.Save(ConfigurationSaveMode.Modified);

@@ -101,6 +101,7 @@ namespace ImageService.Server
             }
             m_logging.Log("command executed",MessageTypeEnum.INFO);
 
+            CloseDirHandler(e.RequestDirPath);
             CommandMessage response = new CommandMessage(e.CommandID, res);
             this.tcpServer.notifyAll(response);
         }
@@ -112,7 +113,12 @@ namespace ImageService.Server
         {
             this.tcpServer.Stop();
             m_logging.Log("closing the server.", Logging.Modal.MessageTypeEnum.INFO);
+            //CloseDirHandler(null);
             CloseCommand?.Invoke(this, null);
+        }
+
+        public void CloseDirHandler(string path) {
+            CloseCommand?.Invoke(this, new DirectoryCloseEventArgs(path, "close handler"));
         }
 
         /// <summary>

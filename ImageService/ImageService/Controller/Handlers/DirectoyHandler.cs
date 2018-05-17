@@ -116,10 +116,13 @@ namespace ImageService.Controller.Handlers
         /// <param name="e"> arguments for a close event. </param>
         public void OnClose(object send, DirectoryCloseEventArgs e)
         {
-            m_logging.Log("closing handler for directory: " + m_path, MessageTypeEnum.INFO);
-            m_dirWatcher.EnableRaisingEvents = false;
-            m_dirWatcher.Dispose();
-            DirectoryClose?.Invoke(this, e);
+            if (e == null || e.DirectoryPath.Equals(m_path))
+            {
+                m_logging.Log("closing handler for directory: " + m_path, MessageTypeEnum.INFO);
+                m_dirWatcher.EnableRaisingEvents = false;
+                m_dirWatcher.Dispose();
+                DirectoryClose?.Invoke(this, e);
+            }
         }
     }
 }
