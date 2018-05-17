@@ -21,7 +21,6 @@ namespace ImageService.Commands
         //    handler = h;            // Storing the Modal
         }
 
-        // change!!!!!
         public string Execute(string[] args, out bool result)
         {
             string sResult = "closed";

@@ -2,6 +2,7 @@
 using ImageService.GUI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,12 +37,14 @@ namespace ImageService.GUI.Views
 
         private void RemoveClick(object sender, RoutedEventArgs e)
         {
-            string handlerToRemove = handlers.SelectedItem.ToString();
-            bool res = vm.removeHandler(handlerToRemove);
-            if (res)
-            {
-                handlers.Items.Remove(handlers.SelectedItem);
-            }
+            object handlerToRemove = handlers.SelectedItem;
+            string handlerName = handlerToRemove.ToString();
+            int index = handlers.Items.IndexOf(handlerToRemove);
+            bool res = vm.removeHandler(handlerName);
+            //if (res)
+            //{
+            //    handlers.Items.RemoveAt(index);
+            //}
         }
     }
 }

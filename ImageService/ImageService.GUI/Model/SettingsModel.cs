@@ -2,6 +2,7 @@
 using ImageService.Communication.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace ImageService.GUI.Model
             this.client = new TcpClientChannel();
             client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
             this.config = client.RecieveCommand();
-            client.Stop();
+          //  client.Stop();
 
             //spliting config to members
             string[] configSrtings = config.MessageResponse.Split('|');
@@ -30,7 +31,7 @@ namespace ImageService.GUI.Model
             log_name = configSrtings[2];
             ThumbnailSize = configSrtings[3];
 
-            this.handlers = new List<string>();
+            this.handlers = new ObservableCollection<string>();
 
             string[] handlersDirectories = configSrtings[4].Split(';');
             for (int i = 0; i < handlersDirectories.Length; i++)
@@ -93,8 +94,8 @@ namespace ImageService.GUI.Model
             }
         }
 
-        private List<string> handlers;
-        public List<string> Handlers
+        private ObservableCollection<string> handlers;
+        public ObservableCollection<string> Handlers
         {
             get { return handlers; }
             set
@@ -121,9 +122,10 @@ namespace ImageService.GUI.Model
             string res = client.RecieveCommand().MessageResponse;
             if (res.Equals("closed"))
             {
+                this.handlers.Remove(handler);
                 return true;
             }
-            client.Stop();
+           // client.Stop();
 
             return false;
         }
