@@ -2,6 +2,7 @@
 using ImageService.GUI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,28 @@ namespace ImageService.GUI.Views
     /// </summary>
     public partial class SettingsView : UserControl
     {
+        private SettingsViewModel vm;
+
         public SettingsView()
         {
-            this.DataContext = new SettingsViewModel(new SettingsModel());
+            vm = new SettingsViewModel(new SettingsModel());
+            this.DataContext = vm;
             InitializeComponent();
+        }        private void ItemSelected(object sender, RoutedEventArgs e)
+        {
+            Remove.IsEnabled = true;
+        }
+
+        private void RemoveClick(object sender, RoutedEventArgs e)
+        {
+            object handlerToRemove = handlers.SelectedItem;
+            string handlerName = handlerToRemove.ToString();
+            int index = handlers.Items.IndexOf(handlerToRemove);
+            bool res = vm.removeHandler(handlerName);
+            //if (res)
+            //{
+            //    handlers.Items.RemoveAt(index);
+            //}
         }
     }
 }
