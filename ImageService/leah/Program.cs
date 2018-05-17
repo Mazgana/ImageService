@@ -14,7 +14,7 @@ namespace leah
             Console.WriteLine("main\n");
             TcpClientChannel client = new TcpClientChannel();
             Console.WriteLine("created tcp client");
-            client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "just trying"));
+            client.SendCommand(new ImageService.Communication.Model.CommandMessage(4, "C:\\Users\\as\\Videos"));
             Console.WriteLine("sent message");
             client.RecieveCommand();
             Console.WriteLine("end. got message");
