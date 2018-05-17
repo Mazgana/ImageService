@@ -119,7 +119,7 @@ namespace ImageService.GUI.Model
         {
             this.client.SendCommand(new ImageService.Communication.Model.CommandMessage(4, handler));
             string res = client.RecieveCommand().MessageResponse;
-            if (res.Equals("Closed"))
+            if (res.Equals("closed"))
             {
                 return true;
             }
