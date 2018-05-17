@@ -100,8 +100,8 @@ namespace ImageService.Server
                 m_logging.Log("execition failed. error: " + res, MessageTypeEnum.FAIL);
             }
 
-            CommandMessage respponse = new CommandMessage(e.CommandID, res);
-            this.tcpServer.notifyAll(respponse);
+            CommandMessage response = new CommandMessage(e.CommandID, res);
+            this.tcpServer.notifyAll(response);
         }
 
         /// <summary>

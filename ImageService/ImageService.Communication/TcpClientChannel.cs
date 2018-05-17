@@ -42,17 +42,19 @@ namespace ImageService.Communication
         }
 
         public void RecieveCommand() {
-            new Task(() =>
-            {
+        //    new Task(() =>
+        //    {
                 NetworkStream stream = client.GetStream();
                 BinaryReader reader = new BinaryReader(stream);
                 {
+                    Console.WriteLine("reading result");
                     mutex.WaitOne();
                     string messageInString = reader.ReadString();
                     mutex.ReleaseMutex();
                     CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
+                    Console.WriteLine("got message: " + messageInString);
                 }
-            }).Start();
+        //    }).Start();
         }
 
         public void Stop()
