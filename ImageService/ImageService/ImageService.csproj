@@ -35,6 +35,9 @@
     <StartupObject>ImageService.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Commands">
+      <HintPath>..\..\Commands.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -59,6 +62,7 @@
     <Compile Include="Commands\CloseHandlerCommand.cs" />
     <Compile Include="Commands\GetConfigCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\LogCommand.cs" />
     <Compile Include="Commands\NewFileCommand.cs" />
     <Compile Include="Controller\Handlers\DirectoyHandler.cs" />
     <Compile Include="Controller\Handlers\IDirectoryHandler.cs" />

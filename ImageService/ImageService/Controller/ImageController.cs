@@ -26,6 +26,8 @@ namespace ImageService.Controller
             {
                 { 1 ,new NewFileCommand(modal)},
                 { 2 ,new GetConfigCommand(modal)},
+                { 3 ,new LogCommand(modal)},
+                { 4 ,new CloseHandlerCommand(modal)},
             };
         }
 
