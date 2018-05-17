@@ -13,7 +13,10 @@ namespace leah
         {
             Console.WriteLine("main\n");
             TcpClientChannel client = new TcpClientChannel();
+            Console.WriteLine("created tcp client");
+            client.SendCommand(new ImageService.Communication.Model.CommandMessage(0, "just trying"));
             Console.WriteLine("end");
+            client.Stop();
         }
     }
 }

@@ -27,17 +27,18 @@ namespace ImageService.Communication
         }
 
         public void SendCommand(CommandMessage message) {
-            new Task(() =>
-            {
+        //    new Task(() =>
+        //    {
                 NetworkStream stream = client.GetStream();
                 BinaryWriter writer = new BinaryWriter(stream);
                 {
+                    Console.Write("sending message");
                     string messageInString = JsonConvert.SerializeObject(message);
                     mutex.WaitOne();
                     writer.Write(messageInString);
                     mutex.ReleaseMutex();
                 }
-            }).Start();
+        //    }).Start();
         }
 
         public void RecieveCommand() {

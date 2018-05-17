@@ -23,14 +23,16 @@ namespace ImageService.Communication
             {
                 using (NetworkStream stream = client.GetStream())
                 using (BinaryReader reader = new BinaryReader(stream))
-                using (BinaryWriter writer = new BinaryWriter(stream))
                 {
-                    logg.Log("waiting for message from client", Logging.Modal.MessageTypeEnum.INFO);
-                    string messageInString = reader.ReadString();
-                    CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
-                    logg.Log("Got command", Logging.Modal.MessageTypeEnum.INFO);
-                    string[] args = {};
-                    CommandRecieved?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, message.MessageResponse));
+                    while (true)
+                    {
+                        logg.Log("waiting for message from client", Logging.Modal.MessageTypeEnum.INFO);
+                        string messageInString = reader.ReadString();
+                        CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
+                        logg.Log("Got command", Logging.Modal.MessageTypeEnum.INFO);
+                        string[] args = { };
+                        CommandRecieved?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, message.MessageResponse));
+                    }
                 }
                 client.Close();
             }).Start();
