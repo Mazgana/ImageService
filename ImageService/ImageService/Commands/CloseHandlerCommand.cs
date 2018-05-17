@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ImageService.Modal;
 using ImageService.Controller.Handlers;
+using System.Configuration;
 
 namespace ImageService.Commands
 {
@@ -23,8 +24,27 @@ namespace ImageService.Commands
         // change!!!!!
         public string Execute(string[] args, out bool result)
         {
-            result = true;
-            return "close";
+            string sResult = "closed";
+            result = false;
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            string curHandlers = config.AppSettings.Settings["Handler"].Value;
+            string newHandlers;
+            string handler = args[0];
+
+            if (curHandlers.Contains(handler))
+            {
+                result = true;
+                newHandlers = curHandlers.Remove(curHandlers.IndexOf(handler), handler.Length);
+            } else
+            {
+                sResult = "could not find handler in config";
+                //    newHandlers = "C:\Users\user\Downloads; C: \Users\as\Pictures; C: \Users\as\Videos; C: \Users\user\Desktop\listen";
+                newHandlers = "C:\\Users\\user\\Downloads;C:\\Users\\as\\Pictures";
+            }
+            config.AppSettings.Settings["Handler"].Value = newHandlers;
+            config.Save(ConfigurationSaveMode.Modified);
+
+            return sResult;
         }
     }
 }

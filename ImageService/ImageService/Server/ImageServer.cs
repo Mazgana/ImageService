@@ -99,6 +99,7 @@ namespace ImageService.Server
             {
                 m_logging.Log("execition failed. error: " + res, MessageTypeEnum.FAIL);
             }
+            m_logging.Log("command executed",MessageTypeEnum.INFO);
 
             CommandMessage response = new CommandMessage(e.CommandID, res);
             this.tcpServer.notifyAll(response);

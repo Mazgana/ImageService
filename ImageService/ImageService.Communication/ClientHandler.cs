@@ -30,7 +30,7 @@ namespace ImageService.Communication
                         string messageInString = reader.ReadString();
                         CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
                         logg.Log("Got command", Logging.Modal.MessageTypeEnum.INFO);
-                        string[] args = { };
+                        string[] args = {message.MessageResponse};
                         CommandRecieved?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, message.MessageResponse));
                     }
                 }
