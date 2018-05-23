@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace ImageService.GUI.Model
 {
@@ -19,9 +20,9 @@ namespace ImageService.GUI.Model
         {
             //connecting for the first time to the server and send "get config" command.
             this.client = new TcpClientChannel();
+
             client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
             this.config = client.RecieveCommand();
-          //  client.Stop();
 
             //spliting config to members
             string[] configSrtings = config.MessageResponse.Split('|');
@@ -36,7 +37,8 @@ namespace ImageService.GUI.Model
             string[] handlersDirectories = configSrtings[4].Split(';');
             for (int i = 0; i < handlersDirectories.Length; i++)
             {
-                this.handlers.Add(handlersDirectories[i]);
+                if(handlersDirectories[i].Length != 0)
+                    this.handlers.Add(handlersDirectories[i]);
             }
 
         }
@@ -116,6 +118,17 @@ namespace ImageService.GUI.Model
             }
         }
 
+        private bool connect;
+        public bool IsConnected
+        {
+            get { return connect; }
+            set
+            {
+                connect = this.client.IsConnected;
+                OnPropertyChanged("Is server connected");
+            }
+        }
+
         public bool removeHandler(string handler)
         {
             this.client.SendCommand(new ImageService.Communication.Model.CommandMessage(4, handler));
@@ -125,7 +138,6 @@ namespace ImageService.GUI.Model
                 this.handlers.Remove(handler);
                 return true;
             }
-           // client.Stop();
 
             return false;
         }

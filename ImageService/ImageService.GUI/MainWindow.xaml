@@ -6,26 +6,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageService.GUI"
         xmlns:views="clr-namespace:ImageService.GUI.Views"
+        xmlns:model="clr-namespace:ImageService.GUI.Model"
+        xmlns:convert="clr-namespace:ImageService.GUI.Converters"
         mc:Ignorable="d"
         Title="" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <convert:StringToColorConverter x:Key="StringToColorConverter"></convert:StringToColorConverter>
+        <model:SettingsModel x:Key="settings"></model:SettingsModel>
+    </Window.Resources>
+
+        <Grid Background="{Binding Path=IsConnected, Converter={StaticResource StringToColorConverter}}">
+        <Grid.DataContext>
+            <Binding Source="{StaticResource settings}"/>
+        </Grid.DataContext>
         <TabControl Margin="5">
-            <TabItem Name="SettingsTabItem">
-                <TabItem.Header>
-                    <WrapPanel>
-                        <TextBlock Margin="3" >Settings</TextBlock>
-                    </WrapPanel>
-                </TabItem.Header>
-                <views:SettingsView/>
-            </TabItem>
-            <TabItem Name="LogsTabItem">
-                <TabItem.Header>
-                    <StackPanel>
-                        <TextBlock Margin="3" >Logs</TextBlock>
-                    </StackPanel>
-                </TabItem.Header>
-                <views:LogView/>
-            </TabItem>
-        </TabControl>
-    </Grid>
+                <TabItem Name="SettingsTabItem">
+                    <TabItem.Header>
+                        <WrapPanel>
+                            <TextBlock Margin="3" >Settings</TextBlock>
+                        </WrapPanel>
+                    </TabItem.Header>
+                    <views:SettingsView/>
+                </TabItem>
+                <TabItem Name="LogsTabItem">
+                    <TabItem.Header>
+                        <StackPanel>
+                            <TextBlock Margin="3" >Logs</TextBlock>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <views:LogView/>
+                </TabItem>
+            </TabControl>
+        </Grid>
 </Window>
