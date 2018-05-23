@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ImageService.GUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="AliceBlue">
+    <Grid Background="White">
         <TextBlock HorizontalAlignment="Left" Margin="324,41,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="60" Width="195" FontSize="40" FontWeight="Bold"/>
         <Label x:Name="check" Content="{Binding SettingsModel.Name, Mode=OneWay}"
                Margin="61,41,633,379"/>

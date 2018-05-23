@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ImageService.GUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="White" Margin="0,0,-433,-389">
+        <TextBlock HorizontalAlignment="Center" Margin="527,65,511,0" TextWrapping="Wrap" Text="Log" VerticalAlignment="Top" Height="60" Width="195" FontSize="40" FontWeight="Bold"/>
     </Grid>
 </UserControl>

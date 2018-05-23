@@ -9,7 +9,7 @@
         xmlns:model="clr-namespace:ImageService.GUI.Model"
         xmlns:convert="clr-namespace:ImageService.GUI.Converters"
         mc:Ignorable="d"
-        Title="" Height="450" Width="800">
+        Title="" Height="500" Width="850">
     <Window.Resources>
         <convert:StringToColorConverter x:Key="StringToColorConverter"></convert:StringToColorConverter>
         <model:SettingsModel x:Key="settings"></model:SettingsModel>
