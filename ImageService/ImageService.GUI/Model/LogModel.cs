@@ -4,9 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ImageService.GUI.Model
 {
@@ -22,6 +20,8 @@ namespace ImageService.GUI.Model
             client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, "LogCommand"));
 
             this.log = client.RecieveCommand();
+
+            LogMes = JsonConvert.DeserializeObject<List<String>>(log.MessageResponse);
         }
 
         #region Notify Changed
@@ -34,7 +34,7 @@ namespace ImageService.GUI.Model
         #endregion
 
         private ObservableCollection<string> mes;
-        public ObservableCollection<string> Log
+        public ObservableCollection<string> LogMes
         {
             get { return mes; }
             set
