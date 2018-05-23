@@ -9,6 +9,8 @@ namespace ImageService.Logging
 {
     public class LoggingService : ILoggingService
     {
+        List<string> fullLog = new List<string>();
+
         public event EventHandler<MessageRecievedEventArgs> MessageRecieved;
 
         /// <summary>
@@ -18,6 +20,8 @@ namespace ImageService.Logging
         /// <param name="type"> The message type - information, warning etc. </param>
         public void Log(string message, MessageTypeEnum type)
         {
+            string msg = message + "|"+ type;
+            fullLog.Add(msg);
             MessageRecieved?.Invoke(this, new MessageRecievedEventArgs(type, message));
         }
     }

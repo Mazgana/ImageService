@@ -106,7 +106,7 @@ namespace ImageService
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
             modal = new ImageServiceModal();
-            controller = new ImageController(modal);
+            controller = new ImageController(modal, logging);
             m_imageServer = new ImageServer(logging, modal, controller);
             
         }
@@ -127,7 +127,7 @@ namespace ImageService
         /// <param name="e"> arguments for an elapsed event. </param>
         public void OnTimer(object sender, System.Timers.ElapsedEventArgs args)
         {  
-            eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
+          //  eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
         }
 
         /// <summary>

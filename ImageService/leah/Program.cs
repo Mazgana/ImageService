@@ -1,4 +1,6 @@
 ﻿using ImageService.Communication;
+using ImageService.Communication.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +14,28 @@ namespace leah
         static void Main(string[] args)
         {
             Console.WriteLine("main\n");
+            /*
+            TcpClientChannel client = new TcpClientChannel();
+            client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, "getLog"));
+            CommandMessage config = client.RecieveCommand();
+            Console.WriteLine("got entry:");
+            Console.WriteLine(config.MessageResponse);
+
+            */
+
             TcpClientChannel client = new TcpClientChannel();
             Console.WriteLine("created tcp client");
-            client.SendCommand(new ImageService.Communication.Model.CommandMessage(4, "C:\\Users\\as\\Desktop\\pics"));
+            client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, null));
             Console.WriteLine("sent message");
-            client.RecieveCommand();
-            Console.WriteLine("end. got message");
+            ImageService.Communication.Model.CommandMessage result = client.RecieveCommand();
+            Console.WriteLine("got message");
+             List<String> message = JsonConvert.DeserializeObject<List<String>>(result.MessageResponse);
+
+             foreach (String st in message) {
+                 Console.WriteLine("got entry:");
+                 Console.WriteLine(st);
+                Console.WriteLine("------------");
+             }
             client.Stop();
         }
     }
