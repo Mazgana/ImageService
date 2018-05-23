@@ -99,9 +99,10 @@ namespace ImageService.Server
             {
                 m_logging.Log("execition failed. error: " + res, MessageTypeEnum.FAIL);
             }
-            m_logging.Log("command executed",MessageTypeEnum.INFO);
-
-        //    CloseDirHandler(e.RequestDirPath);
+            m_logging.Log("command executed", MessageTypeEnum.INFO);
+            if(e.CommandID == 4){
+                CloseDirHandler(e.RequestDirPath);
+            }
             CommandMessage response = new CommandMessage(e.CommandID, res);
             this.tcpServer.notifyAll(response);
             m_logging.Log("notified all", MessageTypeEnum.INFO);
