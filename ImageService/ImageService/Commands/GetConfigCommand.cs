@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,15 +11,13 @@ namespace ImageService.Commands
 {
     class GetConfigCommand : ICommand
     {
-        private IImageServiceModal m_modal;
 
         /// <summary>
         /// Constructor. saves modal as member.
         /// </summary>
         /// <param name="modal"> The modal that will make the command operations. </param>
-        public GetConfigCommand(IImageServiceModal modal)
+        public GetConfigCommand()
         {
-            m_modal = modal;            // Storing the Modal
         }
 
         /// <summary>
@@ -29,6 +28,7 @@ namespace ImageService.Commands
         /// and will return the error message. </returns>
         public string Execute(string[] args, out bool result)
         {
+            
             string config = ConfigurationManager.AppSettings["OutputDir"];
             config = String.Concat(config, "|");
             config = String.Concat(config, ConfigurationManager.AppSettings["SourceName"]);
@@ -38,7 +38,6 @@ namespace ImageService.Commands
             config = String.Concat(config, ConfigurationManager.AppSettings["ThumbnailSize"]);
             config = String.Concat(config, "|");
             config = String.Concat(config, ConfigurationManager.AppSettings["Handler"]);
-
             result = true;
             return config;
         }

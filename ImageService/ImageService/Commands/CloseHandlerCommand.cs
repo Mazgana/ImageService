@@ -11,13 +11,10 @@ namespace ImageService.Commands
 {
     class CloseHandlerCommand : ICommand
     {
-        //private DirectoyHandler handler;
-        private IImageServiceModal m_modal;
 
         //       public CloseHandlerCommand(DirectoyHandler h)
-        public CloseHandlerCommand(IImageServiceModal model)
+        public CloseHandlerCommand()
         {
-            this.m_modal = model;
         //    handler = h;            // Storing the Modal
         }
 
