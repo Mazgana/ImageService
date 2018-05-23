@@ -4,9 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ImageService.GUI.Views"
+             xmlns:msg="clr-namespace:ImageService.Communication.Model;assembly=ImageService.Communication"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White" Margin="0,0,-433,-389">
-        <TextBlock HorizontalAlignment="Center" Margin="527,65,511,0" TextWrapping="Wrap" Text="Log" VerticalAlignment="Top" Height="60" Width="195" FontSize="40" FontWeight="Bold"/>
+    <Grid Background="White">
+        <TextBlock HorizontalAlignment="Center" Margin="381,43,329,0" TextWrapping="Wrap" Text="Log" VerticalAlignment="Top" Height="60" Width="90" FontSize="40" FontWeight="Bold" RenderTransformOrigin="1.778,0.53"/>
+        <ListView x:Name="log" Margin="10,154,10,0" ItemsSource="{Binding LogModel.LogMes, Mode=OneWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Type" Width="120" DisplayMemberBinding="{Binding Path=type}" />
+                    <GridViewColumn Header="Messgae" Width="Auto" DisplayMemberBinding="{Binding Path=text}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

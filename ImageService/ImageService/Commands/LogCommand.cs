@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Configuration;
+using System.Collections.ObjectModel;
 
 namespace ImageService.Commands
 {

@@ -17,11 +17,20 @@ namespace ImageService.GUI.Model
         {
             //connecting for the first time to the server and send "log command" command.
             this.client = new TcpClientChannel();
-            client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, "LogCommand"));
+            client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, null));
 
             this.log = client.RecieveCommand();
 
-            LogMes = JsonConvert.DeserializeObject<List<String>>(log.MessageResponse);
+            List<string> allLog = JsonConvert.DeserializeObject<List<String>>(this.log.MessageResponse);
+
+            this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
+            string[] current;
+
+            foreach (String st in allLog)
+            {
+                current = st.Split('|');
+                this.LogMes.Add(new MsgRecievedEventArgs(current[0], current[1]));
+            }
         }
 
         #region Notify Changed
@@ -33,8 +42,8 @@ namespace ImageService.GUI.Model
         }
         #endregion
 
-        private ObservableCollection<string> mes;
-        public ObservableCollection<string> LogMes
+        private ObservableCollection<MsgRecievedEventArgs> mes;
+        public ObservableCollection<MsgRecievedEventArgs> LogMes
         {
             get { return mes; }
             set

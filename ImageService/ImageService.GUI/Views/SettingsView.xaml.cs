@@ -41,10 +41,6 @@ namespace ImageService.GUI.Views
             string handlerName = handlerToRemove.ToString();
             int index = handlers.Items.IndexOf(handlerToRemove);
             bool res = vm.removeHandler(handlerName);
-            //if (res)
-            //{
-            //    handlers.Items.RemoveAt(index);
-            //}
         }
     }
 }
