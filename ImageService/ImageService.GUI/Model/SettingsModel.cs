@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Threading;
 
 namespace ImageService.GUI.Model
 {
@@ -20,28 +21,34 @@ namespace ImageService.GUI.Model
         {
             //connecting for the first time to the server and send "get config" command.
             this.client = TcpClientChannel.getInstance();
-            client.UpdateModel += ViewUpdate;
 
-            client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
-        /*   this.config = client.RecieveCommand();
-
-            //spliting config to members
-            string[] configSrtings = config.MessageResponse.Split('|');
-
-            OutputDirectory = configSrtings[0];
-            SourceName = configSrtings[1];
-            log_name = configSrtings[2];
-            ThumbnailSize = configSrtings[3];
-
-            this.handlers = new ObservableCollection<string>();
-
-            string[] handlersDirectories = configSrtings[4].Split(';');
-            for (int i = 0; i < handlersDirectories.Length; i++)
+            if (this.client.IsConnected)
             {
-                if(handlersDirectories[i].Length != 0)
-                    this.handlers.Add(handlersDirectories[i]);
+                client.UpdateModel += ViewUpdate;
+                client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
             }
-        */
+
+            System.Threading.Thread.Sleep(1000);
+
+            /*   this.config = client.RecieveCommand();
+
+                //spliting config to members
+                string[] configSrtings = config.MessageResponse.Split('|');
+
+                OutputDirectory = configSrtings[0];
+                SourceName = configSrtings[1];
+                log_name = configSrtings[2];
+                ThumbnailSize = configSrtings[3];
+
+                this.handlers = new ObservableCollection<string>();
+
+                string[] handlersDirectories = configSrtings[4].Split(';');
+                for (int i = 0; i < handlersDirectories.Length; i++)
+                {
+                    if(handlersDirectories[i].Length != 0)
+                        this.handlers.Add(handlersDirectories[i]);
+                }
+            */
         }
 
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)
@@ -79,8 +86,7 @@ namespace ImageService.GUI.Model
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
 

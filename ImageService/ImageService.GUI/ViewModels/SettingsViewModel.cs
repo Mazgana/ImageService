@@ -15,14 +15,13 @@ namespace ImageService.GUI.ViewModels
         #endregion
         protected void NotifyPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         private SettingsModel settingsModel;
 
-        public SettingsViewModel(SettingsModel model)
+        public SettingsViewModel()
         {
-            this.settingsModel = model;
+            this.settingsModel = new SettingsModel();
 
             SettingsModel.PropertyChanged +=
        delegate (Object sender, PropertyChangedEventArgs e) {
@@ -42,6 +41,26 @@ namespace ImageService.GUI.ViewModels
         public bool removeHandler(string handler)
         {
             return this.settingsModel.removeHandler(handler);
+        }
+
+        public string OutputDirectory
+        {
+            get { return this.settingsModel.OutputDirectory; }
+        }
+
+        public string SourceName
+        {
+            get { return this.settingsModel.SourceName; }
+        }
+
+        public string LogName
+        {
+            get { return this.settingsModel.LogName; }
+        }
+
+        public string ThumbnailSize
+        {
+            get { return this.settingsModel.ThumbnailSize; }
         }
     }
 }

@@ -29,13 +29,13 @@ namespace ImageService.Communication
             try
             {
                 client.Connect(ep);
-                Console.WriteLine("You are connected");
+                //Console.WriteLine("You are connected");
                 this.IsConnected = true;
                 RecieveCommand();
             }catch(Exception e)
             {
                 this.IsConnected = false;
-                Console.WriteLine("You are not connected, error: " + e.Message);
+                //Console.WriteLine("You are not connected, error: " + e.Message);
             }
         }
 
@@ -54,7 +54,7 @@ namespace ImageService.Communication
                 NetworkStream stream = client.GetStream();
                 BinaryWriter writer = new BinaryWriter(stream);
                 {
-                    Console.Write("sending message");
+                  //  Console.Write("sending message");
                     string messageInString = JsonConvert.SerializeObject(message);
                     mutex.WaitOne();
                     writer.Write(messageInString);
@@ -71,7 +71,7 @@ namespace ImageService.Communication
                 {
                     while (true)
                     {
-                        Console.WriteLine("reading result");
+                        //Console.WriteLine("reading result");
                         mutex.WaitOne();
                         string messageInString = reader.ReadString();
                         mutex.ReleaseMutex();
