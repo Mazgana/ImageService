@@ -25,9 +25,9 @@ namespace leah
 
             TcpClientChannel client = new TcpClientChannel();
             Console.WriteLine("created tcp client");
-            client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, null));
+            client.SendCommand(new CommandMessage(3, null));
             Console.WriteLine("sent message");
-            ImageService.Communication.Model.CommandMessage result = client.RecieveCommand();
+            CommandMessage result = client.RecieveCommand();
             Console.WriteLine("got message");
              List<String> message = JsonConvert.DeserializeObject<List<String>>(result.MessageResponse);
 

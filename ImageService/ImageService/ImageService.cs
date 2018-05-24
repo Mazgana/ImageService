@@ -108,6 +108,7 @@ namespace ImageService
             modal = new ImageServiceModal();
             controller = new ImageController(modal, logging);
             m_imageServer = new ImageServer(logging, modal, controller);
+//            logging.MessageRecieved += m_imageServer.UpdateLog;
             
         }
         /// <summary>

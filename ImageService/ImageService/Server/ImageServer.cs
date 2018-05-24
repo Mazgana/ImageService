@@ -107,6 +107,14 @@ namespace ImageService.Server
             this.tcpServer.notifyAll(response);
             m_logging.Log("notified all", MessageTypeEnum.INFO);
         }
+        
+        public void UpdateLog(object sender, MessageRecievedEventArgs e)
+        {
+            CommandMessage response = new CommandMessage(3, e.Message);
+            this.tcpServer.notifyAll(response);
+            //m_imageServer.CommandRecieved;
+        }
+        
 
         /// <summary>
         /// Closing the handlers when sever is closing.
