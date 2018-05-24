@@ -36,7 +36,7 @@ namespace leah
                     Console.WriteLine("------------");
                 }
                 */
-                client.RecieveCommand();
+               // client.RecieveCommand();
                  //   System.Threading.Thread.Sleep(1000000);
             }
             else

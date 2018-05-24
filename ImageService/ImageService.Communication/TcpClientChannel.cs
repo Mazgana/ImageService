@@ -31,7 +31,7 @@ namespace ImageService.Communication
                 client.Connect(ep);
                 Console.WriteLine("You are connected");
                 this.IsConnected = true;
-         //       RecieveCommand();
+                RecieveCommand();
             }catch(Exception e)
             {
                 this.IsConnected = false;
@@ -64,8 +64,8 @@ namespace ImageService.Communication
         }
 
         public void RecieveCommand() {
-      //      new Task(() =>
-    //        {
+            new Task(() =>
+            {
                 NetworkStream stream = client.GetStream();
                 BinaryReader reader = new BinaryReader(stream);
                 {
@@ -81,9 +81,7 @@ namespace ImageService.Communication
                         UpdateModel?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, null));
                     }
                 }
-//            }).Start();
-
-//            return message;
+            }).Start();
         }
 
         public void Stop()

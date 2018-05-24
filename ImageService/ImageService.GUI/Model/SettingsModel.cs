@@ -13,16 +13,17 @@ namespace ImageService.GUI.Model
 {
     class SettingsModel : INotifyPropertyChanged
     {
-        CommandMessage config;
+        String config;
         TcpClientChannel client { get; set; }
 
         public SettingsModel()
         {
             //connecting for the first time to the server and send "get config" command.
             this.client = TcpClientChannel.getInstance();
+            client.UpdateModel += ViewUpdate;
 
             client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
-            this.config = client.RecieveCommand();
+        /*   this.config = client.RecieveCommand();
 
             //spliting config to members
             string[] configSrtings = config.MessageResponse.Split('|');
@@ -40,7 +41,38 @@ namespace ImageService.GUI.Model
                 if(handlersDirectories[i].Length != 0)
                     this.handlers.Add(handlersDirectories[i]);
             }
+        */
+        }
 
+        private void ViewUpdate(object sender, CommandRecievedEventArgs e)
+        {
+            if(e.CommandID == 2)
+            {
+                this.config = e.Args[0];
+                string[] configSrtings = config.Split('|');
+
+                OutputDirectory = configSrtings[0];
+                SourceName = configSrtings[1];
+                log_name = configSrtings[2];
+                ThumbnailSize = configSrtings[3];
+
+                this.handlers = new ObservableCollection<string>();
+
+                string[] handlersDirectories = configSrtings[4].Split(';');
+                for (int i = 0; i < handlersDirectories.Length; i++)
+                {
+                    if (handlersDirectories[i].Length != 0)
+                        this.handlers.Add(handlersDirectories[i]);
+                }
+            }
+            if(e.CommandID == 4)
+            {
+                string res = e.Args[0];
+                if (res.Equals("closed"))
+                {
+                    this.handlers.Remove(e.Args[1]);
+                }
+            }
         }
 
         #region Notify Changed
@@ -132,13 +164,14 @@ namespace ImageService.GUI.Model
         public bool removeHandler(string handler)
         {
             this.client.SendCommand(new ImageService.Communication.Model.CommandMessage(4, handler));
-            string res = client.RecieveCommand().MessageResponse;
+
+        /*    string res = client.RecieveCommand().MessageResponse;
             if (res.Equals("closed"))
             {
                 this.handlers.Remove(handler);
                 return true;
             }
-
+        */
             return false;
         }
     }

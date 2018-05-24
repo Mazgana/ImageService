@@ -10,18 +10,21 @@ namespace ImageService.GUI.Model
 {
     class LogModel : INotifyPropertyChanged
     {
-        CommandMessage log;
+        bool isRunning;
+        String log;
         TcpClientChannel client { get; set; }
 
         public LogModel()
         {
+            isRunning = false;
             //connecting for the first time to the server and send "log command" command.
             this.client = TcpClientChannel.getInstance();
+            client.UpdateModel += ViewLogUpdate;
             client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, null));
 
-            this.log = client.RecieveCommand();
+        //    this.log = client.RecieveCommand();
 
-            List<string> allLog = JsonConvert.DeserializeObject<List<String>>(this.log.MessageResponse);
+        /*    List<string> allLog = JsonConvert.DeserializeObject<List<String>>(this.log.MessageResponse);
 
             this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
             string[] current;
@@ -30,6 +33,30 @@ namespace ImageService.GUI.Model
             {
                 current = st.Split('|');
                 this.LogMes.Add(new MsgRecievedEventArgs(current[0], current[1]));
+            }
+        */
+        }
+
+        private void ViewLogUpdate(object sender, CommandRecievedEventArgs e)
+        {
+            if(e.CommandID == 3)
+            {
+                this.log = e.Args[0];
+                List<string> allLog = JsonConvert.DeserializeObject<List<String>>(this.log);
+
+                this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
+                string[] current;
+
+                foreach (String st in allLog)
+                {
+                    current = st.Split('|');
+                    this.LogMes.Add(new MsgRecievedEventArgs(current[0], current[1]));
+                }
+                isRunning = true;
+            }
+            if (e.CommandID == 5 && isRunning)
+            {
+                this.LogMes.Add(new MsgRecievedEventArgs("update", e.Args[0]));
             }
         }
 
