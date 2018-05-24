@@ -18,8 +18,9 @@ namespace ImageService.Communication
         public bool IsConnected { get; set; }
 
         private static Mutex mutex = new Mutex();
+        private static TcpClientChannel instance = null;
 
-        public TcpClientChannel()
+        private TcpClientChannel()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
             client = new TcpClient();
@@ -33,6 +34,15 @@ namespace ImageService.Communication
                 this.IsConnected = false;
                 Console.WriteLine("You are not connected, error: " + e.Message);
             }
+        }
+
+        public static TcpClientChannel getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new TcpClientChannel();
+            }
+            return instance;
         }
 
         public void SendCommand(CommandMessage message) {

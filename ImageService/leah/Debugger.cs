@@ -13,7 +13,7 @@ namespace leah
         public Debugger()
         {
             Console.WriteLine("start client\n");
-            TcpClientChannel client = new TcpClientChannel();
+            //TcpClientChannel client = new TcpClientChannel();
             Console.WriteLine("end");
         }
     }

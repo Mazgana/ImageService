@@ -16,7 +16,7 @@ namespace ImageService.GUI.Model
         public LogModel()
         {
             //connecting for the first time to the server and send "log command" command.
-            this.client = new TcpClientChannel();
+            this.client = TcpClientChannel.getInstance();
             client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, null));
 
             this.log = client.RecieveCommand();

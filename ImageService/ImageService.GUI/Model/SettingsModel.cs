@@ -19,7 +19,7 @@ namespace ImageService.GUI.Model
         public SettingsModel()
         {
             //connecting for the first time to the server and send "get config" command.
-            this.client = new TcpClientChannel();
+            this.client = TcpClientChannel.getInstance();
 
             client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
             this.config = client.RecieveCommand();

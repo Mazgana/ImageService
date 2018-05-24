@@ -23,7 +23,7 @@ namespace leah
 
             */
 
-            TcpClientChannel client = new TcpClientChannel();
+            TcpClientChannel client = TcpClientChannel.getInstance();
             Console.WriteLine("created tcp client");
             client.SendCommand(new CommandMessage(3, null));
             Console.WriteLine("sent message");
