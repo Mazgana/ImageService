@@ -6,10 +6,9 @@
              xmlns:local="clr-namespace:ImageService.GUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="AliceBlue">
+    <Grid Background="White">
         <TextBlock HorizontalAlignment="Left" Margin="324,41,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="60" Width="195" FontSize="40" FontWeight="Bold"/>
-        <Label x:Name="check" Content="{Binding SettingsModel.Name, Mode=OneWay}"
-               Margin="61,41,633,379"/>
+        <Label x:Name="name" Content="{Binding SettingsModel.Name, Mode=OneWay}" Margin="61,41,633,379"/>
         <Label Content="Output Directory:" HorizontalAlignment="Left" Margin="61,103,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" FontWeight="Bold"/>
         <Label x:Name="outputDir" Content="{Binding SettingsModel.OutputDirectory, Mode=OneWay}" HorizontalAlignment="Left" Margin="256,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" Height="31" Width="305"/>
         <Label Content="Source Name:" HorizontalAlignment="Left" Margin="61,142,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" FontWeight="Bold"/>
@@ -18,8 +17,8 @@
         <Label x:Name="logName" Content="{Binding SettingsModel.LogName, Mode=OneWay}" HorizontalAlignment="Left" Margin="256,184,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" Height="31" Width="305"/>
         <Label Content="Thumbnail Size:" HorizontalAlignment="Left" Margin="61,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" FontWeight="Bold"/>
         <Label x:Name="thumbSize" Content="{Binding SettingsModel.ThumbnailSize, Mode=OneWay}" HorizontalAlignment="Left" Margin="256,223,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" Height="31" Width="305"/>
-        <Button x:Name="Remove" Content="Remove" HorizontalAlignment="Left" Margin="41,262,0,0" VerticalAlignment="Top" Width="553" Height="25" IsEnabled="False" Click="RemoveClick"/>
-        <ListBox x:Name="handlers" HorizontalAlignment="Left" Height="109" Margin="41,287,0,0" VerticalAlignment="Top" Width="553" ItemsSource="{Binding SettingsModel.Handlers, Mode=TwoWay}" SelectionChanged="ItemSelected"/>
+        <Button x:Name="Remove" Content="Remove" HorizontalAlignment="Left" Margin="88,262,0,0" VerticalAlignment="Top" Width="632" Height="25" IsEnabled="False" Click="RemoveClick"/>
+        <ListBox x:Name="handlers" HorizontalAlignment="Left" Height="109" Margin="88,287,0,0" VerticalAlignment="Top" Width="632" ItemsSource="{Binding SettingsModel.Handlers, Mode=TwoWay}" SelectionChanged="ItemSelected"/>
 
     </Grid>
 </UserControl>

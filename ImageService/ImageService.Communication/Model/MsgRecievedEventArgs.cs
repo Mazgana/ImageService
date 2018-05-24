@@ -8,25 +8,13 @@ namespace ImageService.Communication.Model
 {
     public class MsgRecievedEventArgs
     {
-        private int msgID;
-        private string msgText;
+        public string type { get; set; }
+        public string text { get; set; }
 
-        public MsgRecievedEventArgs(int id, string msg)
+        public MsgRecievedEventArgs(string msgType, string msgText)
         {
-            this.msgID = id;
-            this.msgText = msg;
-        }
-        
-        public int id
-        {
-            get { return msgID; }
-            set { msgID = value; }
-        }
-
-        public string msg
-        {
-            get { return msgText; }
-            set { msgText = value; }
+            this.type = msgType;
+            this.text = msgText;
         }
     }
 }
