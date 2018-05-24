@@ -97,7 +97,7 @@ namespace ImageService
 
             // Set up a timer to trigger every minute.  
             System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 60000; // 60 seconds  
+            timer.Interval = 10000; // 60 seconds  
             timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
             timer.Start();
 
@@ -108,7 +108,7 @@ namespace ImageService
             modal = new ImageServiceModal();
             controller = new ImageController(modal, logging);
             m_imageServer = new ImageServer(logging, modal, controller);
-//            logging.MessageRecieved += m_imageServer.UpdateLog;
+            logging.MessageRecieved += m_imageServer.UpdateLog;
             
         }
         /// <summary>
@@ -128,7 +128,7 @@ namespace ImageService
         /// <param name="e"> arguments for an elapsed event. </param>
         public void OnTimer(object sender, System.Timers.ElapsedEventArgs args)
         {  
-          //  eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
+            eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
         }
 
         /// <summary>

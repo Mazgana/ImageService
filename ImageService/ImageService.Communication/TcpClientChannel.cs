@@ -14,11 +14,13 @@ namespace ImageService.Communication
 {
      public class TcpClientChannel
     {
-        TcpClient client;
-        public bool IsConnected { get; set; }
+        private TcpClient client;
+        public bool IsConnected = false;
 
         private static Mutex mutex = new Mutex();
         private static TcpClientChannel instance = null;
+
+        public event EventHandler<CommandRecievedEventArgs> UpdateModel;
 
         private TcpClientChannel()
         {
@@ -29,6 +31,7 @@ namespace ImageService.Communication
                 client.Connect(ep);
                 Console.WriteLine("You are connected");
                 this.IsConnected = true;
+         //       RecieveCommand();
             }catch(Exception e)
             {
                 this.IsConnected = false;
@@ -46,8 +49,8 @@ namespace ImageService.Communication
         }
 
         public void SendCommand(CommandMessage message) {
-        //    new Task(() =>
-        //    {
+            new Task(() =>
+            {
                 NetworkStream stream = client.GetStream();
                 BinaryWriter writer = new BinaryWriter(stream);
                 {
@@ -57,25 +60,30 @@ namespace ImageService.Communication
                     writer.Write(messageInString);
                     mutex.ReleaseMutex();
                 }
-        //    }).Start();
+            }).Start();
         }
 
-        public CommandMessage RecieveCommand() {
-        //    new Task(() =>
-        //    {
+        public void RecieveCommand() {
+      //      new Task(() =>
+    //        {
                 NetworkStream stream = client.GetStream();
                 BinaryReader reader = new BinaryReader(stream);
-                //{
-                    Console.WriteLine("reading result");
-                    mutex.WaitOne();
-                    string messageInString = reader.ReadString();
-                    mutex.ReleaseMutex();
-                    CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
-                    Console.WriteLine("got message: " + messageInString);
-            //}
-            //    }).Start();
+                {
+                    while (true)
+                    {
+                        Console.WriteLine("reading result");
+                        mutex.WaitOne();
+                        string messageInString = reader.ReadString();
+                        mutex.ReleaseMutex();
+                        CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
+                        Console.WriteLine("got message: " + messageInString);
+                        string[] args = { message.MessageResponse };
+                        UpdateModel?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, null));
+                    }
+                }
+//            }).Start();
 
-            return message;
+//            return message;
         }
 
         public void Stop()

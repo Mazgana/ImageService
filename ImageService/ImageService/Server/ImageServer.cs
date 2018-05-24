@@ -110,9 +110,8 @@ namespace ImageService.Server
         
         public void UpdateLog(object sender, MessageRecievedEventArgs e)
         {
-            CommandMessage response = new CommandMessage(3, e.Message);
-            this.tcpServer.notifyAll(response);
-            //m_imageServer.CommandRecieved;
+            CommandMessage response = new CommandMessage(5, e.Message);
+            tcpServer.notifyAll(response);
         }
         
 
