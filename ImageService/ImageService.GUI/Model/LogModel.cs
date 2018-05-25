@@ -16,7 +16,7 @@ namespace ImageService.GUI.Model
 
         public LogModel()
         {
-            isRunning = false;
+         /*   isRunning = false;
             //connecting for the first time to the server and send "log command" command.
             this.client = TcpClientChannel.getInstance();
             if (this.client.IsConnected)

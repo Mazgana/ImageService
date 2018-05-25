@@ -15,8 +15,7 @@ namespace ImageService.Communication
      public class TcpClientChannel
     {
         private TcpClient client;
-        public bool IsConnected = false;
-
+        public bool IsConnected;
         private static Mutex mutex = new Mutex();
         private static TcpClientChannel instance = null;
 

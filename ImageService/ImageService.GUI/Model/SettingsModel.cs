@@ -28,7 +28,8 @@ namespace ImageService.GUI.Model
                 client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
             }
 
-            System.Threading.Thread.Sleep(1000);
+         //   System.Threading.Thread.Sleep(500);
+         //   Console.WriteLine("after sleeping..");
 
             /*   this.config = client.RecieveCommand();
 
@@ -49,6 +50,19 @@ namespace ImageService.GUI.Model
                         this.handlers.Add(handlersDirectories[i]);
                 }
             */
+            OutputDirectory = "loading..";
+            SourceName = "loading..";
+            log_name = "loading name..";
+            ThumbnailSize = "loading size..";
+
+            this.handlers = new ObservableCollection<string>();
+
+            string[] handlersDirectories = { "directory1", "directory2", "directory3" };
+            for (int i = 0; i < handlersDirectories.Length; i++)
+            {
+                if (handlersDirectories[i].Length != 0)
+                    this.handlers.Add(handlersDirectories[i]);
+            }
         }
 
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)
@@ -86,6 +100,7 @@ namespace ImageService.GUI.Model
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
+            Console.WriteLine("--hey some property changed:)");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
@@ -96,6 +111,7 @@ namespace ImageService.GUI.Model
             get { return output_dir; }
             set
             {
+                Console.WriteLine("writing output directory");
                 output_dir = value;
                 OnPropertyChanged("Output Directory");
             }
