@@ -62,5 +62,10 @@ namespace ImageService.GUI.ViewModels
         {
             get { return this.settingsModel.ThumbnailSize; }
         }
+
+        public bool IsConnected
+        {
+            get { return this.settingsModel.IsConnected; }
+        }
     }
 }

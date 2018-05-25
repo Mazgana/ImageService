@@ -53,7 +53,8 @@ namespace leah
             {
                 Console.WriteLine("could not connect to server");
             }
-         //   client.Stop();
+            //   client.Stop();
+            System.Threading.Thread.Sleep(1000);
             Console.WriteLine("end");
         }
 

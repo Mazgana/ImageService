@@ -19,7 +19,7 @@ namespace ImageService.GUI.Converters
             if (conneted)
                 return Brushes.LightCoral;
             else
-                return Brushes.LightBlue;
+                return Brushes.LightGray;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

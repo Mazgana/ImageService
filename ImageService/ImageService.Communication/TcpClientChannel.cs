@@ -15,7 +15,7 @@ namespace ImageService.Communication
      public class TcpClientChannel
     {
         private TcpClient client;
-        public bool IsConnected = false;
+        public bool IsConnected;
 
         private static Mutex mutex = new Mutex();
         private static TcpClientChannel instance = null;
@@ -32,7 +32,8 @@ namespace ImageService.Communication
                 //Console.WriteLine("You are connected");
                 this.IsConnected = true;
                 RecieveCommand();
-            }catch(Exception e)
+            }
+            catch(Exception e)
             {
                 this.IsConnected = false;
                 //Console.WriteLine("You are not connected, error: " + e.Message);

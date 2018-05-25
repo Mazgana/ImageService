@@ -25,7 +25,7 @@ namespace ImageService.GUI.Model
             if (this.client.IsConnected)
             {
                 client.UpdateModel += ViewUpdate;
-                client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
+                client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, null));
             }
 
             System.Threading.Thread.Sleep(1000);
@@ -159,7 +159,7 @@ namespace ImageService.GUI.Model
         private bool connect;
         public bool IsConnected
         {
-            get { return connect; }
+            get { return this.client.IsConnected; }
             set
             {
                 connect = this.client.IsConnected;
