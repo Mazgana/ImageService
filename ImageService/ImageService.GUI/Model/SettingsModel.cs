@@ -15,8 +15,14 @@ namespace ImageService.GUI.Model
 {
     class SettingsModel : INotifyPropertyChanged
     {
-        String config;
         TcpClientChannel client { get; set; }
+        private bool connect;
+        private string selected;
+        private ObservableCollection<string> handlers { get; set; }
+        private string thumb_size;
+        private string log_name;
+        private string src_name;
+        private string output_dir;
 
         public SettingsModel()
         {
@@ -46,7 +52,7 @@ namespace ImageService.GUI.Model
             */
             handlers = new ObservableCollection<string>();
             Object locker = new Object();
-            BindingOperations.EnableCollectionSynchronization(Handlers, locker);
+            BindingOperations.EnableCollectionSynchronization(handlers, locker);
             this.client = TcpClientChannel.getInstance();
 
             if (this.client.IsConnected)
@@ -54,9 +60,9 @@ namespace ImageService.GUI.Model
                 client.UpdateModel += ViewUpdate;
                 client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, null));
             }
-            /*
-            OutputDirectory = "loading..";
-            SourceName = "loading..";
+            
+            /*OutputDirectory = "loading..";
+            /*SourceName = "loading..";
             log_name = "loading name..";
             ThumbnailSize = "loading size..";
             */
@@ -74,9 +80,9 @@ namespace ImageService.GUI.Model
 
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)
         {
-            if(e.CommandID == 2)
+            if(e.CommandID == 2 && handlers.Count < 1)
             {
-                this.config = e.Args[0];
+                string config = e.Args[0];
                 string[] configSrtings = config.Split('|');
 
                 OutputDirectory = configSrtings[0];
@@ -112,19 +118,16 @@ namespace ImageService.GUI.Model
         }
         #endregion
 
-        private string output_dir;
         public string OutputDirectory
         {
             get { return output_dir; }
             set
             {
-                Console.WriteLine("writing output directory");
                 output_dir = value;
                 OnPropertyChanged("Output Directory");
             }
         }
 
-        private string src_name;
         public string SourceName
         {
             get { return src_name; }
@@ -135,7 +138,6 @@ namespace ImageService.GUI.Model
             }
         }
 
-        private string log_name;
         public string LogName
         {
             get { return log_name; }
@@ -146,7 +148,6 @@ namespace ImageService.GUI.Model
             }
         }
 
-        private string thumb_size;
         public string ThumbnailSize
         {
             get { return thumb_size; }
@@ -157,7 +158,6 @@ namespace ImageService.GUI.Model
             }
         }
 
-        private ObservableCollection<string> handlers;
         public ObservableCollection<string> Handlers
         {
             get { return handlers; }
@@ -168,7 +168,6 @@ namespace ImageService.GUI.Model
             }
         }
 
-        private string selected;
         public string SelectedHandler
         {
             get { return selected; }
@@ -179,7 +178,6 @@ namespace ImageService.GUI.Model
             }
         }
 
-        private bool connect;
         public bool IsConnected
         {
             get { return this.client.IsConnected; }
