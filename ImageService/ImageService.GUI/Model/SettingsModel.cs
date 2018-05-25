@@ -63,6 +63,8 @@ namespace ImageService.GUI.Model
                 if (handlersDirectories[i].Length != 0)
                     this.handlers.Add(handlersDirectories[i]);
             }
+
+            Thread.Sleep(1000);
         }
 
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)
