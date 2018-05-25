@@ -17,16 +17,16 @@
     
     <Grid Background="White">
         <TextBlock HorizontalAlignment="Center" Margin="358,29,352,0" TextWrapping="Wrap" Text="Log" VerticalAlignment="Top" Height="60" Width="90" FontSize="40" FontWeight="Bold" RenderTransformOrigin="1.778,0.53"/>
-        <DataGrid x:Name="logM" AutoGenerateColumns="False" ItemsSource="{Binding LogMes, Mode=OneWay}" Margin="20,104,20,20" >
+        <DataGrid x:Name="logM" AutoGenerateColumns="False" ItemsSource="{Binding LogMes, Mode=OneWay}" Margin="20,104,20,20" GridLinesVisibility="None" IsHitTestVisible="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Type" FontSize="14" Width="150" IsReadOnly="True" Binding="{Binding Path=type}" >
+                <DataGridTextColumn Header="Type" FontSize="14" Width="200" IsReadOnly="True" Binding="{Binding Path=type}" >
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock" >
                             <Setter Property="Background" Value="{Binding Path=type, Converter={StaticResource TypeColor}}"></Setter>
-                        </Style>
+                        </Style>    
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Message" FontSize="14" Width="Auto" IsReadOnly="True" Binding="{Binding Path=text}" />
+                <DataGridTextColumn Header="Message" FontSize="14" Width="*" IsReadOnly="True" Binding="{Binding Path=text}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
