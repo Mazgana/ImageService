@@ -88,7 +88,7 @@ namespace ImageService.GUI.Model
 
                 OutputDirectory = configSrtings[0];
                 SourceName = configSrtings[1];
-                log_name = configSrtings[2];
+                LogName = configSrtings[2];
                 ThumbnailSize = configSrtings[3];
 
      //           this.handlers = new ObservableCollection<string>();

@@ -21,7 +21,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Type" FontSize="14" Width="150" IsReadOnly="True" Binding="{Binding Path=type}" >
                     <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
+                        <Style TargetType="TextBlock" >
                             <Setter Property="Background" Value="{Binding Path=type, Converter={StaticResource TypeColor}}"></Setter>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
