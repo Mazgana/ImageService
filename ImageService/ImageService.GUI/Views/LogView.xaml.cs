@@ -32,5 +32,9 @@ namespace ImageService.GUI.Views
             this.DataContext = vm;
         }
 
+        private void logM_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
     }
 }
