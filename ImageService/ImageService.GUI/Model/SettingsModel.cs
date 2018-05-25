@@ -23,25 +23,26 @@ namespace ImageService.GUI.Model
             client.UpdateModel += ViewUpdate;
 
             client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
-        /*   this.config = client.RecieveCommand();
 
-            //spliting config to members
-            string[] configSrtings = config.MessageResponse.Split('|');
+            /*   this.config = client.RecieveCommand();
 
-            OutputDirectory = configSrtings[0];
-            SourceName = configSrtings[1];
-            log_name = configSrtings[2];
-            ThumbnailSize = configSrtings[3];
+                //spliting config to members
+                string[] configSrtings = config.MessageResponse.Split('|');
 
-            this.handlers = new ObservableCollection<string>();
+                OutputDirectory = configSrtings[0];
+                SourceName = configSrtings[1];
+                log_name = configSrtings[2];
+                ThumbnailSize = configSrtings[3];
 
-            string[] handlersDirectories = configSrtings[4].Split(';');
-            for (int i = 0; i < handlersDirectories.Length; i++)
-            {
-                if(handlersDirectories[i].Length != 0)
-                    this.handlers.Add(handlersDirectories[i]);
-            }
-        */
+                this.handlers = new ObservableCollection<string>();
+
+                string[] handlersDirectories = configSrtings[4].Split(';');
+                for (int i = 0; i < handlersDirectories.Length; i++)
+                {
+                    if(handlersDirectories[i].Length != 0)
+                        this.handlers.Add(handlersDirectories[i]);
+                }
+            */
         }
 
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)

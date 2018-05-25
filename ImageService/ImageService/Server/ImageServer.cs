@@ -89,7 +89,7 @@ namespace ImageService.Server
             m_logging.Log("sending command from server.", Logging.Modal.MessageTypeEnum.INFO);
             CommandRecieved?.Invoke(this, e);
         }
-
+        
         public void GetCommand(object sender, CommandRecievedEventArgs e)
         {
             m_logging.Log("Getting command from client and execute it.", Logging.Modal.MessageTypeEnum.INFO);

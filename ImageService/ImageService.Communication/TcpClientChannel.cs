@@ -71,14 +71,20 @@ namespace ImageService.Communication
                 {
                     while (true)
                     {
-                        Console.WriteLine("reading result");
-                        mutex.WaitOne();
-                        string messageInString = reader.ReadString();
-                        mutex.ReleaseMutex();
-                        CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
-                        Console.WriteLine("got message: " + messageInString);
-                        string[] args = { message.MessageResponse };
-                        UpdateModel?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, null));
+                        try
+                        {
+                            Console.WriteLine("reading result");
+                            //mutex.WaitOne();
+                            string messageInString = reader.ReadString();
+                            //mutex.ReleaseMutex();
+                            CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
+                            Console.WriteLine("got message: " + messageInString);
+                            string[] args = { message.MessageResponse };
+                            UpdateModel?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, null));
+                        } catch(Exception e)
+                        {
+                            Console.WriteLine("error reading message from server");
+                        }
                     }
                 }
             }).Start();

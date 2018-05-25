@@ -26,10 +26,10 @@ namespace ImageService.Communication
                 {
                     while (true)
                     {
-                        logg.Log("waiting for message from client", Logging.Modal.MessageTypeEnum.INFO);
+                 //       logg.Log("waiting for message from client", Logging.Modal.MessageTypeEnum.INFO);
                         string messageInString = reader.ReadString();
                         CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
-                        logg.Log("Got command", Logging.Modal.MessageTypeEnum.INFO);
+                 //       logg.Log("Got command", Logging.Modal.MessageTypeEnum.INFO);
                         string[] args = {message.MessageResponse};
                         CommandRecieved?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, message.MessageResponse));
                     }

@@ -14,7 +14,6 @@ namespace ImageService.Commands
 {
     class LogCommand : ICommand
     {
-        ILoggingService logging;
 
         /// <summary>
         /// Constructor. saves modal as member.
@@ -22,7 +21,6 @@ namespace ImageService.Commands
         /// <param name="modal"> The modal that will make the command operations. </param>
         public LogCommand()
         {
-            //logging = logger;
         }
 
         /// <summary>

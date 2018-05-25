@@ -24,6 +24,7 @@ namespace leah
                 Console.WriteLine("sent message 3 to server");
                 client.SendCommand(new CommandMessage(2 ,null));
                 Console.WriteLine("sent message 2 to server");
+
                 /*
                 CommandMessage result = client.RecieveCommand();
                 Console.WriteLine("got message number: " + result.ID);
@@ -36,8 +37,13 @@ namespace leah
                     Console.WriteLine("------------");
                 }
                 */
-               // client.RecieveCommand();
-                 //   System.Threading.Thread.Sleep(1000000);
+                
+                //while (true)
+                //{
+                //    client.SendCommand(new CommandMessage(5, null));
+                //    Console.WriteLine("sent message please update to server");
+                //    //   System.Threading.Thread.Sleep(1000000);
+                //}
             }
             else
             {
