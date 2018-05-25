@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Newtonsoft.Json;
+using System.Windows.Data;
 
 namespace ImageService.GUI.Model
 {
@@ -21,6 +22,8 @@ namespace ImageService.GUI.Model
             //connecting for the first time to the server and send "log command" command.
             this.client = TcpClientChannel.getInstance();
             this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
+            Object locker = new Object();
+            BindingOperations.EnableCollectionSynchronization(LogMes, locker);
 
             if (this.client.IsConnected)
             {
@@ -28,7 +31,7 @@ namespace ImageService.GUI.Model
                 client.UpdateModel += ViewLogUpdate;
                 client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, null));
             }
-
+            
             //isRunning = true;
 
             //System.Threading.Thread.Sleep(1000);
@@ -55,7 +58,7 @@ namespace ImageService.GUI.Model
                 this.log = e.Args[0];
                 List<string> allLog = JsonConvert.DeserializeObject<List<String>>(this.log);
 
-                this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
+            //    this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
                 string[] current;
 
                 foreach (String st in allLog)

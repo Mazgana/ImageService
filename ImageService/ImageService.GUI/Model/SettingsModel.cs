@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Threading;
+using System.Windows.Data;
 
 namespace ImageService.GUI.Model
 {
@@ -20,16 +21,9 @@ namespace ImageService.GUI.Model
         public SettingsModel()
         {
             //connecting for the first time to the server and send "get config" command.
-            this.client = TcpClientChannel.getInstance();
 
-            if (this.client.IsConnected)
-            {
-                client.UpdateModel += ViewUpdate;
-                client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, null));
-            }
-
-         //   System.Threading.Thread.Sleep(500);
-         //   Console.WriteLine("after sleeping..");
+            //   System.Threading.Thread.Sleep(500);
+            //   Console.WriteLine("after sleeping..");
 
             /*   this.config = client.RecieveCommand();
 
@@ -50,21 +44,32 @@ namespace ImageService.GUI.Model
                         this.handlers.Add(handlersDirectories[i]);
                 }
             */
+            handlers = new ObservableCollection<string>();
+            Object locker = new Object();
+            BindingOperations.EnableCollectionSynchronization(Handlers, locker);
+            this.client = TcpClientChannel.getInstance();
+
+            if (this.client.IsConnected)
+            {
+                client.UpdateModel += ViewUpdate;
+                client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, null));
+            }
+            /*
             OutputDirectory = "loading..";
             SourceName = "loading..";
             log_name = "loading name..";
             ThumbnailSize = "loading size..";
-
-            this.handlers = new ObservableCollection<string>();
-
+            */
+   //         this.handlers = new ObservableCollection<string>();
+            /*
             string[] handlersDirectories = { "directory1", "directory2", "directory3" };
             for (int i = 0; i < handlersDirectories.Length; i++)
             {
                 if (handlersDirectories[i].Length != 0)
                     this.handlers.Add(handlersDirectories[i]);
-            }
+            }*/
 
-            Thread.Sleep(1000);
+     //       Thread.Sleep(1000);
         }
 
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)
@@ -79,7 +84,7 @@ namespace ImageService.GUI.Model
                 log_name = configSrtings[2];
                 ThumbnailSize = configSrtings[3];
 
-                this.handlers = new ObservableCollection<string>();
+     //           this.handlers = new ObservableCollection<string>();
 
                 string[] handlersDirectories = configSrtings[4].Split(';');
                 for (int i = 0; i < handlersDirectories.Length; i++)

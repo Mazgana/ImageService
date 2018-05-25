@@ -23,6 +23,7 @@ namespace ImageService.GUI
     {
         public MainWindow()
         {
+            Console.WriteLine("--------------starting main window");
             InitializeComponent();
         }
     }
