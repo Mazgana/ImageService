@@ -57,8 +57,6 @@ namespace ImageService.GUI.Model
             {
                 this.log = e.Args[0];
                 List<string> allLog = JsonConvert.DeserializeObject<List<String>>(this.log);
-
-            //    this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
                 string[] current;
 
                 foreach (String st in allLog)
@@ -70,9 +68,10 @@ namespace ImageService.GUI.Model
             }
             if (e.CommandID == 5 && isRunning && gotLog)
             {
-                //      this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
+                string[] mes;
                 string entry = e.Args[0];
-                this.LogMes.Add(new MsgRecievedEventArgs("update", entry));
+                mes = e.Args[0].Split('|');
+                this.LogMes.Add(new MsgRecievedEventArgs(mes[0], mes[1]));
             }
         }
 

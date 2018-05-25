@@ -111,7 +111,8 @@ namespace ImageService.Server
         
         public void UpdateLog(object sender, MessageRecievedEventArgs e)
         {
-            CommandMessage response = new CommandMessage(5, e.Message);
+            string mes = e.Status.ToString() + "|" + e.Message;
+            CommandMessage response = new CommandMessage(5, mes);
             tcpServer.notifyAll(response);
         }
         
