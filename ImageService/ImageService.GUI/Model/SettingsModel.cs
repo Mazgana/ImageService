@@ -103,10 +103,14 @@ namespace ImageService.GUI.Model
             if(e.CommandID == 4)
             {
                 string res = e.Args[0];
-                if (res.Equals("closed"))
+                if (handlers.Contains(res))
                 {
-                    this.handlers.Remove(e.Args[1]);
+                    handlers.Remove(res);
                 }
+                //if (res.Equals("closed"))
+                //{
+                //    this.handlers.Remove(e.Args[1]);
+                //}
             }
         }
 
@@ -191,16 +195,18 @@ namespace ImageService.GUI.Model
 
         public bool removeHandler(string handler)
         {
+            Console.WriteLine("/n!!removing handler!!/n");
             this.client.SendCommand(new ImageService.Communication.Model.CommandMessage(4, handler));
+      //      this.handlers.Remove(handler);
 
-        /*    string res = client.RecieveCommand().MessageResponse;
-            if (res.Equals("closed"))
-            {
-                this.handlers.Remove(handler);
-                return true;
-            }
-        */
-            return false;
+            /*    string res = client.RecieveCommand().MessageResponse;
+                if (res.Equals("closed"))
+                {
+                    this.handlers.Remove(handler);
+                    return true;
+                }
+            */
+            return true;
         }
     }
 }

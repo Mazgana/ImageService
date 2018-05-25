@@ -73,9 +73,9 @@ namespace ImageService.Communication
                     while (true)
                     {
                         //Console.WriteLine("reading result");
-                        mutex.WaitOne();
+                     //   mutex.WaitOne();
                         string messageInString = reader.ReadString();
-                        mutex.ReleaseMutex();
+                     //   mutex.ReleaseMutex();
                         CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
                         Console.WriteLine("got message: " + messageInString);
                         string[] args = { message.MessageResponse };

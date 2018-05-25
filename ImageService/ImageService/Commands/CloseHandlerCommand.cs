@@ -40,7 +40,7 @@ namespace ImageService.Commands
             config.AppSettings.Settings["Handler"].Value = newHandlers;
             config.Save(ConfigurationSaveMode.Modified);
 
-            return sResult;
+            return handler;
         }
     }
 }
