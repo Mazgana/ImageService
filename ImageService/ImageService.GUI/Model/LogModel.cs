@@ -11,21 +11,27 @@ namespace ImageService.GUI.Model
     class LogModel : INotifyPropertyChanged
     {
         bool isRunning;
+        bool gotLog;
         String log;
         TcpClientChannel client { get; set; }
 
         public LogModel()
         {
-         /*   isRunning = false;
+            isRunning = false;
             //connecting for the first time to the server and send "log command" command.
             this.client = TcpClientChannel.getInstance();
+            this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
+
             if (this.client.IsConnected)
             {
+                isRunning = true;
                 client.UpdateModel += ViewLogUpdate;
                 client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, null));
             }
 
-            System.Threading.Thread.Sleep(1000);
+            //isRunning = true;
+
+            //System.Threading.Thread.Sleep(1000);
 
             //    this.log = client.RecieveCommand();
 
@@ -57,11 +63,12 @@ namespace ImageService.GUI.Model
                     current = st.Split('|');
                     this.LogMes.Add(new MsgRecievedEventArgs(current[0], current[1]));
                 }
-                isRunning = true;
+                gotLog = true;
             }
-            if (e.CommandID == 5 && isRunning)
+            if (e.CommandID == 5 && isRunning && gotLog)
             {
-                this.LogMes.Add(new MsgRecievedEventArgs("update", e.Args[0]));
+          //      this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
+                this.LogMes.Add(new MsgRecievedEventArgs("update", "got new update..what is it?"));
             }
         }
 
