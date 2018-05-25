@@ -15,7 +15,6 @@ namespace ImageService.GUI.Model
 {
     class SettingsModel : INotifyPropertyChanged
     {
-        String config;
         TcpClientChannel client { get; set; }
 
         public SettingsModel()
@@ -76,7 +75,7 @@ namespace ImageService.GUI.Model
         {
             if(e.CommandID == 2)
             {
-                this.config = e.Args[0];
+                String config = e.Args[0];
                 string[] configSrtings = config.Split('|');
 
                 OutputDirectory = configSrtings[0];
@@ -90,7 +89,9 @@ namespace ImageService.GUI.Model
                 for (int i = 0; i < handlersDirectories.Length; i++)
                 {
                     if (handlersDirectories[i].Length != 0)
-                        this.handlers.Add(handlersDirectories[i]);
+                    {
+                            this.handlers.Add(handlersDirectories[i]);
+                    }
                 }
             }
             if(e.CommandID == 4)
