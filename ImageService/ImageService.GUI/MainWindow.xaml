@@ -12,13 +12,9 @@
         Title="" Height="500" Width="850">
     <Window.Resources>
         <convert:StringToColorConverter x:Key="StringToColorConverter"></convert:StringToColorConverter>
-        <model:SettingsModel x:Key="settings"></model:SettingsModel>
     </Window.Resources>
 
-        <Grid Background="{Binding Path=IsConnected, Converter={StaticResource StringToColorConverter}}">
-        <Grid.DataContext>
-            <Binding Source="{StaticResource settings}"/>
-        </Grid.DataContext>
+    <Grid Background="{Binding Path=IsConnected, Converter={StaticResource StringToColorConverter}}">
         <TabControl Margin="5">
                 <TabItem Name="SettingsTabItem">
                     <TabItem.Header>

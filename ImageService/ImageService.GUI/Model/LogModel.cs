@@ -70,8 +70,9 @@ namespace ImageService.GUI.Model
             }
             if (e.CommandID == 5 && isRunning && gotLog)
             {
-          //      this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
-                this.LogMes.Add(new MsgRecievedEventArgs("update", "got new update..what is it?"));
+                //      this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
+                string entry = e.Args[0];
+                this.LogMes.Add(new MsgRecievedEventArgs("update", entry));
             }
         }
 
