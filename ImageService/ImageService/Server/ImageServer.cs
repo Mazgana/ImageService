@@ -101,6 +101,7 @@ namespace ImageService.Server
             }
             m_logging.Log("command executed", MessageTypeEnum.INFO);
             if(e.CommandID == 4){
+                m_logging.Log("closing directory: " + e.RequestDirPath, MessageTypeEnum.INFO);
                 CloseDirHandler(e.RequestDirPath);
             }
             CommandMessage response = new CommandMessage(e.CommandID, res);
