@@ -20,7 +20,7 @@ namespace ImageService.Logging
         /// <param name="type"> The message type - information, warning etc. </param>
         public void Log(string message, MessageTypeEnum type)
         {
-            string msg = message + "|"+ type;
+            string msg = type.ToString() + "|"+ message;
             fullLog.Add(msg);
             MessageRecieved?.Invoke(this, new MessageRecievedEventArgs(type, message));
         }
