@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Threading;
 
 namespace ImageService.GUI.Model
 {
@@ -20,9 +21,14 @@ namespace ImageService.GUI.Model
         {
             //connecting for the first time to the server and send "get config" command.
             this.client = TcpClientChannel.getInstance();
-            client.UpdateModel += ViewUpdate;
 
-            client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
+            if (this.client.IsConnected)
+            {
+                client.UpdateModel += ViewUpdate;
+                client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, "GetConfig"));
+            }
+
+            System.Threading.Thread.Sleep(1000);
 
             /*   this.config = client.RecieveCommand();
 
@@ -80,8 +86,7 @@ namespace ImageService.GUI.Model
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
 

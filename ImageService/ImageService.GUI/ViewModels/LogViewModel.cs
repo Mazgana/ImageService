@@ -1,6 +1,8 @@
-﻿using ImageService.GUI.Model;
+﻿using ImageService.Communication.Model;
+using ImageService.GUI.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -15,14 +17,13 @@ namespace ImageService.GUI.ViewModels
         #endregion
         protected void NotifyPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         private LogModel logModel;
 
-        public LogViewModel(LogModel model)
+        public LogViewModel()
         {
-            this.logModel = model;
+            this.logModel = new LogModel();
 
             LogModel.PropertyChanged +=
        delegate (Object sender, PropertyChangedEventArgs e) {
@@ -37,6 +38,11 @@ namespace ImageService.GUI.ViewModels
             {
                 this.logModel = value;
             }
+        }
+
+        public ObservableCollection<MsgRecievedEventArgs> LogMes
+        {
+            get { return this.logModel.LogMes; }
         }
     }
 }

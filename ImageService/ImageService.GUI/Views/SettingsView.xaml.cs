@@ -27,9 +27,12 @@ namespace ImageService.GUI.Views
 
         public SettingsView()
         {
-            vm = new SettingsViewModel(new SettingsModel());
-            this.DataContext = vm;
+
             InitializeComponent();
+
+            vm = new SettingsViewModel();
+            this.DataContext = vm;
+
         }        private void ItemSelected(object sender, RoutedEventArgs e)
         {
             Remove.IsEnabled = true;

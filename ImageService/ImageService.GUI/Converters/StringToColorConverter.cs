@@ -16,7 +16,7 @@ namespace ImageService.GUI.Converters
             if (targetType != typeof(Brush))
                 throw new InvalidOperationException("Must convert to a brush!");
             bool conneted = (bool)value;
-            return conneted == false ? Brushes.LightGreen : Brushes.Gray;
+            return conneted == false ? Brushes.Gray : Brushes.LightBlue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
