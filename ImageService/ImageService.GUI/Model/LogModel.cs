@@ -92,7 +92,7 @@ namespace ImageService.GUI.Model
             set
             {
                 mes = value;
-                OnPropertyChanged("Log");
+                OnPropertyChanged("LogMes");
             }
         }
     }

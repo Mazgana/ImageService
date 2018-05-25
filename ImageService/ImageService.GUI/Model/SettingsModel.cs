@@ -125,7 +125,7 @@ namespace ImageService.GUI.Model
             set
             {
                 output_dir = value;
-                OnPropertyChanged("Output Directory");
+                OnPropertyChanged("OutputDirectory");
             }
         }
 
@@ -135,7 +135,7 @@ namespace ImageService.GUI.Model
             set
             {
                 src_name = value;
-                OnPropertyChanged("Source Name");
+                OnPropertyChanged("SourceName");
             }
         }
 
@@ -145,7 +145,7 @@ namespace ImageService.GUI.Model
             set
             {
                 log_name = value;
-                OnPropertyChanged("Log Name");
+                OnPropertyChanged("LogName");
             }
         }
 
@@ -155,7 +155,7 @@ namespace ImageService.GUI.Model
             set
             {
                 thumb_size = value;
-                OnPropertyChanged("Thumbnail Size");
+                OnPropertyChanged("ThumbnailSize");
             }
         }
 
@@ -175,7 +175,7 @@ namespace ImageService.GUI.Model
             set
             {
                 selected = value;
-                OnPropertyChanged("Selected Handler");
+                OnPropertyChanged("SelectedHandler");
             }
         }
 
@@ -185,7 +185,7 @@ namespace ImageService.GUI.Model
             set
             {
                 connect = this.client.IsConnected;
-                OnPropertyChanged("Is server connected");
+                OnPropertyChanged("IsConnected");
             }
         }
 
