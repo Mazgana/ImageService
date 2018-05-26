@@ -16,7 +16,6 @@ namespace ImageService.GUI.Model
     class SettingsModel : INotifyPropertyChanged
     {
         TcpClientChannel client { get; set; }
-       // private bool connect;
         private string selected;
         private ObservableCollection<string> handlers { get; set; }
         private string thumb_size;
@@ -40,7 +39,7 @@ namespace ImageService.GUI.Model
 
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)
         {
-            if (e.CommandID == 2)
+            if (e.CommandID == 2 && handlers.Count < 1)
             {
                 string config = e.Args[0];
                 string[] configSrtings = config.Split('|');
@@ -71,7 +70,6 @@ namespace ImageService.GUI.Model
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
-            Console.WriteLine("--hey some property changed:)");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
@@ -136,19 +134,8 @@ namespace ImageService.GUI.Model
             }
         }
 
-        //public bool IsConnected
-        //{
-        //    get { return this.client.IsConnected; }
-        //    set
-        //    {
-        //        connect = this.client.IsConnected;
-        //        OnPropertyChanged("IsConnected");
-        //    }
-        //}
-
         public bool removeHandler(string handler)
         {
-            Console.WriteLine("/n!!removing handler!!/n");
             this.client.SendCommand(new ImageService.Communication.Model.CommandMessage(4, handler));
             return true;
         }

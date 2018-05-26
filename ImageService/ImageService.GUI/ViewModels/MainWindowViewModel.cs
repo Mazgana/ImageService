@@ -15,7 +15,6 @@ namespace ImageService.GUI.ViewModels
         #endregion
         protected void NotifyPropertyChanged(string name)
         {
-            Console.WriteLine("invoking property changed in viem model");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 

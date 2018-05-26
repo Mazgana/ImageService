@@ -15,7 +15,6 @@ namespace ImageService.GUI.ViewModels
         #endregion
         protected void NotifyPropertyChanged(string name)
         {
-            Console.WriteLine("invoking property changed in viem model");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         private SettingsModel settingsModel;
@@ -23,7 +22,6 @@ namespace ImageService.GUI.ViewModels
         public SettingsViewModel()
         {
             this.settingsModel = new SettingsModel();
-            Console.WriteLine("now adding delegate");
             SettingsModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
                 NotifyPropertyChanged(e.PropertyName);
             };
@@ -62,10 +60,5 @@ namespace ImageService.GUI.ViewModels
         {
             get { return this.settingsModel.ThumbnailSize; }
         }
-
-        //public bool IsConnected
-        //{
-        //    get { return this.settingsModel.IsConnected; }
-        //}
     }
 }

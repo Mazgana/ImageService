@@ -22,7 +22,6 @@ namespace ImageService.GUI.Model
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
-            Console.WriteLine("--hey some property changed:)");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
