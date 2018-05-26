@@ -40,7 +40,7 @@ namespace ImageService.GUI.Model
 
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)
         {
-            if (e.CommandID == 2)
+            if (e.CommandID == 2 && handlers.Count < 1)
             {
                 string config = e.Args[0];
                 string[] configSrtings = config.Split('|');
