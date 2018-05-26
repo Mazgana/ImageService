@@ -26,30 +26,6 @@ namespace ImageService.GUI.Model
 
         public SettingsModel()
         {
-            //connecting for the first time to the server and send "get config" command.
-
-            //   System.Threading.Thread.Sleep(500);
-            //   Console.WriteLine("after sleeping..");
-
-            /*   this.config = client.RecieveCommand();
-
-                //spliting config to members
-                string[] configSrtings = config.MessageResponse.Split('|');
-
-                OutputDirectory = configSrtings[0];
-                SourceName = configSrtings[1];
-                log_name = configSrtings[2];
-                ThumbnailSize = configSrtings[3];
-
-                this.handlers = new ObservableCollection<string>();
-
-                string[] handlersDirectories = configSrtings[4].Split(';');
-                for (int i = 0; i < handlersDirectories.Length; i++)
-                {
-                    if(handlersDirectories[i].Length != 0)
-                        this.handlers.Add(handlersDirectories[i]);
-                }
-            */
             handlers = new ObservableCollection<string>();
             Object locker = new Object();
             BindingOperations.EnableCollectionSynchronization(handlers, locker);
@@ -60,27 +36,10 @@ namespace ImageService.GUI.Model
                 client.UpdateModel += ViewUpdate;
                 client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, null));
             }
-            
-            /*OutputDirectory = "loading..";
-            /*SourceName = "loading..";
-            log_name = "loading name..";
-            ThumbnailSize = "loading size..";
-            */
-   //         this.handlers = new ObservableCollection<string>();
-            /*
-            string[] handlersDirectories = { "directory1", "directory2", "directory3" };
-            for (int i = 0; i < handlersDirectories.Length; i++)
-            {
-                if (handlersDirectories[i].Length != 0)
-                    this.handlers.Add(handlersDirectories[i]);
-            }*/
-
-     //       Thread.Sleep(1000);
         }
 
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)
         {
-            //if(e.CommandID == 2 && handlers.count < 1)
             if (e.CommandID == 2)
             {
                 string config = e.Args[0];
@@ -90,8 +49,6 @@ namespace ImageService.GUI.Model
                 SourceName = configSrtings[1];
                 LogName = configSrtings[2];
                 ThumbnailSize = configSrtings[3];
-
-     //           this.handlers = new ObservableCollection<string>();
 
                 string[] handlersDirectories = configSrtings[4].Split(';');
                 for (int i = 0; i < handlersDirectories.Length; i++)
@@ -107,10 +64,6 @@ namespace ImageService.GUI.Model
                 {
                     handlers.Remove(res);
                 }
-                //if (res.Equals("closed"))
-                //{
-                //    this.handlers.Remove(e.Args[1]);
-                //}
             }
         }
 
@@ -197,15 +150,6 @@ namespace ImageService.GUI.Model
         {
             Console.WriteLine("/n!!removing handler!!/n");
             this.client.SendCommand(new ImageService.Communication.Model.CommandMessage(4, handler));
-      //      this.handlers.Remove(handler);
-
-            /*    string res = client.RecieveCommand().MessageResponse;
-                if (res.Equals("closed"))
-                {
-                    this.handlers.Remove(handler);
-                    return true;
-                }
-            */
             return true;
         }
     }

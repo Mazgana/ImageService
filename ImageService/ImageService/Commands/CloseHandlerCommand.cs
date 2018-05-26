@@ -12,15 +12,10 @@ namespace ImageService.Commands
     class CloseHandlerCommand : ICommand
     {
 
-        //       public CloseHandlerCommand(DirectoyHandler h)
-        public CloseHandlerCommand()
-        {
-        //    handler = h;            // Storing the Modal
-        }
+        public CloseHandlerCommand() { }
 
         public string Execute(string[] args, out bool result)
         {
-            string sResult = "closed";
             result = false;
             System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             string curHandlers = config.AppSettings.Settings["Handler"].Value;
@@ -33,8 +28,6 @@ namespace ImageService.Commands
                 newHandlers = curHandlers.Remove(curHandlers.IndexOf(handler), handler.Length);
             } else
             {
-                sResult = "could not find handler in config";
-                //    newHandlers = "C:\Users\user\Downloads; C: \Users\as\Pictures; C: \Users\as\Videos; C: \Users\user\Desktop\listen";
                 newHandlers = curHandlers;
             }
             config.AppSettings.Settings["Handler"].Value = newHandlers;

@@ -31,24 +31,6 @@ namespace ImageService.GUI.Model
                 client.UpdateModel += ViewLogUpdate;
                 client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, null));
             }
-            
-            //isRunning = true;
-
-            //System.Threading.Thread.Sleep(1000);
-
-            //    this.log = client.RecieveCommand();
-
-            /*    List<string> allLog = JsonConvert.DeserializeObject<List<String>>(this.log.MessageResponse);
-
-                this.LogMes = new ObservableCollection<MsgRecievedEventArgs>();
-                string[] current;
-
-                foreach (String st in allLog)
-                {
-                    current = st.Split('|');
-                    this.LogMes.Add(new MsgRecievedEventArgs(current[0], current[1]));
-                }
-            */
         }
 
         private void ViewLogUpdate(object sender, CommandRecievedEventArgs e)
