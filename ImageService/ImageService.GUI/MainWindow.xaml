@@ -10,10 +10,10 @@
         mc:Ignorable="d"
         Title="" Height="500" Width="850">
     <Window.Resources>
-        <convert:StringToColorConverter x:Key="StringToColorConverter"></convert:StringToColorConverter>
+        <convert:ConnectionToColorConverter x:Key="ConnectionToColorConverter"></convert:ConnectionToColorConverter>
     </Window.Resources>
 
-    <Grid Background="{Binding Path=IsConnected, Converter={StaticResource StringToColorConverter}}">
+    <Grid Background="{Binding Path=IsConnected, Converter={StaticResource ConnectionToColorConverter}}">
         <TabControl Margin="5">
                 <TabItem Name="SettingsTabItem">
                     <TabItem.Header>

@@ -73,7 +73,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\MesTypeToColor.cs" />
-    <Compile Include="Converters\StringToColorConverter.cs" />
+    <Compile Include="Converters\ConnectionToColorConverter.cs" />
     <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\LogModel.cs" />
     <Compile Include="Model\SettingsModel.cs" />

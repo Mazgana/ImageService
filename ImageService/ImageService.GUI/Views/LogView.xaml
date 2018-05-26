@@ -14,17 +14,17 @@
         <model:LogModel x:Key="logM"></model:LogModel>
         <convert:MesTypeToColor x:Key="TypeColor"></convert:MesTypeToColor>
     </UserControl.Resources>
-    
+
     <ScrollViewer>
         <Grid Background="White">
-            <TextBlock HorizontalAlignment="Center" Margin="358,29,352,0" TextWrapping="Wrap" Text="Log" VerticalAlignment="Top" Height="60" Width="90" FontSize="40" FontWeight="Bold" RenderTransformOrigin="1.778,0.53"/>
+            <TextBlock HorizontalAlignment="Center" Margin="356,30,321,0" TextWrapping="Wrap" Text="Log" VerticalAlignment="Top" Height="60" Width="106" FontSize="40" FontWeight="Bold" FontFamily="Bernard MT Condensed" Foreground="DarkBlue" RenderTransformOrigin="1.778,0.53"/>
             <DataGrid x:Name="logM" AutoGenerateColumns="False" ItemsSource="{Binding LogMes, Mode=OneWay}" Margin="20,104,20,20" GridLinesVisibility="None" VerticalScrollBarVisibility="Hidden" IsHitTestVisible="false" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Type" FontSize="14" Width="200" IsReadOnly="True" Binding="{Binding Path=type}" >
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock" >
                                 <Setter Property="Background" Value="{Binding Path=type, Converter={StaticResource TypeColor}}"></Setter>
-                            </Style>    
+                            </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Message" FontSize="14" Width="*" IsReadOnly="True" Binding="{Binding Path=text}" />

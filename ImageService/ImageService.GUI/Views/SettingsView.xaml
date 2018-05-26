@@ -13,8 +13,7 @@
     </UserControl.Resources>
 
     <Grid Background="White">
-
-        <TextBlock HorizontalAlignment="Left" Margin="324,41,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="60" Width="195" FontSize="40" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="325,31,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="60" Width="139" FontSize="40" FontFamily="Bernard MT Condensed" Foreground="DarkBlue" FontWeight="Bold"/>
         <Grid HorizontalAlignment="Left" Height="135" VerticalAlignment="Top" Width="629" Margin="102,109,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="209*" />
