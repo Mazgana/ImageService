@@ -51,7 +51,7 @@ namespace ImageService.Server
             }
 
             ClientHandler ch = new ClientHandler();
-            m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
+            m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.Information);
             this.tcpServer = new TcpServerChannel(8000, ch, m_logging);
             ch.CommandRecieved += GetCommand;
             this.tcpServer.Start();
@@ -71,7 +71,7 @@ namespace ImageService.Server
                 CommandRecieved += h.OnCommandRecieved;
                 h.DirectoryClose += OnCloseServer;
                 CloseCommand += h.OnClose;
-                m_logging.Log("starting handler for directory: " + directory, Logging.Modal.MessageTypeEnum.INFO);
+                m_logging.Log("starting handler for directory: " + directory, Logging.Modal.MessageTypeEnum.Information);
 
                 return h;
             } else
@@ -86,27 +86,27 @@ namespace ImageService.Server
         /// <param name="e"> The command that will be sent. </param>
         public void SendCommand(CommandRecievedEventArgs e)
         {
-            m_logging.Log("sending command from server.", Logging.Modal.MessageTypeEnum.INFO);
+            m_logging.Log("sending command from server.", Logging.Modal.MessageTypeEnum.Information);
             CommandRecieved?.Invoke(this, e);
         }
         
         public void GetCommand(object sender, CommandRecievedEventArgs e)
         {
-            m_logging.Log("Getting command from client and execute it.", Logging.Modal.MessageTypeEnum.INFO);
+            m_logging.Log("Getting command from client and execute it.", Logging.Modal.MessageTypeEnum.Information);
             bool resultSuccess;
             string res = m_controller.ExecuteCommand(e.CommandID, e.Args, out resultSuccess);
             if (!resultSuccess)
             {
                 m_logging.Log("execition failed. error: " + res, MessageTypeEnum.FAIL);
             }
-            m_logging.Log("command executed", MessageTypeEnum.INFO);
+            m_logging.Log("command executed", MessageTypeEnum.Information);
             if(e.CommandID == 4){
-                m_logging.Log("closing directory: " + e.RequestDirPath, MessageTypeEnum.INFO);
+                m_logging.Log("closing directory: " + e.RequestDirPath, MessageTypeEnum.Information);
                 CloseDirHandler(e.RequestDirPath);
             }
             CommandMessage response = new CommandMessage(e.CommandID, res);
             this.tcpServer.notifyAll(response);
-            m_logging.Log("notified all", MessageTypeEnum.INFO);
+            m_logging.Log("notified all", MessageTypeEnum.Information);
         }
         
         public void UpdateLog(object sender, MessageRecievedEventArgs e)
@@ -123,7 +123,7 @@ namespace ImageService.Server
         public void CloseServer()
         {
             this.tcpServer.Stop();
-            m_logging.Log("closing the server.", Logging.Modal.MessageTypeEnum.INFO);
+            m_logging.Log("closing the server.", Logging.Modal.MessageTypeEnum.Information);
             //CloseDirHandler(null);
             CloseCommand?.Invoke(this, null);
         }

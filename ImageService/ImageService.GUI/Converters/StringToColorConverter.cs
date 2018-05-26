@@ -15,12 +15,13 @@ namespace ImageService.GUI.Converters
         {
             if (targetType != typeof(Brush))
                 throw new InvalidOperationException("Must convert to a brush!");
+
             bool conneted = (bool)value;
             if (conneted)
                 return Brushes.Transparent;
             else
                 return Brushes.LightGray;
-        }
+        }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ImageService.Communication;
+using ImageService.GUI.ViewModels;
 
 namespace ImageService.GUI
 {
@@ -21,10 +22,14 @@ namespace ImageService.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainWindowViewModel vm;
+
         public MainWindow()
         {
-            Console.WriteLine("--------------starting main window");
             InitializeComponent();
+
+            vm = new MainWindowViewModel();
+            this.DataContext = vm;
         }
     }
 }

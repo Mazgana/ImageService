@@ -27,12 +27,10 @@ namespace ImageService.GUI.Views
 
         public SettingsView()
         {
-
             InitializeComponent();
 
             vm = new SettingsViewModel();
             this.DataContext = vm;
-
         }
 
         private void ItemSelected(object sender, RoutedEventArgs e)

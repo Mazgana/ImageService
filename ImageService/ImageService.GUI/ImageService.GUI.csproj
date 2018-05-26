@@ -74,10 +74,11 @@
     </ApplicationDefinition>
     <Compile Include="Converters\MesTypeToColor.cs" />
     <Compile Include="Converters\StringToColorConverter.cs" />
-    <Compile Include="Model\ISettingsModel.cs" />
+    <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\LogModel.cs" />
     <Compile Include="Model\SettingsModel.cs" />
     <Compile Include="ViewModels\LogViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\LogView.xaml.cs">
       <DependentUpon>LogView.xaml</DependentUpon>
