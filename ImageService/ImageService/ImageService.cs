@@ -118,7 +118,15 @@ namespace ImageService
         /// <param name="e"> arguments for a message recieved event. </param>
         public void OnMessage(object sender, MessageRecievedEventArgs e)
         {
-            eventLog1.WriteEntry(e.Message);
+            EventLogEntryType type;
+            if (e.Status == MessageTypeEnum.WARNING) {
+                type = EventLogEntryType.Warning;
+            } else if (e.Status == MessageTypeEnum.FAIL) {
+                type = EventLogEntryType.FailureAudit;
+            } else {
+                type = EventLogEntryType.Information;
+            }
+            eventLog1.WriteEntry(e.Message, type);
         }
 
         /// <summary>
