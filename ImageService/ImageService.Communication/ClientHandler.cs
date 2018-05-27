@@ -13,6 +13,9 @@ using ImageService.Communication.Model;
 
 namespace ImageService.Communication
 {
+    /// <summary>
+    /// handles all command recieved from client
+    /// </summary>
     public class ClientHandler : IClientHandler
     {
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;
@@ -31,10 +34,10 @@ namespace ImageService.Communication
                     {
                         if (client.Connected)
                         {
-                            string messageInString = reader.ReadString();
+                            string messageInString = reader.ReadString();//reading string message
                             CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
                             string[] args = { message.MessageResponse };
-                            CommandRecieved?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, message.MessageResponse));
+                            CommandRecieved?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, message.MessageResponse));//sending message to server
                         }
                     }
                 }

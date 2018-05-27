@@ -13,12 +13,20 @@ namespace ImageService.GUI.ViewModels
         #region Notify Changed
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
+
+        /// <summary>
+        /// notifying and updating properties that are binded.
+        /// </summary>
+        /// <param name="name"></param>
         protected void NotifyPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         private SettingsModel settingsModel;
 
+        /// <summary>
+        /// constructor for VM
+        /// </summary>
         public SettingsViewModel()
         {
             this.settingsModel = new SettingsModel();
@@ -27,6 +35,9 @@ namespace ImageService.GUI.ViewModels
             };
        }
 
+        /// <summary>
+        /// setting property.
+        /// </summary>
         public SettingsModel SettingsModel
         {
             get { return this.settingsModel; }
@@ -36,26 +47,43 @@ namespace ImageService.GUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// removing handler from handlers list property
+        /// </summary>
+        /// <param name="handler"> to remove from list</param>
+        /// <returns>true if removed, flase if not found or not removed</returns>
         public bool removeHandler(string handler)
         {
             return this.settingsModel.removeHandler(handler);
         }
 
+        /// <summary>
+        /// output directory property.
+        /// </summary>
         public string OutputDirectory
         {
             get { return this.settingsModel.OutputDirectory; }
         }
 
+        /// <summary>
+        /// source name property.
+        /// </summary>
         public string SourceName
         {
             get { return this.settingsModel.SourceName; }
         }
 
+        /// <summary>
+        /// log name property.
+        /// </summary>
         public string LogName
         {
             get { return this.settingsModel.LogName; }
         }
 
+        /// <summary>
+        /// thumbnail size property.
+        /// </summary>
         public string ThumbnailSize
         {
             get { return this.settingsModel.ThumbnailSize; }
