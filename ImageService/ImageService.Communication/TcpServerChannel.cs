@@ -64,7 +64,6 @@ namespace ImageService.Communication
 
         public void notifyAll(CommandMessage message)
         {
- //           List<TcpClient> noConnectionClients;
             new Task(() =>
             {
 
@@ -73,16 +72,18 @@ namespace ImageService.Communication
                     NetworkStream stream = client.GetStream();
                     BinaryWriter writer = new BinaryWriter(stream);
                     {
- //                       try
- //                       {
+                        if(client.Connected)
+                        {
                             string messageInString = JsonConvert.SerializeObject(message);
                             mutex.WaitOne();
-                            writer.Write(messageInString);
+                            if(clients.Contains(client))
+                                writer.Write(messageInString);
                             mutex.ReleaseMutex();
-  //                      } catch (Exception e)
-  //                      {
-   //                         clients.Remove(client);
-   //                     }
+                        } else
+                        {
+                            if (clients.Contains(client))
+                                clients.Remove(client);
+                        }
                     }
                 }
 
