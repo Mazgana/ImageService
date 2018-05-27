@@ -9,8 +9,19 @@ using System.Windows.Media;
 
 namespace ImageService.GUI.Converters
 {
+    /// <summary>
+    /// Match color to the connection status
+    /// </summary>
     class ConnectionToColorConverter : IValueConverter
     {
+        /// <summary>
+        /// Checks the connection vaule - if it is connected, the color is light blue, if it is disconnected the color is gray.
+        /// </summary>
+        /// <param name="value"> Is the client connected to the server. </param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns> The color according the status. </returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (targetType != typeof(Brush))
