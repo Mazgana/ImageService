@@ -13,11 +13,13 @@
     </UserControl.Resources>
 
     <Grid Background="White">
-        <TextBlock HorizontalAlignment="Left" Margin="325,31,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="60" Width="139" FontSize="40" FontFamily="Bernard MT Condensed" Foreground="DarkBlue" FontWeight="Bold"/>
-        <Grid HorizontalAlignment="Left" Height="135" VerticalAlignment="Top" Width="629" Margin="102,109,0,0">
+        <TextBlock HorizontalAlignment="Left" Margin="350,10,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="60" Width="139" FontSize="40" FontFamily="Bernard MT Condensed" Foreground="DarkBlue" FontWeight="Bold"/>
+        <Grid HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="633" Margin="102,82,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="209*" />
-                <ColumnDefinition Width="420*" />
+                <ColumnDefinition Width="194*" />
+                <ColumnDefinition Width="16*"/>
+                <ColumnDefinition Width="40*" />
+                <ColumnDefinition Width="383*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="17*" />
@@ -26,16 +28,16 @@
                 <RowDefinition Height="15*" />
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Content="Output Directory:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" FontWeight="Bold" Height="31" Width="143"/>
-            <Label x:Name="outputDir" Grid.Column="1" Grid.Row="0" Content="{Binding OutputDirectory, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" Height="31" Width="305"/>
-            <Label Grid.Column="0" Grid.Row="1" Content="Source Name:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" FontWeight="Bold" Height="31" Width="114"/>
-            <Label x:Name="sourceName" Grid.Column="1" Grid.Row="1" Content="{Binding SettingsModel.SourceName, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" Height="31" Width="305"/>
-            <Label Grid.Column="0" Grid.Row="2" Content="Log Name:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" FontWeight="Bold" Height="31" Width="91"/>
-            <Label x:Name="logName" Grid.Column="1" Grid.Row="2" Content="{Binding SettingsModel.LogName, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" Height="31" Width="305"/>
-            <Label Grid.Column="0" Grid.Row="3" Content="Thumbnail Size:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" FontWeight="Bold" Grid.RowSpan="2" Height="31" Width="129"/>
-            <Label x:Name="thumbSize" Grid.Column="1" Grid.Row="3" Content="{Binding SettingsModel.ThumbnailSize, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="16" Height="31" Width="305" Grid.RowSpan="2"/>
-            <Button x:Name="Remove" Content="Remove" HorizontalAlignment="Left" Margin="-34,28,-14,-49" VerticalAlignment="Top" Width="677" Height="25" IsEnabled="False" Click="RemoveClick" Grid.ColumnSpan="2" Grid.Row="4"/>
-            <ListBox x:Name="handlers" HorizontalAlignment="Left" Height="109" Margin="-34,0,-14,-158" VerticalAlignment="Bottom" Width="677" ItemsSource="{Binding SettingsModel.Handlers, Mode=TwoWay}" SelectionChanged="ItemSelected" Grid.ColumnSpan="2" Grid.Row="4"/>
+            <Label Grid.Column="0" Grid.Row="0" Content="Output Directory:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="20" FontWeight="Bold" FontFamily="Bradley Hand ITC" Height="43" Width="210" Grid.ColumnSpan="2"/>
+            <Label x:Name="outputDir" Grid.Column="2" Grid.Row="0" Content="{Binding OutputDirectory, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="20" FontFamily="Bradley Hand ITC" Height="38" Width="423" Grid.ColumnSpan="2"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="Source Name:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="20" FontWeight="Bold" FontFamily="Bradley Hand ITC" Height="43" Width="210" Grid.ColumnSpan="2"/>
+            <Label x:Name="sourceName" Grid.Column="2" Grid.Row="1" Content="{Binding SettingsModel.SourceName, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="20" FontFamily="Bradley Hand ITC" Height="43" Width="423" Grid.ColumnSpan="2"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="Log Name:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="20" FontWeight="Bold" FontFamily="Bradley Hand ITC" Height="43" Width="210" Grid.ColumnSpan="2"/>
+            <Label x:Name="logName" Grid.Column="2" Grid.Row="2" Content="{Binding SettingsModel.LogName, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="20" FontFamily="Bradley Hand ITC" Height="43" Width="423" Grid.ColumnSpan="2"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="Thumbnail Size:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="20" FontWeight="Bold" FontFamily="Bradley Hand ITC" Height="43" Width="210" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <Label x:Name="thumbSize" Grid.Column="2" Grid.Row="3" Content="{Binding SettingsModel.ThumbnailSize, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-6" FontSize="20" FontFamily="Bradley Hand ITC" Height="38" Width="423" Grid.ColumnSpan="2"/>
+            <Button x:Name="Remove" Content="Remove" HorizontalAlignment="Left" Margin="-34,24,-10,-44" VerticalAlignment="Top" Width="677" Height="25" IsEnabled="False" Click="RemoveClick" Grid.ColumnSpan="4" Grid.Row="4"/>
+            <ListBox x:Name="handlers" HorizontalAlignment="Left" Height="109" Margin="-34,0,-10,-153" VerticalAlignment="Bottom" Width="677" ItemsSource="{Binding SettingsModel.Handlers, Mode=TwoWay}" SelectionChanged="ItemSelected" Grid.ColumnSpan="4" Grid.Row="4"/>
         </Grid>
 
     </Grid>

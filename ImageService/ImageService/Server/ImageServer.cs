@@ -51,12 +51,12 @@ namespace ImageService.Server
                 current = CreateHandler(handlersDirectories[i]);
                 if (current != null)
                 {
-                    connected = String.Concat(connected, ";" + handlersDirectories[i]);
+                    connected = connected + ";" + handlersDirectories[i];
                 }
             }
 
             //creating new value in app config that holds only the handlers that thier creation succeeded
-            ConfigurationManager.AppSettings["ConnectedHandlers"] = connected;
+            ConfigurationManager.AppSettings["Handler"] = connected;
 
             ClientHandler ch = new ClientHandler();
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.Information);
