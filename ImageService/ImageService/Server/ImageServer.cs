@@ -55,6 +55,7 @@ namespace ImageService.Server
                 }
             }
 
+            //creating new value in app config that holds only the handlers that thier creation succeeded
             ConfigurationManager.AppSettings["ConnectedHandlers"] = connected;
 
             ClientHandler ch = new ClientHandler();
