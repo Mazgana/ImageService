@@ -29,10 +29,13 @@ namespace ImageService.Communication
                 {
                     while (true)
                     {
-                        string messageInString = reader.ReadString();
-                        CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
-                        string[] args = {message.MessageResponse};
-                        CommandRecieved?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, message.MessageResponse));
+                        if (client.Connected)
+                        {
+                            string messageInString = reader.ReadString();
+                            CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
+                            string[] args = { message.MessageResponse };
+                            CommandRecieved?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, message.MessageResponse));
+                        }
                     }
                 }
             }).Start();
