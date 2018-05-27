@@ -37,7 +37,7 @@ namespace ImageService.Commands
             config = String.Concat(config, "|");
             config = String.Concat(config, ConfigurationManager.AppSettings["ThumbnailSize"]);
             config = String.Concat(config, "|");
-            config = String.Concat(config, ConfigurationManager.AppSettings["Handler"]);
+            config = String.Concat(config, ConfigurationManager.AppSettings["ConnectedHandlers"]);
             result = true;
             return config;
         }

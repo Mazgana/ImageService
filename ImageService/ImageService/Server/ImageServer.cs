@@ -44,11 +44,18 @@ namespace ImageService.Server
             DirectoyHandler current;
             string directories = ConfigurationManager.AppSettings["Handler"];
             string[] handlersDirectories = directories.Split(';');
+            string connected = "";
 
             for (int i = 0; i < handlersDirectories.Length; i++)
             {
                 current = CreateHandler(handlersDirectories[i]);
+                if (current != null)
+                {
+                    connected = String.Concat(connected, ";" + handlersDirectories[i]);
+                }
             }
+
+            ConfigurationManager.AppSettings["ConnectedHandlers"] = connected;
 
             ClientHandler ch = new ClientHandler();
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.Information);
