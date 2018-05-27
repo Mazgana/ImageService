@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using ImageService.Logging.Modal;
 
 namespace ImageService.Communication
 {
@@ -37,7 +38,7 @@ namespace ImageService.Communication
             listener = new TcpListener(ep);
             listener.Start();
 
-            logger.Log("Waiting for connections...", Logging.Modal.MessageTypeEnum.Information);
+            logger.Log("Waiting for connections...", MessageTypeEnum.INFO);
             Task task = new Task(() => {
                 while (true)
                 {
@@ -45,16 +46,16 @@ namespace ImageService.Communication
                     {
                         TcpClient client = listener.AcceptTcpClient();
                         this.clients.Add(client);
-                        logger.Log("Got new connection",Logging.Modal.MessageTypeEnum.Information);
+                        logger.Log("Got new connection", MessageTypeEnum.INFO);
                         ch.HandleClient(client);
                     }
                     catch (SocketException)
                     {
-                        logger.Log("could not accept tcp client", Logging.Modal.MessageTypeEnum.FAIL);
+                        logger.Log("could not accept tcp client", MessageTypeEnum.ERROR);
                         break;
                     }
                 }
-                logger.Log("Server stopped", Logging.Modal.MessageTypeEnum.Information);
+                logger.Log("Server stopped", MessageTypeEnum.INFO);
             });
             task.Start();
         }

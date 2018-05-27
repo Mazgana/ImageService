@@ -16,12 +16,12 @@ namespace ImageService.GUI.Converters
             if (targetType != typeof(Brush))
                 throw new InvalidOperationException("Must convert to a brush!");
             string type = (string)value;
-            if (type == "Information")
+            if (type == "INFO")
                 return Brushes.LightGreen;
-            else if (type == "Error")
+            else if (type == "ERROR")
                 return Brushes.LightCoral;
-            else if (type == "Warning")
-                return Brushes.Orange;
+            else if (type == "WARNING")
+                return Brushes.Yellow;
             else
                 return Brushes.Transparent;
         }

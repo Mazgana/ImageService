@@ -8,8 +8,8 @@ namespace ImageService.Logging.Modal
 {
     public enum MessageTypeEnum : int
     {
-        Information,
+        INFO,
         WARNING,
-        FAIL
+        ERROR
     }
 }
