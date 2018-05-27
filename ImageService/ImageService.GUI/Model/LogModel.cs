@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Newtonsoft.Json;
 using System.Windows.Data;
+using System.Linq;
 
 namespace ImageService.GUI.Model
 {
@@ -44,7 +45,7 @@ namespace ImageService.GUI.Model
                 foreach (String st in allLog)
                 {
                     current = st.Split('|');
-                    this.LogMes.Add(new MsgRecievedEventArgs(current[0], current[1]));
+                    this.LogMes.Insert(0, new MsgRecievedEventArgs(current[0], current[1]));
                 }
                 gotLog = true;
             }
@@ -53,7 +54,7 @@ namespace ImageService.GUI.Model
                 string[] mes;
                 string entry = e.Args[0];
                 mes = e.Args[0].Split('|');
-                this.LogMes.Add(new MsgRecievedEventArgs(mes[0], mes[1]));
+                this.LogMes.Insert(0, new MsgRecievedEventArgs(mes[0], mes[1]));
             }
         }
 
