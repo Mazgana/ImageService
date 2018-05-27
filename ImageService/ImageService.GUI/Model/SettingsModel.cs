@@ -13,6 +13,9 @@ using System.Windows.Data;
 
 namespace ImageService.GUI.Model
 {
+    /// <summary>
+    /// The settings window model.
+    /// </summary>
     class SettingsModel : INotifyPropertyChanged
     {
         TcpClientChannel client { get; set; }
@@ -25,11 +28,13 @@ namespace ImageService.GUI.Model
 
         public SettingsModel()
         {
+            //connecting for the first time to the server and send "get config" command.
             handlers = new ObservableCollection<string>();
             Object locker = new Object();
             BindingOperations.EnableCollectionSynchronization(handlers, locker);
             this.client = TcpClientChannel.getInstance();
 
+            //If the client is connected to the server, continue with asking the config.
             if (this.client.IsConnected)
             {
                 client.UpdateModel += ViewUpdate;
@@ -37,10 +42,17 @@ namespace ImageService.GUI.Model
             }
         }
 
+        /// <summary>
+        /// Upates the window members to contain the app.config data as recieved from the server.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"> The recieved data from the server. </param>
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)
         {
+            //Checks if the server respose is the application config.
             if (e.CommandID == 2 && handlers.Count < 1)
             {
+                //initialize the settings window's members to hold the configuration values.
                 string config = e.Args[0];
                 string[] configSrtings = config.Split('|');
 
@@ -56,6 +68,8 @@ namespace ImageService.GUI.Model
                         this.handlers.Add(handlersDirectories[i]);
                 }
             }
+
+            //checks if the server's response is the close handler response. if it is - updates the handlers list.
             if(e.CommandID == 4)
             {
                 string res = e.Args[0];
@@ -74,6 +88,9 @@ namespace ImageService.GUI.Model
         }
         #endregion
 
+        /// <summary>
+        /// All the config data in the settings members.
+        /// </summary>
         public string OutputDirectory
         {
             get { return output_dir; }
@@ -134,9 +151,10 @@ namespace ImageService.GUI.Model
             }
         }
 
+        //Send the server 'close handler' command with the handle's name.
         public bool removeHandler(string handler)
         {
-            this.client.SendCommand(new ImageService.Communication.Model.CommandMessage(4, handler));
+            this.client.SendCommand(new CommandMessage(4, handler));
             return true;
         }
     }

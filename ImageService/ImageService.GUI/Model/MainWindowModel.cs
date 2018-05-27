@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ImageService.GUI.Model
 {
+    /// <summary>
+    /// The main window model.
+    /// </summary>
     class MainWindowModel : INotifyPropertyChanged
     {
         TcpClientChannel client { get; set; }
@@ -26,6 +29,9 @@ namespace ImageService.GUI.Model
         }
         #endregion
 
+        /// <summary>
+        /// Tells if the client was connected to the server from it's first try.
+        /// </summary>
         public bool IsConnected
         {
             get { return this.client.IsConnected; }

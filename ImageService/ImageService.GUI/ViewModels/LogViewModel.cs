@@ -1,12 +1,8 @@
 ﻿using ImageService.Communication.Model;
 using ImageService.GUI.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImageService.GUI.ViewModels
 {
@@ -19,8 +15,12 @@ namespace ImageService.GUI.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
         private LogModel logModel;
 
+        /// <summary>
+        /// Log view model constructor.
+        /// </summary>
         public LogViewModel()
         {
             this.logModel = new LogModel();
@@ -40,6 +40,9 @@ namespace ImageService.GUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Log messages data structure property.
+        /// </summary>
         public ObservableCollection<MsgRecievedEventArgs> LogMes
         {
             get { return this.logModel.LogMes; }
