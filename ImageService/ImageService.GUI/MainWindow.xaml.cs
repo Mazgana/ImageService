@@ -24,6 +24,9 @@ namespace ImageService.GUI
     {
         MainWindowViewModel vm;
 
+        /// <summary>
+        /// initializing window and data context for binding
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();

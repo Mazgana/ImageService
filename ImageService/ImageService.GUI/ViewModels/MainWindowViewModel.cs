@@ -13,6 +13,10 @@ namespace ImageService.GUI.ViewModels
         #region Notify Changed
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
+        /// <summary>
+        /// raising events that have to do with properties that are changed.
+        /// </summary>
+        /// <param name="name"></param>
         protected void NotifyPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -20,11 +24,17 @@ namespace ImageService.GUI.ViewModels
 
         private MainWindowModel mainWindowModel;
 
+        /// <summary>
+        /// constructor.
+        /// </summary>
         public MainWindowViewModel()
         {
             this.mainWindowModel = new MainWindowModel();
         }
 
+        /// <summary>
+        /// returns true if model is connected, false otherwise.
+        /// </summary>
         public bool IsConnected
         {
             get { return this.mainWindowModel.IsConnected; }

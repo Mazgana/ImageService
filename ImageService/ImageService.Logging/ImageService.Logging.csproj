@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="ILoggingService.cs" />
     <Compile Include="LoggingService.cs" />
     <Compile Include="Model\MessageRecievedEventArgs.cs" />

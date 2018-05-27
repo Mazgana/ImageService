@@ -31,8 +31,12 @@ namespace ImageService.Communication
             clients = new List<TcpClient>();
         }
 
+        /// <summary>
+        /// starting server connection and recieving new connections
+        /// </summary>
         public void Start()
         {
+            //opening connectio
             IPEndPoint ep = new
             IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
             listener = new TcpListener(ep);
@@ -40,7 +44,7 @@ namespace ImageService.Communication
 
             logger.Log("Waiting for connections...", MessageTypeEnum.INFO);
             Task task = new Task(() => {
-                while (true)
+                while (true)//loop to get more connections, adding to list when client connects
                 {
                     try
                     {
@@ -62,16 +66,20 @@ namespace ImageService.Communication
 
         private static Mutex mutex = new Mutex();
 
+        /// <summary>
+        /// sending message from server to all clients subscribed.
+        /// </summary>
+        /// <param name="message"> the message sent by server</param>
         public void notifyAll(CommandMessage message)
         {
             new Task(() =>
             {
-
                 foreach (TcpClient client in clients)
                 {
                     NetworkStream stream = client.GetStream();
                     BinaryWriter writer = new BinaryWriter(stream);
                     {
+                        //writing message if client is connected
                         if(client.Connected)
                         {
                             string messageInString = JsonConvert.SerializeObject(message);
@@ -86,13 +94,19 @@ namespace ImageService.Communication
                         }
                     }
                 }
-
             }).Start();
 
         }
 
+        /// <summary>
+        /// stopping server and closing all clients
+        /// </summary>
         public void Stop()
         {
+            foreach (TcpClient client in clients)
+            {
+                client.Close();
+            }
             listener.Stop();
         }
     }
