@@ -93,7 +93,7 @@ namespace ImageService
             serviceStatus.dwWaitHint = 100000;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
-            logging.Log("In OnStart", MessageTypeEnum.Information);
+            logging.Log("In OnStart", MessageTypeEnum.INFO);
 
             // Set up a timer to trigger every minute.  
             System.Timers.Timer timer = new System.Timers.Timer();
@@ -121,7 +121,7 @@ namespace ImageService
             EventLogEntryType type;
             if (e.Status == MessageTypeEnum.WARNING) {
                 type = EventLogEntryType.Warning;
-            } else if (e.Status == MessageTypeEnum.FAIL) {
+            } else if (e.Status == MessageTypeEnum.ERROR) {
                 type = EventLogEntryType.FailureAudit;
             } else {
                 type = EventLogEntryType.Information;
@@ -150,7 +150,7 @@ namespace ImageService
             serviceStatus.dwWaitHint = 100000;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
-            logging.Log("In OnStop", MessageTypeEnum.Information);
+            logging.Log("In OnStop", MessageTypeEnum.INFO);
 
             // Update the service state to Running.  
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOPPED;

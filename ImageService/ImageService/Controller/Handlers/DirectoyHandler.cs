@@ -54,7 +54,7 @@ namespace ImageService.Controller.Handlers
         {
             if (System.IO.Directory.Exists(dirPath))
             {
-                m_logging.Log("handling directory: " + dirPath, MessageTypeEnum.Information);
+                m_logging.Log("handling directory: " + dirPath, MessageTypeEnum.INFO);
                 m_dirWatcher.Path = dirPath;
                 m_dirWatcher.Changed += new FileSystemEventHandler(OnChanged);
                 m_dirWatcher.EnableRaisingEvents = true;
@@ -75,8 +75,8 @@ namespace ImageService.Controller.Handlers
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
             DateTime lastWriteTime = File.GetLastWriteTime(e.FullPath);
-            m_logging.Log("directory changed: " + e.Name, MessageTypeEnum.Information);
-            m_logging.Log("change type: " + e.ChangeType.GetType(), MessageTypeEnum.Information);
+            m_logging.Log("directory changed: " + e.Name, MessageTypeEnum.INFO);
+            m_logging.Log("change type: " + e.ChangeType.GetType(), MessageTypeEnum.INFO);
             OnCommandRecieved(this, new CommandRecievedEventArgs(1, new String[] { e.FullPath, e.Name }, e.FullPath));
         }
 
@@ -100,12 +100,12 @@ namespace ImageService.Controller.Handlers
         /// <param name="e"> arguments for a command event. </param>
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
-            m_logging.Log("recieved command for directory: " + e.RequestDirPath, MessageTypeEnum.Information);
+            m_logging.Log("recieved command for directory: " + e.RequestDirPath, MessageTypeEnum.INFO);
             bool resultSuccess;
             string execResult = m_controller.ExecuteCommand(e.CommandID, e.Args, out resultSuccess);
             if (!resultSuccess)
             {
-                m_logging.Log("execition failed. error: " + execResult, MessageTypeEnum.FAIL);
+                m_logging.Log("execition failed. error: " + execResult, MessageTypeEnum.ERROR);
             }
         }
 
@@ -118,7 +118,7 @@ namespace ImageService.Controller.Handlers
         {
             if (e == null || e.DirectoryPath.Equals(m_path))
             {
-                m_logging.Log("closing handler for directory: " + m_path, MessageTypeEnum.Information);
+                m_logging.Log("closing handler for directory: " + m_path, MessageTypeEnum.INFO);
                 m_dirWatcher.EnableRaisingEvents = false;
                 m_dirWatcher.Dispose();
                 DirectoryClose?.Invoke(this, e);

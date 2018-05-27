@@ -40,12 +40,19 @@ namespace ImageService.Commands
                 EventLog eventLog = new EventLog();
                 eventLog.Log = ConfigurationManager.AppSettings["LogName"];
                 eventLog.Source = ConfigurationManager.AppSettings["SourceName"];
-                //eventLog.MachineName = machineName;
                 
                 //reading all entries in log history
                 foreach (EventLogEntry log in eventLog.Entries)
                 {
-                    String entry = log.EntryType.ToString() + "|" + log.Message;
+                    string type = log.EntryType.ToString();
+                    if (type.Equals("Information"))
+                        type = "INFO";
+                    else if (type.Equals("Warning"))
+                        type = "WARNING";
+                    else if (type.Equals("FailureAudit"))
+                        type = "ERROR";
+
+                    String entry = type + "|" + log.Message;
                     fullLog.Add(entry);
                 }
                 //return list as string
