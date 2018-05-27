@@ -13,7 +13,7 @@ namespace ImageService.Communication.Model
         public string RequestDirPath { get; set; }  // The Request Directory
 
         /// <summary>
-        /// holds argumens for command recieved
+        /// holds argumens for command recieved through tcp
         /// </summary>
         /// <param name="commandID"> int representing command to be executed. </param>
         /// <param name="args"> for executing command. </param>

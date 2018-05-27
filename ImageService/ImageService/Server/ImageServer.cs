@@ -98,25 +98,38 @@ namespace ImageService.Server
             CommandRecieved?.Invoke(this, e);
         }
         
+        /// <summary>
+        /// getting a command from client to be execitind and replying
+        /// </summary>
+        /// <param name="sender"> of the command </param>
+        /// <param name="e"> command details to be executed</param>
         public void GetCommand(object sender, CommandRecievedEventArgs e)
         {
             m_logging.Log("Getting command from client and execute it.", Logging.Modal.MessageTypeEnum.Information);
             bool resultSuccess;
+            //executing command and saving execution result
             string res = m_controller.ExecuteCommand(e.CommandID, e.Args, out resultSuccess);
             if (!resultSuccess)
             {
                 m_logging.Log("execition failed. error: " + res, MessageTypeEnum.FAIL);
             }
             m_logging.Log("command executed", MessageTypeEnum.Information);
+            //if handlers were erased from config, close handler classes
             if(e.CommandID == 4){
                 m_logging.Log("closing directory: " + e.RequestDirPath, MessageTypeEnum.Information);
                 CloseDirHandler(e.RequestDirPath);
             }
+            //return the result to client
             CommandMessage response = new CommandMessage(e.CommandID, res);
             this.tcpServer.notifyAll(response);
             m_logging.Log("notified all", MessageTypeEnum.Information);
         }
         
+        /// <summary>
+        /// updating all clients that a new message was updated in log
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"> message details to be updated</param>
         public void UpdateLog(object sender, MessageRecievedEventArgs e)
         {
             string mes = e.Status.ToString() + "|" + e.Message;
@@ -136,6 +149,10 @@ namespace ImageService.Server
             CloseCommand?.Invoke(this, null);
         }
 
+        /// <summary>
+        /// invoking all events that have to do with closing directory handler
+        /// </summary>
+        /// <param name="path"></param>
         public void CloseDirHandler(string path) {
             CloseCommand?.Invoke(this, new DirectoryCloseEventArgs(path, "close handler"));
         }

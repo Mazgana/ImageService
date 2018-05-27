@@ -46,7 +46,7 @@ namespace ImageService.Communication
                         TcpClient client = listener.AcceptTcpClient();
                         this.clients.Add(client);
                         logger.Log("Got new connection",Logging.Modal.MessageTypeEnum.Information);
-                        ch.HandleClient(client, logger);
+                        ch.HandleClient(client);
                     }
                     catch (SocketException)
                     {
@@ -63,19 +63,25 @@ namespace ImageService.Communication
 
         public void notifyAll(CommandMessage message)
         {
-
+ //           List<TcpClient> noConnectionClients;
             new Task(() =>
             {
+
                 foreach (TcpClient client in clients)
                 {
                     NetworkStream stream = client.GetStream();
                     BinaryWriter writer = new BinaryWriter(stream);
                     {
-                        
-                        string messageInString = JsonConvert.SerializeObject(message);
-                        mutex.WaitOne();
-                        writer.Write(messageInString);
-                        mutex.ReleaseMutex();
+ //                       try
+ //                       {
+                            string messageInString = JsonConvert.SerializeObject(message);
+                            mutex.WaitOne();
+                            writer.Write(messageInString);
+                            mutex.ReleaseMutex();
+  //                      } catch (Exception e)
+  //                      {
+   //                         clients.Remove(client);
+   //                     }
                     }
                 }
 

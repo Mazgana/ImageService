@@ -36,17 +36,19 @@ namespace ImageService.Commands
             try
             {
                 List<String> fullLog = new List<String>();
-
+                //opening event log for reading entries
                 EventLog eventLog = new EventLog();
                 eventLog.Log = ConfigurationManager.AppSettings["LogName"];
                 eventLog.Source = ConfigurationManager.AppSettings["SourceName"];
                 //eventLog.MachineName = machineName;
-
+                
+                //reading all entries in log history
                 foreach (EventLogEntry log in eventLog.Entries)
                 {
                     String entry = log.EntryType.ToString() + "|" + log.Message;
                     fullLog.Add(entry);
                 }
+                //return list as string
                 messageInString = JsonConvert.SerializeObject(fullLog);
             } catch(Exception e)
             {

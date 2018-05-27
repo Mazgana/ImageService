@@ -16,8 +16,11 @@ namespace ImageService.Communication
     public class ClientHandler : IClientHandler
     {
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;
-
-        public void HandleClient(TcpClient client, ILoggingService logg)
+        /// <summary>
+        /// reading messages from client and sending them so service
+        /// </summary>
+        /// <param name="client"> sendind the message </param>
+        public void HandleClient(TcpClient client)
         {
             new Task(() =>
             {
@@ -26,15 +29,12 @@ namespace ImageService.Communication
                 {
                     while (true)
                     {
-                 //       logg.Log("waiting for message from client", Logging.Modal.MessageTypeEnum.INFO);
                         string messageInString = reader.ReadString();
                         CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
-                 //       logg.Log("Got command", Logging.Modal.MessageTypeEnum.INFO);
                         string[] args = {message.MessageResponse};
                         CommandRecieved?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, message.MessageResponse));
                     }
                 }
-                client.Close();
             }).Start();
         }
     }

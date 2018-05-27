@@ -21,10 +21,11 @@ namespace ImageService.GUI.Converters
             else if (type == "Error")
                 return Brushes.LightCoral;
             else if (type == "Warning")
-                return Brushes.LightYellow;
+                return Brushes.Orange;
             else
                 return Brushes.Transparent;
-        }
+        }
+
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
