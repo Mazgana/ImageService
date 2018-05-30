@@ -1,0 +1,1051 @@
+commit 38d92b98b147d16d47af5c1efcd8560aa1b9322e
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 16:57:28 2018 +0300
+
+    Comments
+
+commit bc5bbb7f97210e8412dcc7bc239a54d63a8a229e
+Merge: d8e0d3f 5f2f6d6
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 14:48:37 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit d8e0d3f08074c5b813d046d659db7c683a2e9d7e
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 14:48:17 2018 +0300
+
+    comments in gui
+
+commit 7c70e25d367bdbfd373732b5e5df592cebec7b51
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 14:24:21 2018 +0300
+
+    display log meesages by update time
+
+commit dbfbe7324e0d1de3aa26b1a09d59c7eea00cefc6
+Merge: 6027732 4020255
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 14:08:07 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit 6027732f7adc81a7ee3cdefb73019f4163d6547a
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 14:07:54 2018 +0300
+
+    Message enum
+
+commit 388072851d0138577fa09c4e7b8c03ddabc45298
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 14:06:59 2018 +0300
+
+    Message enums
+
+commit 5f2f6d63a350219a6be08193e33c47e3ed019260
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun May 27 11:45:23 2018 +0300
+
+    removing unneccessary classes. adding comments to classes except for GUI
+
+commit 40202551453b64abfc0e49e5939c4e07c31546dc
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun May 27 10:21:43 2018 +0300
+
+    removing disconnected client from list
+
+commit 56e55b859a565d7d6bad0c2cb2e5c98dce0c22fb
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun May 27 09:38:46 2018 +0300
+
+    adding comments
+
+commit 4278a809f4a6df382ff2eafb11785521d292fef1
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun May 27 07:37:18 2018 +0300
+
+    now logging also warning and error
+
+commit bd894f625e6034a2c1317cdb2ad9c2143ac902a5
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 10:03:55 2018 +0300
+
+    display only connected handlers
+
+commit 030efafac350af2023289a9e8dcfcce9930807aa
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 03:03:13 2018 +0300
+
+    comment
+
+commit a9c67571f516275eca1477e5834dfe7cf97bf137
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 03:01:40 2018 +0300
+
+    display only handlers that was found
+
+commit 90265174b6166c2ebc8250b111b994b34c74e54a
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 02:49:13 2018 +0300
+
+    design
+
+commit 6407eb0b75d2920f644af4438e95885fd8b41714
+Merge: 0d932d2 3e36071
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 02:28:08 2018 +0300
+
+    delete all prints and comments
+
+commit 0d932d24cb097db230e7e671c1994691fca3f11e
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun May 27 02:24:44 2018 +0300
+
+    Creating mvvm for main window
+
+commit 3e36071098ffe791f2a90b760111f85660f9bc67
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sat May 26 20:49:38 2018 +0300
+
+    double windows work including directories (but not opening after closing)
+
+commit ae6537bf8390211d6527701f68a62160edef9a7b
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sat May 26 20:43:33 2018 +0300
+
+    cleaning project of comment-outs
+
+commit 30d1b366c5bc5aea401810f452e8cfc0ed7ae491
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sat May 26 20:33:28 2018 +0300
+
+    double windows dont get log twice
+
+commit 5562bfd211d1ac64d0f7f74d96a3d97d6091fa34
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 14:51:29 2018 +0300
+
+    removing handler works (i hope)
+
+commit 168a0ab43a5c8ff44fb85e1122d0f0c2fb7e0d96
+Merge: 9cb4296 090d8b6
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 16:09:04 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit 9cb42968a48ca1dc466acfc3d8fa5126e0d1cd1f
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 15:43:50 2018 +0300
+
+    scroll view to log window
+
+commit 5b10c45cad22095922d707aecc627854dbac1f66
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 15:07:38 2018 +0300
+
+    disable selection option in log list and delete border line
+
+commit 135dbd3d23175155395070e3019eb1e10cceeab8
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 14:54:49 2018 +0300
+
+    adding log name
+
+commit 72e72052655d12dc8fa45a33710bfbe5ffcf22c4
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 14:41:51 2018 +0300
+
+    Settings is fine!
+
+commit 77417c5cd98d4a9372c8347d9289e68e94715c3d
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 13:59:41 2018 +0300
+
+    delete handler count
+
+commit df671929f07e55035efaf167f30d2da2de283787
+Merge: 464d7a7 28fc8b1
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 13:54:52 2018 +0300
+
+    Convertor of mes type to color & delete data context in main window
+
+commit 464d7a7943fd37ed0d705ddcff0bf1c6123db0b3
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 13:45:40 2018 +0300
+
+    little change
+
+commit 090d8b682476e6c7a8dc0591011d88713735cf9f
+Merge: 20952f5 5b10c45
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 12:10:02 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit 20952f56287fb26941351d39e799bf2e3c4033ae
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 12:09:53 2018 +0300
+
+    updates sent with type INFO but not information
+
+commit 28fc8b11bb1d072d218bdf3121d8e4cd46475f67
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 10:32:07 2018 +0300
+
+    no doubles. config works
+
+commit e8cc909b5ec80589fbdcd539ae84a852d86509c9
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 09:47:39 2018 +0300
+
+    more changes
+
+commit 93f57324e75b2b599530cc27a3dc9f8d9637db33
+Merge: c87cb6d fda634b
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 08:57:53 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit fda634b60a196232b13cbb1e6f5629a4f058c7fb
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 11:56:14 2018 +0300
+
+    sleep in setting model
+
+commit c87cb6d30001bd0043aa488097ce75d8fc2c2b12
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 08:57:41 2018 +0300
+
+    trying to make lo work
+
+commit c3534beff7cafbc5bbdc4cfb636c36187faf06b3
+Merge: 5465f4f 295c464
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 08:37:54 2018 +0300
+
+    small conflict
+
+commit 295c464a24ab4a990ea9dcb798e09a93d96c2f7a
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 10:50:24 2018 +0300
+
+    is connected color is working for real
+
+commit 635acba3769b7e0f926b475a0cc0cf4510481e0e
+Merge: e268a00 b10c6a1
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 10:26:20 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit e268a00b2d928f57023c41f530e720879c224871
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 10:25:37 2018 +0300
+
+    is connected color
+
+commit abc68f79e6d36fae7ed777b1073d2b7658fc6f92
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 10:18:36 2018 +0300
+
+    just checking
+
+commit 5465f4f77d4fc2559fbeb63fd4aeec54501075e6
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 08:36:53 2018 +0300
+
+    settings is working again
+
+commit b10c6a16b17eee68dc21e6f9c93dcdee2f00c724
+Merge: 56af377 abc68f7
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 07:20:30 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit 56af37749ebbc081a1f57d6afa444750a42564f7
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 07:20:11 2018 +0300
+
+    nothing at all
+
+commit a3f2ef9b9a7eadca229f92b2d51186ddf92c10f2
+Merge: 8e66b19 633de3b
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 05:55:36 2018 +0300
+
+    reserving conflicts- taking Adi's
+
+commit 8e66b19cfbd2516c5584563e7ec8d2ab59a246e3
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri May 25 05:54:39 2018 +0300
+
+    removing unnecessary mutex abd log
+
+commit 633de3bb1679ceb33d7f214f30dedceb9f5f6ae1
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri May 25 02:27:02 2018 +0300
+
+    settings view is fine
+
+commit ab6cfb34791af25a3dc53336a5790556d4d59584
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 24 14:03:23 2018 +0300
+
+    changing gui model to fit singleton and events
+
+commit 8f0715e8d5f7e48816c59318b365e6914f6354f2
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 24 12:46:49 2018 +0300
+
+    update log with partial example
+
+commit 03b3b71a961232c7bdcf2ec3ffff670c53298a43
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 24 08:17:25 2018 +0300
+
+    tcp client is now singleton
+
+commit 673262c75f3ea5ed4662b1a68bda6d3a13e71dde
+Merge: 152d42c 5e49b27
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 24 07:45:13 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit 152d42cad4035c2133359f2eb159cc52cf0cf249
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 24 07:44:51 2018 +0300
+
+    sending log updates works from sesrver side.
+
+commit 5e49b27d45f052ed25e2cd8c6cd6b96e6e69fd47
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed May 23 23:49:00 2018 +0300
+
+    log model
+
+commit ff01e2f21d01157fe6b94dc26e9325bb54591ff4
+Merge: 15e44a5 049b003
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed May 23 20:30:51 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit 15e44a59543be65b6a81adabdcf8c67fdb756ebb
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed May 23 20:29:23 2018 +0300
+
+    log model
+
+commit 7d2d0e77e73ca2549dfd29a9888783a653f45cfa
+Merge: 410d47f 69a8153
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed May 23 20:14:16 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit 410d47fca1db5bbfe936418413823ee42a9b1373
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed May 23 20:10:41 2018 +0300
+
+    working on log model
+
+commit 049b00392eb056f79282586ac4ee1b54ba316941
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed May 23 17:27:40 2018 +0300
+
+    small remove handler change
+
+commit 69a8153b8e12a1c4d8702fb1aa298383acf69eb7
+Merge: b2b9b9d 3969bf2
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed May 23 16:40:51 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit b2b9b9d5fa66e42d470eb9fa75041982be24fe5a
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed May 23 16:40:24 2018 +0300
+
+    fiirst get log command working:)
+
+commit 3969bf2b980e417521cfd900c9db5e2cf3329e2d
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed May 23 15:51:03 2018 +0300
+
+    window is gray if the service if connection to service had failed
+
+commit 2f7aaebaa822fada3a5bbb90bb9f7bbeeccc7541
+Merge: 9b6409e 1e27820
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 17 18:01:31 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit 1e2782051bc866bf6418d4395951f8d9709f05f7
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu May 17 20:58:20 2018 +0300
+
+    fix bug in remove handler
+
+commit c15f3f1f603448c4b6a82618053c9e5596ffd66c
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu May 17 19:53:28 2018 +0300
+
+    typo change
+
+commit f057aaae7dc60308016d62820e0cd0287a3ab33b
+Merge: ea4203b 33b4330
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu May 17 19:52:34 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit ea4203b72e4a2db8a8e0d85fa5d77c7b8b9f00ad
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu May 17 19:52:11 2018 +0300
+
+    Adding handlers list to gui and remove button
+
+commit 9b6409e46b40c088668e48427b39dae8b1300ce4
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 17 18:01:17 2018 +0300
+
+    closedirectorycommand closes directory!
+
+commit 33b43300f549978e9ff4fd07bfb29d6f2d2bb4c8
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 17 16:42:39 2018 +0300
+
+    closehandler erases from config.exe
+
+commit 4bd55652fb171c66fa7dc3398672a23e698006be
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu May 17 16:08:13 2018 +0300
+
+    Get the service congiuration and display it
+
+commit 5c031108136225f9163effd3f16e3c03966a7e9c
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu May 17 14:56:43 2018 +0300
+
+    adding log command class, update the commands dictionary & adding command.dll
+
+commit 14858d81236171c05082dacfb25890b368dd70f7
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 17 09:17:05 2018 +0300
+
+    message sent and result recieved
+
+commit 91aad8926e0d4d501fa7e608cbeab2d0d69a95a9
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 17 09:01:30 2018 +0300
+
+    message from client to server works:)
+
+commit 10c6eebd49358186e12a729da817535ddca73557
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed May 16 13:06:57 2018 +0300
+
+    moving commandArgs and synchronizing eventArgs
+
+commit 1503888fa7a6dd8aa441491af1164ce4c8460181
+Merge: 1bc268a 562237c
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed May 16 08:20:43 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit 1bc268a4b64dfa5e17acbdf92d997f212aa644b1
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed May 16 08:20:12 2018 +0300
+
+    adding json
+
+commit 562237c654306c9883e02ad5a3cce04e862345af
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue May 15 18:50:13 2018 +0300
+
+    CommandMessage & add notify all the response from the server
+
+commit a68260fbaa0687bd9218eb40d33cd0054d8a2f17
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Tue May 15 15:30:19 2018 +0300
+
+    comment out build errors
+
+commit b37a9a760f9f08e96150ee22d9325f317f1631cb
+Merge: ac3fe8b a9f9cf5
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Tue May 15 15:15:52 2018 +0300
+
+    merging
+
+commit a9f9cf5a649d967fc9d92ad76fefdc072949da09
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue May 15 18:11:48 2018 +0300
+
+    get command in servr of image service & get command class
+
+commit 188810924d5f3d8d520c8a4dc227639dfdbd9d03
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue May 15 17:06:51 2018 +0300
+
+    addig send line method
+
+commit ac3fe8b7d8aa04dd07a7861e9d3191e1e80c7250
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Tue May 15 15:13:56 2018 +0300
+
+    adding notify all and handler event, adding msgReceivedArgs
+
+commit 2feaa8d06d396ada8a61254de8235066918547db
+Merge: aa57d4b fd3c10e
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon May 14 21:22:35 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit fd3c10ef670d8adc545c27737dade62c08f02aa2
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon May 14 22:58:33 2018 +0300
+
+    Adding to gui the settings model members
+
+commit bdf52ad2bd14fab5f2335fd3d7ba56b4415979bd
+Merge: bd5874e f7bb028
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon May 14 22:31:22 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit bd5874e8076e580400b36fda01c7548adeffef2b
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon May 14 22:30:41 2018 +0300
+
+    binding is working
+
+commit aa57d4b51ff05861b6aeafd25d4e9a16f119f22c
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon May 14 21:22:21 2018 +0300
+
+    writer reader work both ways. using flush
+
+commit af47844e3f5c3fa5c03fa1e966d0342ac8880107
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu May 10 14:03:12 2018 +0300
+
+    Adding temp client for debugging
+
+commit f7bb02801c243115518f8c2a7c005d65bd62c954
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 10 12:19:43 2018 +0300
+
+    communication debugging
+
+commit ff43fa7ef1b47bbfd2ba7212b56dcf953a13add0
+Merge: 5cbebb7 f799bf7
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 10 10:17:59 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit f799bf7f7d3da06f5b998f4d3d35f00ade3b4f44
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu May 10 13:12:16 2018 +0300
+
+    binding gui
+
+commit 0d322322cb635a8d55f1675a083ac346e1c8079f
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu May 10 11:02:01 2018 +0300
+
+    changing the communication project
+
+commit 5cbebb7a88586ee9f6ac6ee594f0e85de3520936
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu May 10 10:17:36 2018 +0300
+
+    communication implementation
+
+commit fe00569e4d108b571cf64dfacb48d0d43798cc2b
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed May 9 11:53:58 2018 +0300
+
+    changing the communication server to be a singelton and add a configuration file
+
+commit b41e60d2f67ed53eabdab2a6f1f3715180522d1e
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue May 1 22:43:05 2018 +0300
+
+    Adding communication project and creting communication server & client handler
+
+commit c6312f908b6dee0860debfea2b7069d09663e6d0
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue May 1 21:52:11 2018 +0300
+
+    Adding to tabs to the main window
+
+commit 741e8339e2bcdb39dcb1e5c0fda2ec59683da2b7
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue May 1 20:37:28 2018 +0300
+
+    Adding new projects for logging, infrastructure and gui
+
+commit 83a65d347f40d9645cc0f2319aaa2331d3e43bf6
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun Apr 15 19:34:32 2018 +0300
+
+    comments in service class
+
+commit e27e116ae489cffbe2d45f973e8336f2f6bbb29d
+Merge: 8fe3799 f7f16a3
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun Apr 15 19:24:04 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit f7f16a3c56cea84462997fb8ce184ff0446b7cb2
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Apr 15 22:15:02 2018 +0300
+
+    Some more commats
+
+commit 72386dfd18d3fa660ed72ee030ce9ba17f7af06a
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Apr 15 21:27:26 2018 +0300
+
+    Commants
+
+commit 8fe37994ccf5723b2f9f483321a53e2b7b311335
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun Apr 15 19:23:30 2018 +0300
+
+    more comments
+
+commit e06bba947614ed2e11a8005230cedee12286c8cf
+Merge: add2ca1 95e104c
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Apr 15 16:54:04 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit add2ca1dd973f313415e77f779542ef921806fa6
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Apr 15 16:53:14 2018 +0300
+
+    Set the output folder to be hidden
+
+commit 2ce462a846130c8c79c04dc997b931d00f7f84e9
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Apr 15 16:41:58 2018 +0300
+
+    fixing problem - everything works.
+
+commit 95e104c0467c67cafee7297677b73c678dfc5de4
+Merge: 07085e7 2ce462a
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun Apr 15 13:47:25 2018 +0300
+
+    same same new name
+
+commit 07085e7c0ad6cc0130b0f31a5cd059a2a782b615
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun Apr 15 13:46:07 2018 +0300
+
+    rewriting changes
+
+commit 13e4fc7e6a8bc0f533f0bda9d8285134129bbb6f
+Merge: 52d9e40 028f71b
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Apr 15 11:56:07 2018 +0300
+
+    fix conflicts
+
+commit 52d9e4023a9913aa86eb2a91bcbaaab81f27d0ba
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Apr 15 11:32:31 2018 +0300
+
+    working on closing server
+
+commit 028f71b44ca9229e3d473d13db4c1455723687ce
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun Apr 15 08:39:27 2018 +0300
+
+    removing if from handler changed
+
+commit 437c5b085f2386d74b6c5fab5c7dc93d62a308e6
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sun Apr 15 08:04:14 2018 +0300
+
+    more comments
+
+commit 1467df7cc106436225c26182f1840cad24e7c3fa
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sat Apr 14 20:36:49 2018 +0300
+
+    some more comments
+
+commit 900797456a58b41b9688246f72add2318d5d07f2
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sat Apr 14 20:00:08 2018 +0300
+
+    removing unneccessary code (including closeCommand)
+
+commit 531b8b6d92339784a3522987d19fd2f6ac6ce7be
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sat Apr 14 19:56:24 2018 +0300
+
+    closing server and handlers is working!!
+
+commit 343c994069534f936f52bc05544cc71599e12bed
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Sat Apr 14 19:22:33 2018 +0300
+
+    a few comments
+
+commit af47f57a032272a92244e7fa27b0f9caf98897cb
+Merge: 6ab7f6e 6e9691d
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed Apr 11 16:38:30 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit 6e9691dcec33951bdb1482a8ebdea6ff2400b312
+Merge: 9fd11a3 8c12246
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed Apr 11 19:33:55 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit 9fd11a3722f3ef816b0c82a8fcffe2c44211b232
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed Apr 11 19:33:16 2018 +0300
+
+    handling en exception
+
+commit 6ab7f6eeae357fbd89f087f1f19a26ddb9d546f6
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed Apr 11 16:38:20 2018 +0300
+
+    directory close
+
+commit 8c12246f110d64377af6286c64a3e36a779b7489
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed Apr 11 16:10:21 2018 +0300
+
+    initialize all in service
+
+commit a68ba9089322c23fd8176c85970d4876709b862f
+Merge: db630b4 255fbf8
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue Apr 10 21:40:11 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit db630b46a3b13b03ea90aa3fb58a34dbd65ee798
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue Apr 10 21:39:30 2018 +0300
+
+    check last write time to prevent multiple copies
+
+commit 255fbf8c76952b9d7a63db2424c21fd2e980ffbe
+Merge: 3956732 13f5de0
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Tue Apr 10 15:51:59 2018 +0300
+
+    adi's config
+
+commit 3956732433d8bce4904bfcba73fc5ec0d8825b92
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Tue Apr 10 15:29:20 2018 +0300
+
+    config changes
+
+commit 13f5de02eec716d68637838e816e5506ba96d8aa
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Apr 1 11:27:21 2018 +0300
+
+    changes
+
+commit e4a8798964c77c4e4e7eacdef9b113f2960202cf
+Merge: 1c7e69f dc35bc0
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri Mar 30 14:21:51 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit 1c7e69feb5238de1e99694f4140da9204befc1cb
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri Mar 30 14:21:24 2018 +0300
+
+    close command and adding check if name already exists
+
+commit dc35bc07fd94263ebea1587052ba83ca772b15e2
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Fri Mar 30 11:00:12 2018 +0300
+
+    removing on create, leaaving on change
+
+commit b9bbeb0f568e588fe2c4b7785b0cfb869de016ae
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri Mar 30 09:59:23 2018 +0300
+
+    send command in server and add file methods
+
+commit 4167d16183dfb1b607bd03b4102075e7e6a3e3e5
+Merge: 937900c 823acb1
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu Mar 29 23:01:25 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit 937900cce8bfb2f844943d5692b0a4b9cdc15033
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu Mar 29 23:00:59 2018 +0300
+
+    onChanged method
+
+commit 4464d07bc1752b40d00f2014f469c1cc136b0a6c
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu Mar 29 21:57:11 2018 +0300
+
+    copy is working
+
+commit 1b50811b1433f9216a58f73c2fd9f30075251bd0
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu Mar 29 21:42:11 2018 +0300
+
+    add file method
+
+commit 823acb1a2a7bd28ac640ac327f3acc91a8a8ea7d
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu Mar 29 19:58:12 2018 +0300
+
+    changing output thumbnail directory
+
+commit d06f5c046e04805ba58ec6ea41fa5911b0ddf7f6
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu Mar 29 12:03:30 2018 +0300
+
+    debugging modal
+
+commit 42cabde184974e031554c55a7fb78118998bff78
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu Mar 29 10:54:01 2018 +0300
+
+    debugging installation
+
+commit 8006053f2a0ac01578fb92e50ec654109b5c2448
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Thu Mar 29 09:06:59 2018 +0300
+
+    working logger and succesful install
+
+commit 0725c97f6eae1ca39d92a40ef513e25cf47b18e3
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed Mar 28 20:37:08 2018 +0300
+
+    adding refrence to drawing
+
+commit b6883ed5a7608727ea09f9279beb2fe5ffd7f5dc
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed Mar 28 17:02:51 2018 +0300
+
+    arguments changes in server and service
+
+commit ccf732c48cacffd753318d13c932a60cce897fe0
+Merge: a748e91 5ddd411
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed Mar 28 16:50:17 2018 +0300
+
+    merging server- adi's version
+
+commit 5ddd411c02409fc8520c237af51af71bad116c8e
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed Mar 28 19:27:30 2018 +0300
+
+    Adding modal to the server constructor and create new controller
+
+commit a748e910237bd7a624c402cc1c71e51c3f8d6185
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed Mar 28 16:48:13 2018 +0300
+
+    some more changes
+
+commit 0b71efb225e73e8045de4b92d171086ba4a882e1
+Merge: 9a06e01 188c57b
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed Mar 28 15:38:46 2018 +0300
+
+    solving import conflict
+
+commit 188c57b8679d36f6a1d424de9bd8e92e9f8850ed
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed Mar 28 15:55:39 2018 +0300
+
+    create controller in server
+
+commit 9a06e01d043d39433cd6876c4a92c7031b2b9445
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed Mar 28 15:34:24 2018 +0300
+
+    adding to image service
+
+commit 4d9ce736c7397c71604a2fcb7da2935dd0b3211c
+Merge: 4a3ce05 a8d39cd
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed Mar 28 10:43:57 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit a8d39cd9e27fb9a4772d54a3c4fa9f9affa899e7
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed Mar 28 13:41:59 2018 +0300
+
+    constructor in server & closeHandler command class
+
+commit 4a3ce0586c048dbe7e955ae7090c8713ba704090
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed Mar 28 10:43:50 2018 +0300
+
+    working on events
+
+commit 87e341c6a343e1035daee9f13b943ae397a1545c
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Tue Mar 27 17:18:35 2018 +0300
+
+    adding small doce according to word file
+
+commit edf60becd04b9760375f98e2a3ea5cfa78dd1a32
+Merge: 8861d54 48068a0
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Mar 26 19:19:03 2018 +0300
+
+    fix conflicts
+
+commit 8861d54a51ff357f92589437c66bce809b63b6a4
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Mar 26 19:12:56 2018 +0300
+
+    tiny changes in newfileCommand
+
+commit 48068a0bcf65bf467949f18104f61a511bd39f00
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 19:12:32 2018 +0300
+
+    Directory handler & image service modal
+
+commit 22c4a1102bb6b43f08889d0a8f2167c7a6d8baa1
+Merge: 4a27658 285c237
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 17:02:15 2018 +0300
+
+    fix conflicts
+
+commit 4a27658b41408f2cbbf9e7cf81617989807b5899
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 16:59:34 2018 +0300
+
+    createHandler method
+
+commit 285c237500b64ad68f4e7888173ac2b26145e0c3
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Mar 26 16:54:51 2018 +0300
+
+    adding controller code
+
+commit f9c08a951fc1a4c010dfd3ca4751da985afd19e3
+Merge: 50a0a03 bfe59a4
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Mar 26 15:51:49 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit 50a0a031ebe7405e209ef9b458dc5e610d711ccd
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Mar 26 15:51:37 2018 +0300
+
+    adding imports
+
+commit bfe59a46b1b4309e7bfb0c197c36d75b30b7cdc3
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 15:50:37 2018 +0300
+
+    createHandler method
+
+commit feef59d5fbeb48f563e20378d72dcafd6396cd33
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 15:08:20 2018 +0300
+
+    addFile method
+
+commit 774f9737cf4fb3da2aa46c37655f2be9e544dcb8
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 13:53:00 2018 +0300
+
+    delete folders
+
+commit d6c52ce9b73174fcbc8232b73272bfc6ce863552
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 13:49:18 2018 +0300
+
+    orgnizing folders
+
+commit f148c1ff61b5fb2721d0eb333b83df80fda41a34
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Mar 26 13:31:13 2018 +0300
+
+    organizing folders
+
+commit 092455acfbab6a3c71d5a575af229544f9206958
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Mar 26 13:21:45 2018 +0300
+
+    adding logging folder
+
+commit 4915a66f5f801aba9dd25bad4209201733a49e1f
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Mar 26 13:10:37 2018 +0300
+
+    adding infrastructure
+
+commit 590f0632af2c395ba495e84ce66e462fb293b96a
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 12:45:02 2018 +0300
+
+    Adding all classes and folsers
+
+commit a1d7db9531fa4c7ad333851fc705fc106d199060
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 12:19:11 2018 +0300
+
+    Adding infrastructure folder
+
+commit b998881f5f043314ff0c303ab375b10a166cc1e2
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 12:06:48 2018 +0300
+
+    Adding infrastructure folder
+
+commit 060129500daa5e074e636c5f842bf7d1d7737237
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Mar 26 10:36:48 2018 +0300
+
+    Adding new classes
+
+commit cbeaa505cd10c38b225b01794201928735f4d54a
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Mar 25 22:55:40 2018 +0300
+
+    First classes and methodes
+
+commit abcd74b851566daa563e875638fcd96a2084a942
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Mar 25 11:07:39 2018 +0300
+
+    Starting the project
