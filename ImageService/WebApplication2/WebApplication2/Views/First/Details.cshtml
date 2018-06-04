@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<WebApplication2.Models.Employee>
 
 @{
-    ViewBag.Title = "Photos";
+    ViewBag.Title = "Details";
 }
 
-<h2>Photos</h2>
+<h2>Details</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -48,7 +48,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id= item.ID }) |
-            @Html.ActionLink("Photos", "Photos", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>

@@ -18,7 +18,6 @@ namespace WebApplication2.Controllers
           new Employee   { FirstName = "Dor", LastName = "Nisim", Email = "Stam@stam", Salary = 20, Phone = "08-8888888" },
           new Employee   { FirstName = "Dor", LastName = "Nisim", Email = "Stam@stam", Salary = 700, Phone = "08-8888888" }
         };
-
         // GET: First
         public ActionResult Index()
         {
@@ -26,13 +25,7 @@ namespace WebApplication2.Controllers
         }
 
         [HttpGet]
-        public ActionResult Logs()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Config()
+        public ActionResult AjaxView()
         {
             return View();
         }
@@ -63,8 +56,8 @@ namespace WebApplication2.Controllers
             return null;
         }
 
-        // GET: First/Photos
-        public ActionResult Photos()
+        // GET: First/Details
+        public ActionResult Details()
         {
             return View(employees);
         }
@@ -83,7 +76,7 @@ namespace WebApplication2.Controllers
             {
                 employees.Add(emp);
 
-                return RedirectToAction("Photos");
+                return RedirectToAction("Details");
             }
             catch
             {
@@ -134,7 +127,7 @@ namespace WebApplication2.Controllers
                 if (emp.ID.Equals(id))
                 {
                     employees.RemoveAt(i);
-                    return RedirectToAction("Photos");
+                    return RedirectToAction("Details");
                 }
                 i++;
             }
