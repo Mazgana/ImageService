@@ -24,6 +24,7 @@ namespace ImageWeb.Controllers
             return View();
         }
 
+        //just checking
         public ActionResult Config()
         {
             ViewBag.Message = "Your config page.";
