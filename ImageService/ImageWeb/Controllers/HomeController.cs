@@ -3,26 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ImageWeb.Models;
 
 namespace ImageWeb.Controllers
 {
     public class HomeController : Controller
     {
+        static List<Image> images = new List<Image>();
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Config()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your config page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Photos()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your photos page.";
+
+            return View();
+        }
+
+        public ActionResult Logs()
+        {
+            ViewBag.Message = "Your logs page.";
 
             return View();
         }
