@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ImageWeb.Models;
 using System.IO;
+using System.Web.Hosting;
 
 namespace ImageWeb.Controllers
 {
@@ -14,9 +15,9 @@ namespace ImageWeb.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.numOfImages = Directory.GetFiles(@"C:\Users\as\Desktop\pics", "*.*", SearchOption.AllDirectories).Length;
-            // Read the file and display it line by line.  
-            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\as\Source\Repos\ImageService\ImageService\students.txt");
+            ViewBag.numOfImages = Directory.GetFiles(@HostingEnvironment.MapPath("~/outputCheck"), "*.*", SearchOption.AllDirectories).Length;
+            // Read the file and display it line by line. 
+            System.IO.StreamReader file = new System.IO.StreamReader(@HostingEnvironment.MapPath("~/students.txt"));
             ViewBag.Student1 = file.ReadLine();;
             ViewBag.Student2 = file.ReadLine();
             file.Close();
