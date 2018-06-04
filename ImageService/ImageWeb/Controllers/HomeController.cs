@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ImageWeb.Models;
+using System.IO;
 
 namespace ImageWeb.Controllers
 {
@@ -13,6 +14,12 @@ namespace ImageWeb.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.numOfImages = Directory.GetFiles(@"C:\Users\as\Desktop\pics", "*.*", SearchOption.AllDirectories).Length;
+            // Read the file and display it line by line.  
+            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\as\Source\Repos\ImageService\ImageService\students.txt");
+            ViewBag.Student1 = file.ReadLine();;
+            ViewBag.Student2 = file.ReadLine();
+            file.Close();
             return View();
         }
 
