@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -140,8 +141,8 @@
     <Content Include="scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\First\Create.cshtml" />
-    <Content Include="Views\First\Details.cshtml" />
+    <Content Include="Views\First\Config.cshtml" />
+    <Content Include="Views\First\Photos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -167,7 +168,7 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\First\Edit.cshtml" />
     <Content Include="Views\First\Error.cshtml" />
-    <Content Include="Views\First\AjaxView.cshtml" />
+    <Content Include="Views\First\Logs.cshtml" />
     <Content Include="scripts\jquery-3.0.0.min.map" />
     <Content Include="scripts\jquery-3.0.0.slim.min.map" />
     <None Include="Web.Debug.config">

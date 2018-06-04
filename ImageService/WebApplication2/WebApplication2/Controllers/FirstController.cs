@@ -33,7 +33,7 @@ namespace WebApplication2.Controllers
         }
 
         [HttpGet]
-        public ActionResult AjaxView()
+        public ActionResult Logs()
         {
             return View();
         }
@@ -64,27 +64,27 @@ namespace WebApplication2.Controllers
             return null;
         }
 
-        // GET: First/Details
-        public ActionResult Details()
+        // GET: First/Photos
+        public ActionResult Photos()
         {
             return View(employees);
         }
 
-        // GET: First/Create
-        public ActionResult Create()
+        // GET: First/Config
+        public ActionResult Config()
         {
             return View();
         }
 
-        // POST: First/Create
+        // POST: First/Config
         [HttpPost]
-        public ActionResult Create(Employee emp)
+        public ActionResult Config(Employee emp)
         {
             try
             {
                 employees.Add(emp);
 
-                return RedirectToAction("Details");
+                return RedirectToAction("Photos");
             }
             catch
             {
@@ -135,7 +135,7 @@ namespace WebApplication2.Controllers
                 if (emp.ID.Equals(id))
                 {
                     employees.RemoveAt(i);
-                    return RedirectToAction("Details");
+                    return RedirectToAction("Photos");
                 }
                 i++;
             }

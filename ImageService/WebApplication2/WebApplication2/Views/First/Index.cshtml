@@ -1,7 +1,22 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Image Service";
 }
 
-<h2>Index</h2>
-Welcome to Example!!!!
+<div class="jumbotron">
+    <h1>Image Service</h1>
+    <p class="lead">advanced programimng ex 3.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Service Status: connected / disconnected</h2>
+    </div>
+    <div class="col-md-4">
+        <h2>Number Of Images In Output Folder: @ViewBag.numOfImages</h2>
+    </div>
+    <div class="col-md-4">
+        <h2>Students Details:</h2>
+        <p>@ViewBag.student1</p>
+        <p>@ViewBag.student2</p>
+    </div>
+</div>
