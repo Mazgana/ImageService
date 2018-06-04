@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using WebApplication2.Models;
 
@@ -22,6 +24,12 @@ namespace WebApplication2.Controllers
         // GET: First
         public ActionResult Index()
         {
+            ViewBag.numOfImages = Directory.GetFiles(@HostingEnvironment.MapPath("~/outputCheck"), "*.*", SearchOption.AllDirectories).Length;
+            // Read the file and display it line by line. 
+            System.IO.StreamReader file = new System.IO.StreamReader(@HostingEnvironment.MapPath("~/students.txt"));
+            ViewBag.Student1 = file.ReadLine(); ;
+            ViewBag.Student2 = file.ReadLine();
+            file.Close();
             return View();
         }
 
