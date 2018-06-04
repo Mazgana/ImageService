@@ -153,7 +153,7 @@
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Image.cs" />
-    <Compile Include="Models\log.cs" />
+    <Compile Include="Models\Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
