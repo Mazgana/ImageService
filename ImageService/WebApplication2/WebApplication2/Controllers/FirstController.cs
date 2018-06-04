@@ -26,8 +26,10 @@ namespace WebApplication2.Controllers
             ViewBag.numOfImages = Directory.GetFiles(@HostingEnvironment.MapPath("~/outputCheck"), "*.*", SearchOption.AllDirectories).Length;
             // Read the file and display it line by line. 
             System.IO.StreamReader file = new System.IO.StreamReader(@HostingEnvironment.MapPath("~/students.txt"));
-            ViewBag.Student1 = file.ReadLine(); ;
-            ViewBag.Student2 = file.ReadLine();
+            ViewBag.student1 = file.ReadLine().Split(' ');
+            ViewBag.student2 = file.ReadLine().Split(' ');
+            //ViewBag.Student1 = file.ReadLine(); ;
+            //ViewBag.Student2 = file.ReadLine();
             file.Close();
             return View();
         }

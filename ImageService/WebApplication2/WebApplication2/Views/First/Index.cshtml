@@ -16,7 +16,22 @@
     </div>
     <div class="col-md-4">
         <h2>Students Details:</h2>
-        <p>@ViewBag.student1</p>
-        <p>@ViewBag.student2</p>
+        <table style="width:100%">
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>T.Z.</th>
+            </tr>
+            <tr>
+                <td>@ViewBag.student1[0]</td>
+                <td>@ViewBag.student1[1]</td>
+                <td>@ViewBag.student1[2]</td>
+            </tr>
+            <tr>
+                <td>@ViewBag.student2[0]</td>
+                <td>@ViewBag.student2[1]</td>
+                <td>@ViewBag.student2[2]</td>
+            </tr>
+        </table>
     </div>
 </div>
