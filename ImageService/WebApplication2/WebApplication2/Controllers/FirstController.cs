@@ -118,11 +118,11 @@ namespace WebApplication2.Controllers
                 serviceConfig.ThumbSize = configSrtings[3];
 
                 string[] handlersDirectories = configSrtings[4].Split(';');
-                for (int i = 0; i < handlersDirectories.Length; i++)
-                {
-                    if (handlersDirectories[i].Length != 0)
-                        serviceConfig.Handlers.Add(handlersDirectories[i]);
-                }
+                //for (int i = 0; i < handlersDirectories.Length; i++)
+                //{
+                //    if (handlersDirectories[i].Length != 0)
+                //        serviceConfig.Handlers.Add(handlersDirectories[i]);
+                //}
             }
         }
 

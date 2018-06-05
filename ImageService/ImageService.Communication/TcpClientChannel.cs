@@ -40,6 +40,7 @@ namespace ImageService.Communication
             }
             catch(Exception e)
             {
+                Console.WriteLine(e.ToString());
                 this.IsConnected = false;
             }
         }

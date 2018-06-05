@@ -59,6 +59,7 @@ namespace ImageService.Commands
                 messageInString = JsonConvert.SerializeObject(fullLog);
             } catch(Exception e)
             {
+                Console.WriteLine(e.ToString());
                 result = false;
             }
             return messageInString;
