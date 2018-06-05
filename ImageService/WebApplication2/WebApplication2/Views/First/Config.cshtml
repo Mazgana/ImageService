@@ -1,4 +1,4 @@
-﻿@model WebApplication2.Models.Employee
+﻿@model IEnumerable<WebApplication2.Models.Config>
 
 @{
     ViewBag.Title = "Config";
@@ -6,45 +6,28 @@
 
 <h2>Config</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Employee</h4>
-        <hr />
-
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-            </div>
-            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-            </div>
-            @Html.LabelFor(m => m.Salary, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
-            </div>
-            @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
-            </div>
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OutputDirectory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SourceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThumbSize)
+        </th>
+    </tr>
+    <tr>
+        <td>@ViewBag.outputDir</td>
+        <td>@ViewBag.sourceName</td>
+        <td>@ViewBag.logName</td>
+        <td>@ViewBag.size</td>
+    </tr>
+</table>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
