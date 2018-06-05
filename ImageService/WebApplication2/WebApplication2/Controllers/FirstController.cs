@@ -28,9 +28,8 @@ namespace WebApplication2.Controllers
             System.IO.StreamReader file = new System.IO.StreamReader(@HostingEnvironment.MapPath("~/students.txt"));
             ViewBag.student1 = file.ReadLine().Split(' ');
             ViewBag.student2 = file.ReadLine().Split(' ');
-            //ViewBag.Student1 = file.ReadLine(); ;
-            //ViewBag.Student2 = file.ReadLine();
             file.Close();
+            ViewBag.photoPath = @HostingEnvironment.MapPath("~/outputCheck/funny.jpg");
             return View();
         }
 
