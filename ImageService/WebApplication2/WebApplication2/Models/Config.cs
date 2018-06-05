@@ -11,26 +11,26 @@ namespace WebApplication2.Models
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "OutputDirectory")]
-        string OutputDirectory { get; set; }
+        public string OutputDirectory { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "SourceName")]
-        string SourceName { get; set; }
+        public string SourceName { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "LogName")]
-        string LogName { get; set; }
+        public string LogName { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "ThumbSize")]
-        string ThumbSize { get; set; }
+        public string ThumbSize { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Handlers")]
-        List<string> Handlers { get; set; }
+        public List<string> Handlers { get; set; }
     }
 }
