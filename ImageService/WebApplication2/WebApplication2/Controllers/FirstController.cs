@@ -82,14 +82,13 @@ namespace WebApplication2.Controllers
         {
             //var files = Directory.GetFiles(@HostingEnvironment.MapPath("~/outputCheck"), "*.*", SearchOption.AllDirectories);
             string root = @HostingEnvironment.MapPath("~/outputCheck");
-            var files = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories)
-                .Select(path => path.Replace(root, ""));
-
-            List<string> imageFiles = new List<string>();
+            var files = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories).Select(path => path.Replace(root, ""));
             foreach (string filename in files)
             {
-                images.Add(new Image { Path = filename});
-                 imageFiles.Add(filename);
+                var name = Path.GetFileNameWithoutExtension(filename);
+                var date = Path.GetDirectoryName(filename);
+                date = date.TrimStart('\\');
+                images.Add(new Image { Path = filename, Date = date, Name = name});
             }
             return View(images);
         }

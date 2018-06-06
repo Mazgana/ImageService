@@ -16,7 +16,7 @@ namespace WebApplication2.Models
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Date")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

@@ -3,28 +3,21 @@
 @{
     ViewBag.Title = "Photos";
 }
-<style>
-    img {
-        border-radius: 50%;
-    }
-</style>
-<h2>Photos</h2>
-@foreach (var item in Model)
-{
-    <div class="container" id="tourpackages-carousel">
-        <div class="row">
-            <div class="row">
-                <div class="col-xs-18 col-sm-6 col-md-3">
+<div class="row">
+    @foreach (var item in Model)
+        {
+                <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <img src="~/outputCheck/@Html.DisplayFor(modelItem => item.Path)" alt="-sample-">
+                        <img src="~/outputCheck/@Html.DisplayFor(modelItem => item.Path)" class="img-circle" alt="-sample-">
+                        <a href="@Html.AttributeEncode("~/outputCheck/@Html.DisplayFor(modelItem => item.Path)")" target="_Self">
+                            View full size
+                        </a>
                         <div class="caption">
-                            <h4>Thumbnail label</h4>
-                            <p>the path is: @Html.DisplayFor(modelItem => item.Path)</p>
+                            <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                            <p>date: @Html.DisplayFor(modelItem => item.Date)</p>
                             <p><a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a></p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-}
+        }
+</div>
