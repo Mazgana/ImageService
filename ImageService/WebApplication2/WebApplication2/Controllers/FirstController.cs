@@ -1,6 +1,4 @@
-﻿using ImageService.Communication;
-using ImageService.Communication.Model;
-using WebApplication2.Models;
+﻿using WebApplication2.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -14,9 +12,7 @@ namespace WebApplication2.Controllers
 {
     public class FirstController : Controller
     {
-        TcpClientChannel client { get; set; }
-
-        static Config serviceConfig { get; set; }
+        static Communication comm = new Communication();
         static List<Image> images = new List<Image>();
         static List<Employee> employees = new List<Employee>()
         {
@@ -96,44 +92,12 @@ namespace WebApplication2.Controllers
         // GET: First/Config
         public ActionResult Config()
         {
-            serviceConfig = new Config();
-
-            this.client = TcpClientChannel.getInstance();
-            this.client.UpdateModel += ViewUpdate;
-            this.client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, null));
-
-            Console.WriteLine("hereeeeeeeeeeeee: " + ViewBag.outputDir + "\n");
-
-            ViewBag.outputDir = serviceConfig.OutputDirectory;
-            ViewBag.sourceName = serviceConfig.SourceName;
-            ViewBag.logName = serviceConfig.LogName;
-            ViewBag.size = serviceConfig.ThumbSize;
+            ViewBag.outputDir = comm.serviceConfig.OutputDirectory;
+            ViewBag.sourceName = comm.serviceConfig.SourceName;
+            ViewBag.logName = comm.serviceConfig.LogName;
+            ViewBag.size = comm.serviceConfig.ThumbSize;
 
             return View();
-        }
-
-        private void ViewUpdate(object sender, CommandRecievedEventArgs e)
-        {
-            //Checks if the server respose is the application config.
-            if (e.CommandID == 2)
-            {
-
-                //initialize the settings window's members to hold the configuration values.
-                string config = e.Args[0];
-                string[] configSrtings = config.Split('|');
-
-                serviceConfig.OutputDirectory = configSrtings[0];
-                serviceConfig.SourceName = configSrtings[1];
-                serviceConfig.LogName = configSrtings[2];
-                serviceConfig.ThumbSize = configSrtings[3];
-
-                string[] handlersDirectories = configSrtings[4].Split(';');
-                //for (int i = 0; i < handlersDirectories.Length; i++)
-                //{
-                //    if (handlersDirectories[i].Length != 0)
-                //        serviceConfig.Handlers.Add(handlersDirectories[i]);
-                //}
-            }
         }
 
         // POST: First/Config

@@ -6,29 +6,23 @@
 
 <h2>Config</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.OutputDirectory)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SourceName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LogName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ThumbSize)
-        </th>
-    </tr>
-    <tr>
-        <td>@ViewBag.outputDir</td>
-        <td>@ViewBag.sourceName</td>
-        <td>@ViewBag.logName</td>
-        <td>@ViewBag.size</td>
-    </tr>
-</table>
+<div>
+    <h4 style="color: #2e6c80;">Outout directory: <span style="color: #2b2301;">@ViewBag.outputDir</span></h4>
+</div>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <h4 style="color: #2e6c80;">Source name: <span style="color: #2b2301;">@ViewBag.sourceName</span></h4>
 </div>
+
+<div>
+    <h4 style="color: #2e6c80;">Log name: <span style="color: #2b2301;">@ViewBag.logName</span></h4>
+</div>
+
+<div>
+    <h4 style="color: #2e6c80;">Thumbnail size: <span style="color: #2b2301;">@ViewBag.size</span></h4>
+</div>
+            
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
