@@ -1,73 +1,30 @@
-﻿@model IEnumerable<WebApplication2.Models.Employee>
+﻿@model IEnumerable<WebApplication2.Models.Image>
 
 @{
     ViewBag.Title = "Photos";
 }
-
+<style>
+    img {
+        border-radius: 50%;
+    }
+</style>
 <h2>Photos</h2>
-<div class="container" id="tourpackages-carousel">
-    <div class="row">
-        <div class="row">  
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="~/outputCheck/funny-thumb.jpg" alt="-sample-">
-                    <div class="caption">
-                        <h4>Thumbnail label</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur </p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a></p>
+@foreach (var item in Model)
+{
+    <div class="container" id="tourpackages-carousel">
+        <div class="row">
+            <div class="row">
+                <div class="col-xs-18 col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <img src="~/outputCheck/@Html.DisplayFor(modelItem => item.Path)" alt="-sample-">
+                        <div class="caption">
+                            <h4>Thumbnail label</h4>
+                            <p>the path is: @Html.DisplayFor(modelItem => item.Path)</p>
+                            <p><a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<p>
-    @Html.ActionLink("Create New", "Config")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Salary)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Salary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id= item.ID }) |
-            @Html.ActionLink("Photos", "Photos", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
 }
-
-</table>

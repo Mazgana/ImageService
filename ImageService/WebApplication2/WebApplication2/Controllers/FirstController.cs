@@ -1,5 +1,6 @@
 ﻿using ImageService.Communication;
 using ImageService.Communication.Model;
+using WebApplication2.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
-using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
@@ -17,7 +17,7 @@ namespace WebApplication2.Controllers
         TcpClientChannel client { get; set; }
 
         static Config serviceConfig { get; set; }
-
+        static List<Image> images = new List<Image>();
         static List<Employee> employees = new List<Employee>()
         {
           new Employee  { FirstName = "Moshe", LastName = "Aron", Email = "Stam@stam", Salary = 10000, Phone = "08-8888888" },
@@ -80,7 +80,18 @@ namespace WebApplication2.Controllers
         // GET: First/Photos
         public ActionResult Photos()
         {
-            return View(employees);
+            //var files = Directory.GetFiles(@HostingEnvironment.MapPath("~/outputCheck"), "*.*", SearchOption.AllDirectories);
+            string root = @HostingEnvironment.MapPath("~/outputCheck");
+            var files = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories)
+                .Select(path => path.Replace(root, ""));
+
+            List<string> imageFiles = new List<string>();
+            foreach (string filename in files)
+            {
+                images.Add(new Image { Path = filename});
+                 imageFiles.Add(filename);
+            }
+            return View(images);
         }
 
         // GET: First/Config

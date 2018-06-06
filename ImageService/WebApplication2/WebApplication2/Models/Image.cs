@@ -4,28 +4,28 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ImageWeb.Models
+namespace WebApplication2.Models
 {
     public class Image
     {
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Nmae")]
-        string Nmae { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Date")]
-        DateTime Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Path")]
-        string Path { get; set; }
+        public string Path { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "ThumbPath")]
-        string ThumbPath { get; set; }
+        public string ThumbPath { get; set; }
     }
 }
