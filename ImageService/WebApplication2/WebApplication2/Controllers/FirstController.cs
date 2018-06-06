@@ -152,6 +152,19 @@ namespace WebApplication2.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult showImage(string path)
+        {
+            foreach (Image img in images)
+            {
+                if(img.Path.Equals(path))
+                {
+                    return View(img);
+                }
+            }
+            return View("Error");
+        }
+
         // GET: First/Edit/5
         public ActionResult Edit(int id)
         {
