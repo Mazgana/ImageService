@@ -1,0 +1,8 @@
+﻿@model WebApplication2.Models.Image
+
+@{
+    ViewBag.Title = "showImage";
+}
+
+<p>@Html.ActionLink("Delete", "Delete", new { name = Model.Name }, new { @class = "btn btn-info btn-xs" })</p>
+<img src="~/outputCheck/@Html.DisplayFor(model => model.Path)" alt="-sample-">

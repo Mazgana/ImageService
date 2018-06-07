@@ -120,8 +120,7 @@ namespace WebApplication2.Controllers
                 return View();
             }
         }
-
-        [HttpPost]
+        // GET: First/Edit/5
         public ActionResult showImage(string path)
         {
             foreach (Image img in images)
