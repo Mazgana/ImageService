@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "showImage";
 }
-
-<p>@Html.ActionLink("Delete", "Delete", new { name = Model.Name }, new { @class = "btn btn-info btn-xs" })</p>
+@Html.ActionLink("X", "Cancel", new { @class = "btn btn-info btn-xs" })
+<h4>@Html.DisplayFor(model => model.Name)</h4>
+<p>date: @Html.DisplayFor(model => model.Date)</p>
+<p>@Html.ActionLink("Delete", "Delete", new { path = Model.Path }, new { @class = "btn btn-info btn-xs" })</p>
 <img src="~/outputCheck/@Html.DisplayFor(model => model.Path)" alt="-sample-">

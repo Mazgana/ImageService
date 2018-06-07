@@ -9,15 +9,12 @@
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
                         <img src="~/outputCheck/@Html.DisplayFor(modelItem => item.Path)" class="img-circle" alt="-sample-">
-                        <a href="@Html.AttributeEncode("~/outputCheck/@Html.DisplayFor(modelItem => item.Path)")" target="_Self">
-                            View full size
-                        </a>
                         <div class="caption">
                             <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
                             <p>date: @Html.DisplayFor(modelItem => item.Date)</p>
                             <p>path: @Html.DisplayFor(modelItem => item.Path)</p>
                             <p>@Html.ActionLink("showImage", "showImage", new { path = item.Path }, new { @class = "btn btn-info btn-xs" }) 
-                            @Html.ActionLink("Delete", "Delete", new { name = item.Name }, new { @class = "btn btn-info btn-xs" })</p>
+                            @Html.ActionLink("Delete", "Delete", new { path = item.Path }, new { @class = "btn btn-info btn-xs" })</p>
                         </div>
                     </div>
                 </div>

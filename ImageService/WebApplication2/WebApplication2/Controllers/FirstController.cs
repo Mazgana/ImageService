@@ -79,16 +79,23 @@ namespace WebApplication2.Controllers
         {
             //var files = Directory.GetFiles(@HostingEnvironment.MapPath("~/outputCheck"), "*.*", SearchOption.AllDirectories);
             string root = @HostingEnvironment.MapPath("~/outputCheck");
+            var files = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories);
+          /*  foreach(string full in fulls)
+            {
+                full.Replace(root, "");
+            }
             var files = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories).Select(path => path.Replace(root, ""));
+            */
             foreach (string filename in files)
             {
-                if (!fileNames.Contains(filename))
+                var path = filename.Replace(root, "");
+                if (!fileNames.Contains(path))
                 {
-                    fileNames.Add(filename);
+                    fileNames.Add(path);
                     var name = Path.GetFileNameWithoutExtension(filename);
-                    var date = Path.GetDirectoryName(filename);
+                    var date = Path.GetDirectoryName(path);
                     date = date.TrimStart('\\');
-                    images.Add(new Image { Path = filename, Date = date, Name = name });
+                    images.Add(new Image { Path = path, Date = date, Name = name, fullPath=filename });
                 }
             }
             return View(images);
@@ -168,40 +175,62 @@ namespace WebApplication2.Controllers
         }
 
         // GET: First/Delete/5
-     /*   public ActionResult Delete(int id)
+        /*   public ActionResult Delete(int id)
+           {
+               int i = 0;
+               foreach (Employee emp in employees)
+               {
+                   if (emp.ID.Equals(id))
+                   {
+                       employees.RemoveAt(i);
+                       return RedirectToAction("Photos");
+                   }
+                   i++;
+               }
+               return RedirectToAction("Error");
+           }
+           */
+        // GET: First/Delete/5
+        public ActionResult DeletePhoto(string path)
         {
             int i = 0;
-            foreach (Employee emp in employees)
+            foreach (Image img in images)
             {
-                if (emp.ID.Equals(id))
+                if (img.Path.Equals(path))
                 {
-                    employees.RemoveAt(i);
+                    if (!fileNames.Contains(path))
+                    {
+                        return RedirectToAction("Error");
+                    }
+                    fileNames.Remove(path);
+                    images.RemoveAt(i);
+                  //    if (System.IO.File.Exists("~\\outputCheck"+img.Path))
+                  //    {
+                        System.IO.File.Delete(img.fullPath);
+                  //  }
                     return RedirectToAction("Photos");
                 }
                 i++;
             }
             return RedirectToAction("Error");
         }
-        */
+
         // GET: First/Delete/5
-        public ActionResult Delete(string name)
+        public ActionResult Delete(string path)
         {
-            int i = 0;
             foreach (Image img in images)
             {
-                if (img.Name.Equals(name))
+                if (img.Path.Equals(path))
                 {
-                    fileNames.Remove(name);
-                    images.RemoveAt(i);
-                    /*if (System.IO.File.Exists(img.Path))
-                    {
-                        System.IO.File.Delete(img.Path);
-                    }*/
-                    return RedirectToAction("Photos");
+                    return View(img);
                 }
-                i++;
             }
-            return RedirectToAction("Error");
+            return View("Error");
+        }
+
+        public ActionResult Cancel()
+        {
+            return RedirectToAction("photos");
         }
     }
 }
