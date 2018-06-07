@@ -15,7 +15,9 @@
                         <div class="caption">
                             <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
                             <p>date: @Html.DisplayFor(modelItem => item.Date)</p>
-                            <p>@Html.ActionLink("showImage", "showImage", "Image", new { id = item.Path }, new { @class = "btn btn-info btn-xs" })  <a href="#" class="btn btn-default btn-xs" role="button">Delete</a></p>
+                            <p>path: @Html.DisplayFor(modelItem => item.Path)</p>
+                            <p>@Html.ActionLink("showImage", "showImage", new { id = item.Path }, new { @class = "btn btn-info btn-xs" }) 
+                            @Html.ActionLink("Delete", "Delete", new { name = item.Name }, new { @class = "btn btn-info btn-xs" })</p>
                         </div>
                     </div>
                 </div>

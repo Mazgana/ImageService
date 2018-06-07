@@ -14,6 +14,7 @@ namespace WebApplication2.Controllers
     {
         static Communication comm = new Communication();
         static List<Image> images = new List<Image>();
+        static List<string> fileNames = new List<string>();
         static List<Employee> employees = new List<Employee>()
         {
           new Employee  { FirstName = "Moshe", LastName = "Aron", Email = "Stam@stam", Salary = 10000, Phone = "08-8888888" },
@@ -81,10 +82,14 @@ namespace WebApplication2.Controllers
             var files = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories).Select(path => path.Replace(root, ""));
             foreach (string filename in files)
             {
-                var name = Path.GetFileNameWithoutExtension(filename);
-                var date = Path.GetDirectoryName(filename);
-                date = date.TrimStart('\\');
-                images.Add(new Image { Path = filename, Date = date, Name = name});
+                if (!fileNames.Contains(filename))
+                {
+                    fileNames.Add(filename);
+                    var name = Path.GetFileNameWithoutExtension(filename);
+                    var date = Path.GetDirectoryName(filename);
+                    date = date.TrimStart('\\');
+                    images.Add(new Image { Path = filename, Date = date, Name = name });
+                }
             }
             return View(images);
         }
@@ -164,7 +169,7 @@ namespace WebApplication2.Controllers
         }
 
         // GET: First/Delete/5
-        public ActionResult Delete(int id)
+     /*   public ActionResult Delete(int id)
         {
             int i = 0;
             foreach (Employee emp in employees)
@@ -172,6 +177,27 @@ namespace WebApplication2.Controllers
                 if (emp.ID.Equals(id))
                 {
                     employees.RemoveAt(i);
+                    return RedirectToAction("Photos");
+                }
+                i++;
+            }
+            return RedirectToAction("Error");
+        }
+        */
+        // GET: First/Delete/5
+        public ActionResult Delete(string name)
+        {
+            int i = 0;
+            foreach (Image img in images)
+            {
+                if (img.Name.Equals(name))
+                {
+                    fileNames.Remove(name);
+                    images.RemoveAt(i);
+                    /*if (System.IO.File.Exists(img.Path))
+                    {
+                        System.IO.File.Delete(img.Path);
+                    }*/
                     return RedirectToAction("Photos");
                 }
                 i++;

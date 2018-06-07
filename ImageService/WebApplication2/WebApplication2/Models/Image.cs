@@ -10,7 +10,7 @@ namespace WebApplication2.Models
     {
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Nmae")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Required]
@@ -22,6 +22,11 @@ namespace WebApplication2.Models
         [DataType(DataType.Text)]
         [Display(Name = "Path")]
         public string Path { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "fullPath")]
+        public string fullPath { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
