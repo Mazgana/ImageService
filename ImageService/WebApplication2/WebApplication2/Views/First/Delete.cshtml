@@ -6,11 +6,11 @@
 
 <h2>Delete Photo?</h2>
 <p>
-    @Html.ActionLink("DeletePhoto", "DeletePhoto", new { path = Model.Path }, new { @class = "btn btn-info btn-xs" })
+    @Html.ActionLink("DeletePhoto", "DeletePhoto", new { thumbpath = Model.ThumbPath }, new { @class = "btn btn-info btn-xs" })
     @Html.ActionLink("Cancel", "Cancel", new { @class = "btn btn-info btn-xs" })
 </p>
 
-<img src="~/outputCheck/@Html.DisplayFor(model => model.Path)" class="thumbnail" alt="-sample-">
+<img src="~/outputCheck/@Html.DisplayFor(model => model.ThumbPath)" class="thumbnail" alt="-sample-">
 
 <div class="caption">
     <h4>@Html.DisplayFor(model => model.Name)</h4>
