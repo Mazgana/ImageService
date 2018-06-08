@@ -164,6 +164,7 @@ namespace ImageService.Modal
                 Int32.TryParse(ConfigurationManager.AppSettings["thumbnailSize"], out size);
                 Image thumb = image.GetThumbnailImage(size, size, () => false, IntPtr.Zero);
                 thumb.Save(thumbPath);
+                image.Dispose();
             } catch (Exception e)
             {
                 result = false;

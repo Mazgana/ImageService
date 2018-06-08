@@ -25,12 +25,17 @@ namespace WebApplication2.Models
 
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "fullPath")]
-        public string fullPath { get; set; }
+        [Display(Name = "FullPath")]
+        public string FullPath { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "ThumbPath")]
         public string ThumbPath { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "FullThumbPath")]
+        public string FullThumbPath { get; set; }
     }
 }

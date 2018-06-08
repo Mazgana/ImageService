@@ -3,20 +3,24 @@
 @{
     ViewBag.Title = "Photos";
 }
-<div class="row">
-    @foreach (var item in Model)
+<div>
+    <p></p>
+    <div class="row">
+        @foreach (var item in Model)
         {
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/outputCheck/@Html.DisplayFor(modelItem => item.Path)" class="img-circle" alt="-sample-">
-                        <div class="caption">
-                            <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
-                            <p>date: @Html.DisplayFor(modelItem => item.Date)</p>
-                            <p>path: @Html.DisplayFor(modelItem => item.Path)</p>
-                            <p>@Html.ActionLink("showImage", "showImage", new { path = item.Path }, new { @class = "btn btn-info btn-xs" }) 
-                            @Html.ActionLink("Delete", "Delete", new { path = item.Path }, new { @class = "btn btn-info btn-xs" })</p>
-                        </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="~/outputCheck/@Html.DisplayFor(modelItem => item.ThumbPath)" class="img-circle" alt="-sample-">
+                    <div class="caption">
+                        <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                        <p>date: @Html.DisplayFor(modelItem => item.Date)</p>
+                        <p>
+                            @Html.ActionLink("showImage", "showImage", new { thumbpath = item.ThumbPath }, new { @class = "btn btn-info btn-xs" })
+                            @Html.ActionLink("Delete", "Delete", new { thumbpath = item.ThumbPath }, new { @class = "btn btn-info btn-xs" })
+                        </p>
                     </div>
                 </div>
+            </div>
         }
+    </div>
 </div>

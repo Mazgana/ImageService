@@ -14,7 +14,7 @@ namespace WebApplication2.Controllers
     {
         static Communication comm = new Communication();
         static List<Image> images = new List<Image>();
-        static List<string> fileNames = new List<string>();
+        static List<string> relativeThumbs = new List<string>();
         static List<Employee> employees = new List<Employee>()
         {
           new Employee  { FirstName = "Moshe", LastName = "Aron", Email = "Stam@stam", Salary = 10000, Phone = "08-8888888" },
@@ -32,7 +32,7 @@ namespace WebApplication2.Controllers
         // GET: First
         public ActionResult Index()
         {
-            ViewBag.numOfImages = Directory.GetFiles(@HostingEnvironment.MapPath("~/outputCheck"), "*.*", SearchOption.AllDirectories).Length;
+            ViewBag.numOfImages = (Directory.GetFiles(@HostingEnvironment.MapPath("~/outputCheck"), "*.*", SearchOption.AllDirectories).Length)/2;
             // Read the file and display it line by line. 
             System.IO.StreamReader file = new System.IO.StreamReader(@HostingEnvironment.MapPath("~/students.txt"));
             ViewBag.student1 = file.ReadLine().Split(' ');
@@ -82,25 +82,23 @@ namespace WebApplication2.Controllers
         // GET: First/Photos
         public ActionResult Photos()
         {
-            //var files = Directory.GetFiles(@HostingEnvironment.MapPath("~/outputCheck"), "*.*", SearchOption.AllDirectories);
+            //get paths of all thumnail pathes of output photos
             string root = @HostingEnvironment.MapPath("~/outputCheck");
-            var files = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories);
-          /*  foreach(string full in fulls)
+            var files = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories).Where(d => d.Contains("Thumbnail"));
+            foreach (string fullThumb in files)
             {
-                full.Replace(root, "");
-            }
-            var files = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories).Select(path => path.Replace(root, ""));
-            */
-            foreach (string filename in files)
-            {
-                var path = filename.Replace(root, "");
-                if (!fileNames.Contains(path))
+                var relativeThumb = fullThumb.Replace(root, "");
+                if (!relativeThumbs.Contains(relativeThumb))
                 {
-                    fileNames.Add(path);
-                    var name = Path.GetFileNameWithoutExtension(filename);
-                    var date = Path.GetDirectoryName(path);
-                    date = date.TrimStart('\\');
-                    images.Add(new Image { Path = path, Date = date, Name = name, fullPath=filename });
+                    relativeThumbs.Add(relativeThumb);
+                    //getting regular photo full path
+                    var fullPath = fullThumb.Replace("Thumbnail\\", "").Replace("thumb-", "");
+                    //getting regular photo relative path
+                    var relativePath = relativeThumb.Replace("Thumbnail\\", "").Replace("thumb-", "");
+                    //get name and date
+                    var name = Path.GetFileNameWithoutExtension(fullPath);
+                    var date = Path.GetDirectoryName(relativePath).TrimStart('\\');
+                    images.Add(new Image { Path = relativePath, ThumbPath=relativeThumb, Date = date, Name = name, FullPath=fullPath, FullThumbPath = fullThumb });
                 }
             }
             return View(images);
@@ -133,11 +131,11 @@ namespace WebApplication2.Controllers
             }
         }
         // GET: First/Edit/5
-        public ActionResult showImage(string path)
+        public ActionResult showImage(string thumbpath)
         {
             foreach (Image img in images)
             {
-                if(img.Path.Equals(path))
+                if(img.ThumbPath.Equals(thumbpath))
                 {
                     return View(img);
                 }
@@ -180,39 +178,24 @@ namespace WebApplication2.Controllers
         }
 
         // GET: First/Delete/5
-        /*   public ActionResult Delete(int id)
-           {
-               int i = 0;
-               foreach (Employee emp in employees)
-               {
-                   if (emp.ID.Equals(id))
-                   {
-                       employees.RemoveAt(i);
-                       return RedirectToAction("Photos");
-                   }
-                   i++;
-               }
-               return RedirectToAction("Error");
-           }
-           */
-        // GET: First/Delete/5
-        public ActionResult DeletePhoto(string path)
+        public ActionResult DeletePhoto(string thumbpath)
         {
             int i = 0;
             foreach (Image img in images)
             {
-                if (img.Path.Equals(path))
+                if (img.ThumbPath.Equals(thumbpath))
                 {
-                    if (!fileNames.Contains(path))
+                    if (!relativeThumbs.Contains(thumbpath))
                     {
                         return RedirectToAction("Error");
                     }
-                    fileNames.Remove(path);
+                    relativeThumbs.Remove(thumbpath);
                     images.RemoveAt(i);
                   //    if (System.IO.File.Exists("~\\outputCheck"+img.Path))
                   //    {
-                        System.IO.File.Delete(img.fullPath);
-                  //  }
+                    System.IO.File.Delete(img.FullThumbPath);
+                    System.IO.File.Delete(img.FullPath);
+                    //  }
                     return RedirectToAction("Photos");
                 }
                 i++;
@@ -221,11 +204,11 @@ namespace WebApplication2.Controllers
         }
 
         // GET: First/Delete/5
-        public ActionResult Delete(string path)
+        public ActionResult Delete(string thumbpath)
         {
             foreach (Image img in images)
             {
-                if (img.Path.Equals(path))
+                if (img.ThumbPath.Equals(thumbpath))
                 {
                     return View(img);
                 }
