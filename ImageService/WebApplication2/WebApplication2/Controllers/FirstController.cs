@@ -39,35 +39,40 @@ namespace WebApplication2.Controllers
             ViewBag.student2 = file.ReadLine().Split(' ');
             file.Close();
             ViewBag.photoPath = @HostingEnvironment.MapPath("~/outputCheck/funny.jpg");
+
+            if (comm.IsConnected)
+                ViewBag.status = "Connected";
+            else
+                ViewBag.status = "Disconnected";
+
             return View();
         }
 
         [HttpGet]
         public ActionResult Logs()
         {
-            return View();
+            return View(comm.LogList);
         }
 
-        [HttpGet]
-        public JObject GetEmployee()
-        {
-            JObject data = new JObject();
-            data["FirstName"] = "Kuky";
-            data["LastName"] = "Mopy";
-            return data;
-        }
+        //[HttpGet]
+        //public JObject GetLog()
+        //{
+        //    JObject data = new JObject();
+        //    data["FirstName"] = "Kuky";
+        //    data["LastName"] = "Mopy";
+        //    return data;
+        //}
 
         [HttpPost]
-        public JObject GetEmployee(string name, int salary)
+        public JObject GetLog(string type)
         {
-            foreach (var empl in employees)
+            foreach (var log in comm.LogList)
             {
-                if (empl.Salary > salary || name.Equals(name))
+                if (log.Type.Equals(type))
                 {
                     JObject data = new JObject();
-                    data["FirstName"] = empl.FirstName;
-                    data["LastName"] = empl.LastName;
-                    data["Salary"] = empl.Salary;
+                    data["Type"] = log.Type;
+                    data["Message"] = log.Message;
                     return data;
                 }
             }
@@ -104,10 +109,10 @@ namespace WebApplication2.Controllers
         // GET: First/Config
         public ActionResult Config()
         {
-            ViewBag.outputDir = comm.serviceConfig.OutputDirectory;
-            ViewBag.sourceName = comm.serviceConfig.SourceName;
-            ViewBag.logName = comm.serviceConfig.LogName;
-            ViewBag.size = comm.serviceConfig.ThumbSize;
+            ViewBag.outputDir = comm.ServiceConfig.OutputDirectory;
+            ViewBag.sourceName = comm.ServiceConfig.SourceName;
+            ViewBag.logName = comm.ServiceConfig.LogName;
+            ViewBag.size = comm.ServiceConfig.ThumbSize;
 
             return View();
         }
@@ -234,3 +239,4 @@ namespace WebApplication2.Controllers
         }
     }
 }
+

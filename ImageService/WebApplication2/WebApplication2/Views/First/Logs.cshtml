@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<WebApplication2.Models.Log>
+
 @{
     ViewBag.Title = "Logs";
 }
@@ -6,46 +7,66 @@
 <h2>Logs</h2>
 
 <div>
-    <h2>Employee json Get</h2>
-    <table>
-        <tr>
-            <td>Id:  </td>
-            <td><p type="text" id="prodId" size="5"></p></td>
-        </tr>
-        <tr>
-            <td>Name:  </td>
-            <td><p type="text" id="prodName" size="5"></p></td>
-        </tr>
-    </table>
-     <button type="button" id="btnStart" style="margin:10px">Get Data</button>
-
     <div>
-        <h2>Search  by  Salary and Name</h2>
-        <p> Salary: </p>
-        <input type="text" id="txtSalaryId" size="5" />
-        <p> Name: </p>
-        <input type="text" id="NameID" size="5" />
-        <input type="button" id="btnSearch" value="Search" />
+        <h2>Filter  by  type</h2>
+        <input type="text" id="typeId" size="5" />
+        <input type="button" id="btnFilter" value="Filter" />
         <ul id="lstProducts"></ul>
     </div>
 
+    <h2>Logs</h2>
+    <table>
+        <tr>
+            <td>Type:  </td>
+            <td><p type="text" id="logType" size="5"></p></td>
+        </tr>
+        <tr>
+            <td>Message:  </td>
+            <td><p type="text" id="logMessage" size="5"></p></td>
+        </tr>
+    </table>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+
+            </tr>
+        }
+
+    </table>
 </div>
 
 <script>
     $("#btnStart").click(function () {
-        $.getJSON("@Url.Action("GetEmployee")", function (empl) {
-            $("#prodId").text(empl.FirstName);
-            $("#prodName").text(empl.LastName);
+        $.getJSON("@Url.Action("GetLog")", function (log) {
+            $("#logType").text(log.type);
+            $("#logMessage").text(log.messag);
         });
     });
 
-    $("#btnSearch").click(function () {
+    $("#btnFilter").click(function () {
         var input = {
-            name:$("#NameID").val(),
-            salary: $("#txtSalaryId").val()
+            type:$("#TypeID").val(),
         };
-        $.post("@Url.Action("GetEmployee")", input, function (data) {
-            $("#lstProducts").append("<li>" + data.FirstName + " " + data.LastName + " : $" + data.Salary + "</li>");
+        $.post("@Url.Action("GetLog")", input, function (data) {
+            $("#lstProducts").append("<li>" + data.Type + " " + data.Message + "</li>");
         }, "json");
     });
 

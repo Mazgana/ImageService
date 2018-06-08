@@ -6,16 +6,30 @@ using System.Web;
 
 namespace WebApplication2.Models
 {
+
     public class Log
     {
+        static int count = 0;
+        public Log() { }
+
+        public void copy(Log log)
+        {
+            Type = log.Type;
+            Message = log.Message;
+        }
+
+        [Required]
+        [Display(Name = "ID")]
+        public int ID { get; set; }
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Type")]
-        string Type { get; set; }
+        public string Type { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Message")]
-        string Message { get; set; }
+        public string Message { get; set; }
     }
 }
