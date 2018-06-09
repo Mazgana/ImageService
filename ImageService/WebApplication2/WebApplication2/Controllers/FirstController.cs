@@ -24,10 +24,6 @@ namespace WebApplication2.Controllers
           new Employee   { FirstName = "Dor", LastName = "Nisim", Email = "Stam@stam", Salary = 700, Phone = "08-8888888" }
         };
 
-        //public FirstController()
-        //{
-        //    this.client = TcpClientChannel.getInstance();
-        //}
 
         // GET: First
         public ActionResult Index()
@@ -48,10 +44,10 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        [HttpGet]
+        //[HttpGet]
         public ActionResult Logs()
         {
-            return View(comm.LogList);
+            return View(comm);
         }
 
         //[HttpGet]

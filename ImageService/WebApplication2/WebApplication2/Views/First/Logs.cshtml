@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication2.Models.Log>
+﻿@model WebApplication2.Models.Communication
 
 @{
     ViewBag.Title = "Logs";
@@ -15,29 +15,17 @@
     </div>
 
     <h2>Logs</h2>
-    <table>
-        <tr>
-            <td>Type:  </td>
-            <td><p type="text" id="logType" size="5"></p></td>
-        </tr>
-        <tr>
-            <td>Message:  </td>
-            <td><p type="text" id="logMessage" size="5"></p></td>
-        </tr>
-    </table>
-
-    <table class="table">
+      <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                Type
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Message)
+                Message
             </th>
-            <th></th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.LogList)
         {
             <tr>
                 <td>
@@ -46,24 +34,23 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Message)
                 </td>
-
             </tr>
         }
-
     </table>
+
 </div>
 
 <script>
     $("#btnStart").click(function () {
         $.getJSON("@Url.Action("GetLog")", function (log) {
-            $("#logType").text(log.type);
-            $("#logMessage").text(log.messag);
+            $("#logType").text(log.Type);
+            $("#logMessage").text(log.Message);
         });
     });
 
     $("#btnFilter").click(function () {
         var input = {
-            type:$("#TypeID").val(),
+            type:$("#typeID").val(),
         };
         $.post("@Url.Action("GetLog")", input, function (data) {
             $("#lstProducts").append("<li>" + data.Type + " " + data.Message + "</li>");

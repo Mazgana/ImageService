@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,17 +13,29 @@ namespace WebApplication2.Models
     public class Communication
     {
         TcpClientChannel Client { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "IsConnected")]
         public bool IsConnected { get; set; }
 
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "ServiceConfig")]
         public Config ServiceConfig { get; set; }
-        public List<Log> LogList { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "LogList")]
+        public ObservableCollection<Log> LogList { get; set; }
+
         String currentLog;
         bool gotLog;
 
         public Communication()
         {
             this.ServiceConfig = new Config();
-            this.LogList = new List<Log>();
+            this.LogList = new ObservableCollection<Log>();
 
             this.Client = TcpClientChannel.getInstance();
 
@@ -30,7 +43,8 @@ namespace WebApplication2.Models
             {
                 this.IsConnected = true;
                 this.Client.UpdateModel += ViewUpdate;
-                this.Client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, null));
+                //this.Client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, null));
+                this.Client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, null));
             }
         }
 
@@ -39,7 +53,6 @@ namespace WebApplication2.Models
             //Checks if the server respose is the application config.
             if (e.CommandID == 2)
             {
-
                 //initialize the settings window's members to hold the configuration values.
                 string config = e.Args[0];
                 string[] configSrtings = config.Split('|');

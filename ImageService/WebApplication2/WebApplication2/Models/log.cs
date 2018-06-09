@@ -19,10 +19,6 @@ namespace WebApplication2.Models
         }
 
         [Required]
-        [Display(Name = "ID")]
-        public int ID { get; set; }
-
-        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Type")]
         public string Type { get; set; }

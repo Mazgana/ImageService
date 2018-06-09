@@ -1,4 +1,5 @@
-﻿using ImageService.Communication.Model;
+﻿using ImageService.Communication.Interfaces;
+using ImageService.Communication.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace ImageService.Communication
     /// <summary>
     /// singleton client class
     /// </summary>
-     public class TcpClientChannel
+     public class TcpClientChannel 
     {
         private TcpClient client;
         public bool IsConnected;
