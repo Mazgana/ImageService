@@ -16,7 +16,7 @@ namespace ImageService.Communication
     /// <summary>
     /// singleton client class
     /// </summary>
-     public class TcpClientChannel 
+     public class TcpClientChannel
     {
         private TcpClient client;
         public bool IsConnected;

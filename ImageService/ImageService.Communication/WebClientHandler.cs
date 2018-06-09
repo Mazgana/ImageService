@@ -1,17 +1,19 @@
 ﻿using ImageService.Communication.Interfaces;
-using ImageService.Communication.Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.Sockets;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Net.Sockets;
+using System.IO;
+using System.Threading;
+using System.Text.RegularExpressions;
+using ImageService.Communication.Model;
+using Newtonsoft.Json;
 
 namespace ImageService.Communication
 {
-    public class SynchTcpClientHandler : IClientCommunicationChannel
+    public class WebClintHandler : IClientCommunicationChannel
     {
         #region Members
         private TcpClient m_client;         // The Client Instance
@@ -19,21 +21,23 @@ namespace ImageService.Communication
         private StreamReader m_reader;            // The Reader
         private StreamWriter m_writer;            // The Writer
 
+        private CancellationTokenSource m_cancelToken;          // The Cancelation Token
         #endregion
 
-        public SynchTcpClientHandler(TcpClient client)
+        public WebClintHandler(TcpClient client)
         {
             m_client = client;
             m_stream = client.GetStream();
             m_reader = new StreamReader(m_stream, Encoding.ASCII);
             m_writer = new StreamWriter(m_stream, Encoding.ASCII);
+            m_cancelToken = new CancellationTokenSource();
         }
         public event EventHandler<CommandRecievedEventArgs> DataRecieved;
 
         // The Function Closes The Handler
         public void Close()
         {
-            DisposeHandler();         // Closing the channel
+            m_cancelToken.Cancel();         // Canceling the Recieve
         }
 
         public string Send(CommandMessage data)
@@ -42,7 +46,7 @@ namespace ImageService.Communication
             {
                 m_writer.WriteLine(Regex.Replace(data.MessageResponse, @"\t|\n|\r", ""));           // Writing the Data to the Client
                 m_writer.Flush();                   // Sending the Line
-                return m_reader.ReadLine();      // Getting the string from the client;                 // return the Length of the Length
+                return data.MessageResponse.Length.ToString();                 // return the Length of the Length
             }
             catch (Exception e)
             {
@@ -54,6 +58,29 @@ namespace ImageService.Communication
         // Starting to Recieve Data
         public bool Start()
         {
+            string messageInString;
+            new Task(() =>
+            {
+                try
+                {
+                    while (true)
+                    {
+                        messageInString = m_reader.ReadLine();      // Getting the string from the client
+
+                        if (messageInString != null)
+                        {
+                            CommandMessage message = JsonConvert.DeserializeObject<CommandMessage>(messageInString);
+                            string[] args = { message.MessageResponse };
+                            DataRecieved?.Invoke(this, new CommandRecievedEventArgs(message.CommandID, args, null));//passing message to client
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    DisposeHandler();               // Closing the Handler
+
+                }
+            }, m_cancelToken.Token).Start();
             return true;
         }
 

@@ -12,7 +12,7 @@ namespace WebApplication2.Models
 {
     public class Communication
     {
-        TcpClientChannel Client { get; set; }
+        WebTcpClientChannel Client { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
@@ -37,14 +37,15 @@ namespace WebApplication2.Models
             this.ServiceConfig = new Config();
             this.LogList = new ObservableCollection<Log>();
 
-            this.Client = TcpClientChannel.getInstance();
+            this.Client = new WebTcpClientChannel();
+            this.Client.Start();
 
             if (this.Client.IsConnected)
             {
                 this.IsConnected = true;
-                this.Client.UpdateModel += ViewUpdate;
-                //this.Client.SendCommand(new ImageService.Communication.Model.CommandMessage(2, null));
-                this.Client.SendCommand(new ImageService.Communication.Model.CommandMessage(3, null));
+                this.Client.DataRecieved += ViewUpdate;
+                this.Client.Send(new CommandMessage(2, null));
+                this.Client.Send(new CommandMessage(3, null));
             }
         }
 

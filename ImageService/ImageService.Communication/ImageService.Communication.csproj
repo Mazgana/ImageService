@@ -49,6 +49,8 @@
     <Compile Include="Interfaces\IClientCommunicationChannel.cs" />
     <Compile Include="Interfaces\IClientHandler.cs" />
     <Compile Include="Interfaces\ICommunicationChannel.cs" />
+    <Compile Include="Interfaces\IServerCommunicationChannel.cs" />
+    <Compile Include="Interfaces\NewClientEventArgs.cs" />
     <Compile Include="Model\CommandMessage.cs" />
     <Compile Include="Model\CommandRecievedEventArgs.cs" />
     <Compile Include="Model\MsgRecievedEventArgs.cs" />
@@ -56,7 +58,9 @@
     <Compile Include="SynchTcpClientHandler.cs" />
     <Compile Include="TcpClientChannel.cs" />
     <Compile Include="TcpServerChannel.cs" />
+    <Compile Include="WebClientHandler.cs" />
     <Compile Include="WebTcpClientChannel.cs" />
+    <Compile Include="WebTcpServerChannel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ImageService.Infrastructure\ImageService.Infrastructure.csproj">

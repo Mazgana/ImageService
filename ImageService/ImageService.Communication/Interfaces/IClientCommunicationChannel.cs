@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageService.Communication.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -9,6 +10,6 @@ namespace ImageService.Communication.Interfaces
 {
     public interface IClientCommunicationChannel : ICommunicationChannel
     {
-        string Send(string data);                                 // The Function that sends a response
+        string Send(CommandMessage message);                                 // The Function that sends a response
     }
 }
