@@ -110,7 +110,7 @@ namespace WebApplication2.Controllers
             ViewBag.logName = comm.ServiceConfig.LogName;
             ViewBag.size = comm.ServiceConfig.ThumbSize;
 
-            return View();
+            return View(comm);
         }
 
         // POST: First/Config

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication2.Models.Config>
+﻿@model WebApplication2.Models.Communication
 
 @{
     ViewBag.Title = "Config";
@@ -21,8 +21,23 @@
 <div>
     <h4 style="color: #2e6c80;">Thumbnail size: <span style="color: #2b2301;">@ViewBag.size</span></h4>
 </div>
-            
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<div>
+    <h4 style="color: #2e6c80;">Handlers: </h4>
+</div>
+
+<table class="table">
+    @foreach (var item in Model.ServiceConfig.Handlers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item)
+            </td>
+        </tr>
+    }
+</table>
+
+
+<div>
+    @Html.ActionLink("Back to home page", "Index")
+</div>

@@ -30,6 +30,12 @@ namespace WebApplication2.Models
         [Display(Name = "LogList")]
         public ObservableCollection<Log> LogList { get; set; }
 
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "HandlersList")]
+        public List<String> HandlersList { get; set; }
+
+
         String currentLog;
         bool gotLog;
         bool gotConfig;
@@ -62,6 +68,8 @@ namespace WebApplication2.Models
                 {
                     Thread.Sleep(1000);
                 }
+
+                this.HandlersList = ServiceConfig.Handlers;
             }
         }
 
@@ -76,16 +84,18 @@ namespace WebApplication2.Models
 
                 this.gotConfig = true;
 
-                ServiceConfig.OutputDirectory = configSrtings[0];
-                ServiceConfig.SourceName = configSrtings[1];
-                ServiceConfig.LogName = configSrtings[2];
-                ServiceConfig.ThumbSize = configSrtings[3];
+                this.ServiceConfig.Handlers = new List<string>();
+
+                this.ServiceConfig.OutputDirectory = configSrtings[0];
+                this.ServiceConfig.SourceName = configSrtings[1];
+                this.ServiceConfig.LogName = configSrtings[2];
+                this.ServiceConfig.ThumbSize = configSrtings[3];
 
                 string[] handlersDirectories = configSrtings[4].Split(';');
                 for (int i = 0; i < handlersDirectories.Length; i++)
                 {
                     if (handlersDirectories[i].Length != 0)
-                        ServiceConfig.Handlers.Add(handlersDirectories[i]);
+                        this.ServiceConfig.Handlers.Add(handlersDirectories[i]);
                 }
 
 
