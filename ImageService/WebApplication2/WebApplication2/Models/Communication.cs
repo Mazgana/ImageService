@@ -50,14 +50,15 @@ namespace WebApplication2.Models
                 this.IsConnected = true;
                 //this.Client.DataRecieved += ViewUpdate;
                 this.Client.UpdateModel += ViewUpdate;
-                this.Client.SendCommand(new CommandMessage(2, null));
-                while (!this.gotConfig)
+
+                this.Client.SendCommand(new CommandMessage(3, null));
+                while (!this.gotLog)
                 {
                     Thread.Sleep(1000);
                 }
 
-                this.Client.SendCommand(new CommandMessage(3, null));
-                while (!this.gotLog)
+                this.Client.SendCommand(new CommandMessage(2, null));
+                while (!this.gotConfig)
                 {
                     Thread.Sleep(1000);
                 }
