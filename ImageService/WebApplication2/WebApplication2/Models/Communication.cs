@@ -30,12 +30,6 @@ namespace WebApplication2.Models
         [Display(Name = "LogList")]
         public ObservableCollection<Log> LogList { get; set; }
 
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "HandlersList")]
-        public List<String> HandlersList { get; set; }
-
-
         String currentLog;
         bool gotLog;
         bool gotConfig;
@@ -68,8 +62,6 @@ namespace WebApplication2.Models
                 {
                     Thread.Sleep(1000);
                 }
-
-                this.HandlersList = ServiceConfig.Handlers;
             }
         }
 
