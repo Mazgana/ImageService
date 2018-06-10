@@ -15,6 +15,7 @@ namespace ImageService.Communication
     public class WebTcpServerChannel : IServerCommunicationChannel
     {
         private int m_port;
+        //private IClientHandler ch;
         private ILoggingService logger;
         private TcpListener m_listener;
         private ICollection<IClientCommunicationChannel> m_clients;
@@ -24,7 +25,7 @@ namespace ImageService.Communication
         public WebTcpServerChannel(int port, ILoggingService logger)
         {
             this.m_port = port;         // Storing the Port
-            //this.ch = ch;
+           //this.ch = ch;
             this.logger = logger;
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), m_port);
             this.m_listener = new TcpListener(ep);
@@ -53,6 +54,7 @@ namespace ImageService.Communication
                             m_clients.Add(handler);                 // Adding the Client
 
                             logger.Log("Got new connection", MessageTypeEnum.INFO);
+                            //ch.HandleClient(client);
 
                             NewClient?.Invoke(this, new NewClientEventArgs(handler));       // Notyfing that the Client Was Recieved
                         }

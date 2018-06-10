@@ -47,6 +47,7 @@ namespace WebApplication2.Controllers
         //[HttpGet]
         public ActionResult Logs()
         {
+            //comm.GetLog();
             return View(comm);
         }
 
@@ -103,6 +104,7 @@ namespace WebApplication2.Controllers
         // GET: First/Config
         public ActionResult Config()
         {
+            //comm.GetConfig();
             ViewBag.outputDir = comm.ServiceConfig.OutputDirectory;
             ViewBag.sourceName = comm.ServiceConfig.SourceName;
             ViewBag.logName = comm.ServiceConfig.LogName;

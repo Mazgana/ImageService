@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace WebApplication2.Models
 {
     public class Communication
     {
-        WebTcpClientChannel Client { get; set; }
+        TcpClientChannel Client { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
@@ -31,21 +32,35 @@ namespace WebApplication2.Models
 
         String currentLog;
         bool gotLog;
+        bool gotConfig;
 
         public Communication()
         {
             this.ServiceConfig = new Config();
             this.LogList = new ObservableCollection<Log>();
 
-            this.Client = new WebTcpClientChannel();
-            this.Client.Start();
+            this.gotConfig = false;
+            this.gotLog = false;
+
+            this.Client = TcpClientChannel.getInstance();
+            //this.Client.Start();
 
             if (this.Client.IsConnected)
             {
                 this.IsConnected = true;
-                this.Client.DataRecieved += ViewUpdate;
-                this.Client.Send(new CommandMessage(2, null));
-                this.Client.Send(new CommandMessage(3, null));
+                //this.Client.DataRecieved += ViewUpdate;
+                this.Client.UpdateModel += ViewUpdate;
+                this.Client.SendCommand(new CommandMessage(2, null));
+                while (!this.gotConfig)
+                {
+                    Thread.Sleep(1000);
+                }
+
+                this.Client.SendCommand(new CommandMessage(3, null));
+                while (!this.gotLog)
+                {
+                    Thread.Sleep(1000);
+                }
             }
         }
 
@@ -58,6 +73,8 @@ namespace WebApplication2.Models
                 string config = e.Args[0];
                 string[] configSrtings = config.Split('|');
 
+                this.gotConfig = true;
+
                 ServiceConfig.OutputDirectory = configSrtings[0];
                 ServiceConfig.SourceName = configSrtings[1];
                 ServiceConfig.LogName = configSrtings[2];
@@ -69,8 +86,12 @@ namespace WebApplication2.Models
                     if (handlersDirectories[i].Length != 0)
                         ServiceConfig.Handlers.Add(handlersDirectories[i]);
                 }
+
+
             } else if (e.CommandID == 3 && LogList.Count < 2) {
                 this.currentLog = e.Args[0];
+                this.gotLog = true;
+
                 List<string> allLog = JsonConvert.DeserializeObject<List<String>>(this.currentLog);
                 string[] current;
 
@@ -84,7 +105,6 @@ namespace WebApplication2.Models
                     };
                     this.LogList.Insert(0, curr);
                 }
-                gotLog = true;
             }
 
             //Checks if the recieved data is relevant to the log view and if its message from the current running

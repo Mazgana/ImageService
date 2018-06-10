@@ -21,7 +21,7 @@ namespace ImageService.Server
         #region Members
         private IImageController m_controller;
         private ILoggingService m_logging;
-        WebTcpServerChannel tcpServer;
+        TcpServerChannel tcpServer;
         #endregion
 
         #region Properties
@@ -60,7 +60,8 @@ namespace ImageService.Server
 
             ClientHandler ch = new ClientHandler();
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
-            this.tcpServer = new WebTcpServerChannel(8000, m_logging);
+            this.tcpServer = new TcpServerChannel(8000, ch, m_logging);
+            //this.tcpServer = new WebTcpServerChannel(8000, ch, m_logging);
             ch.CommandRecieved += GetCommand;
             this.tcpServer.Start();
         }
@@ -121,8 +122,8 @@ namespace ImageService.Server
             }
             //return the result to client
             CommandMessage response = new CommandMessage(e.CommandID, res);
-            this.tcpServer.Broadcast(response);
-            //this.tcpServer.notifyAll(response);
+            //this.tcpServer.Broadcast(response);
+            this.tcpServer.notifyAll(response);
             m_logging.Log("notified all", MessageTypeEnum.INFO);
         }
         
@@ -135,9 +136,9 @@ namespace ImageService.Server
         {
             string mes = e.Status.ToString() + "|" + e.Message;
             CommandMessage response = new CommandMessage(5, mes);
-            this.tcpServer.Broadcast(response);
+            //this.tcpServer.Broadcast(response);
 
-            //tcpServer.notifyAll(response);
+            tcpServer.notifyAll(response);
         }
 
 
@@ -146,7 +147,7 @@ namespace ImageService.Server
         /// </summary>
         public void CloseServer()
         {
-            this.tcpServer.Close();
+            this.tcpServer.Stop();
             m_logging.Log("closing the server.", MessageTypeEnum.INFO);
             //CloseDirHandler(null);
             CloseCommand?.Invoke(this, null);

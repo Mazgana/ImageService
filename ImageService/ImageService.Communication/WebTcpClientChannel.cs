@@ -18,7 +18,7 @@ namespace ImageService.Communication
         //private int m_port;
         //private string m_ip;                // The IP Address
         private TcpClient m_client;         // the Client Connection
-        private IClientCommunicationChannel m_handler;       // The Handler of the 
+        private WebClintHandler m_handler;       // The Handler of the 
 
         //private TcpClient client;
         public bool IsConnected;
@@ -48,6 +48,7 @@ namespace ImageService.Communication
                 IsConnected = true;
 
                 m_handler = new WebClintHandler(m_client);     // Creating the Client Handler
+                //m_handler.AddClient(m_client);
                 m_handler.DataRecieved += OnDataRecieved;
                 m_handler.Start();
             }
@@ -74,6 +75,7 @@ namespace ImageService.Communication
 
         public string Send(CommandMessage message)
         {
+            Console.WriteLine("sending message: " + message.MessageResponse);
             if (m_handler != null)
             {
                 return m_handler.Send(message);           // Sending the Data via the handler
