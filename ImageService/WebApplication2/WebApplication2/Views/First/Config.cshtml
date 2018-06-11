@@ -31,18 +31,20 @@
     {
         <tr>
             <td>
-                <input type="button" id="handlerId" value=@Html.DisplayFor(modelItem => item) />
+                <a href="#" class="btn btn-info" role="button" onclick="location.href = 'DeleteHandler';">@Html.DisplayFor(modelItem => item)</a>
+            </td>
+            <td>
+                @Html.ActionLink(@item, "DeleteHandler", new { handlerToDelete = item })
             </td>
         </tr>
     }
 </table>
 
-
 <div>
     @Html.ActionLink("Back to home page", "Index")
 </div>
 
-<script>
+@*<script>
     $("#handlerId").click(function () {
         var input = {
             type: $("#handlerId").val(),
@@ -52,4 +54,4 @@
         }, "json");
     });
 
-</script>
+</script>*@

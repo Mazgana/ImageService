@@ -15,6 +15,7 @@ namespace WebApplication2.Controllers
         static Communication comm = new Communication();
         static List<Image> images = new List<Image>();
         static List<string> relativeThumbs = new List<string>();
+        static string HandlerToRemove;
         static List<Employee> employees = new List<Employee>()
         {
           new Employee  { FirstName = "Moshe", LastName = "Aron", Email = "Stam@stam", Salary = 10000, Phone = "08-8888888" },
@@ -233,6 +234,19 @@ namespace WebApplication2.Controllers
                 }
             }
             return View("Error");
+        }
+
+        public ActionResult DeleteHandler(string handler)
+        {
+            HandlerToRemove = handler;
+            return View("DeleteHandler");
+        }
+
+        public ActionResult CloseHandler()
+        {
+            comm.RemoveHandler(HandlerToRemove);
+
+            return RedirectToAction("Config");
         }
 
         public ActionResult Cancel()

@@ -174,12 +174,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\First\Edit.cshtml" />
-    <Content Include="Views\First\Error.cshtml" />
     <Content Include="Views\First\Logs.cshtml" />
     <Content Include="scripts\jquery-3.0.0.min.map" />
     <Content Include="scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Views\First\showImage.cshtml" />
     <Content Include="Views\First\Delete.cshtml" />
+    <Content Include="Views\First\Error.cshtml" />
+    <Content Include="Views\First\DeleteHandler.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
