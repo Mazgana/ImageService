@@ -31,7 +31,7 @@
     {
         <tr>
             <td>
-                <input type="button" id="btnFilter" value=@Html.DisplayFor(modelItem => item) />
+                <input type="button" id="handlerId" value=@Html.DisplayFor(modelItem => item) />
             </td>
         </tr>
     }
@@ -41,3 +41,15 @@
 <div>
     @Html.ActionLink("Back to home page", "Index")
 </div>
+
+<script>
+    $("#handlerId").click(function () {
+        var input = {
+            type: $("#handlerId").val(),
+        };
+        $.post("@Url.Action("GetLog")", input, function (data) {
+            $("#lstProducts").append("<li>" + data.Type + " " + data.Message + "</li>");
+        }, "json");
+    });
+
+</script>

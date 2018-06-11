@@ -47,7 +47,6 @@ namespace WebApplication2.Controllers
         //[HttpGet]
         public ActionResult Logs()
         {
-            //comm.GetLog();
             return View(comm);
         }
 
@@ -60,21 +59,27 @@ namespace WebApplication2.Controllers
         //    return data;
         //}
 
-        [HttpPost]
-        public JObject GetLog(string type)
-        {
-            foreach (var log in comm.LogList)
-            {
-                if (log.Type.Equals(type))
-                {
-                    JObject data = new JObject();
-                    data["Type"] = log.Type;
-                    data["Message"] = log.Message;
-                    return data;
-                }
-            }
-            return null;
-        }
+        //[HttpPost]
+        //public List<JObject> GetLog(string type)
+        //{
+        //    List<JObject> data = new List<JObject>();
+        //    JObject currentLog = new JObject();
+        //    //List<Log> correctLog = new List<Log>();
+        //    foreach (var log in comm.LogList)
+        //    {
+        //        if (log.Type.Equals(type))
+        //        {
+        //            //JObject data = new JObject();
+        //            currentLog["Type"] = log.Type;
+        //            currentLog["Message"] = log.Message;
+        //            //data.Add(currentLog);
+        //            //return data;
+        //            data.Add(currentLog);
+        //        }
+        //    }
+
+        //    return data;
+        //}
 
         // GET: First/Photos
         public ActionResult Photos()
@@ -128,6 +133,22 @@ namespace WebApplication2.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public ActionResult RemoveHandler(String handlerName)
+        {
+            try
+            {
+                comm.RemoveHandler(handlerName);
+
+                return RedirectToAction("Config");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         // GET: First/Edit/5
         public ActionResult showImage(string thumbpath)
         {

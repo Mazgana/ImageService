@@ -65,6 +65,12 @@ namespace WebApplication2.Models
             }
         }
 
+        public bool RemoveHandler(String handler)
+        {
+            this.Client.SendCommand(new CommandMessage(4, handler));
+            return true;
+        }
+
         private void ViewUpdate(object sender, CommandRecievedEventArgs e)
         {
             //Checks if the server respose is the application config.
