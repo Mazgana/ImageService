@@ -11,14 +11,16 @@
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
                     <img src="~/outputCheck/@Html.DisplayFor(modelItem => item.ThumbPath)" class="img-circle" alt="-sample-">
-                    <div class="caption">
-                        <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
-                        <p>date: @Html.DisplayFor(modelItem => item.Date)</p>
-                        <p>
-                            @Html.ActionLink("showImage", "showImage", new { thumbpath = item.ThumbPath }, new { @class = "btn btn-info btn-xs" })
-                            @Html.ActionLink("Delete", "Delete", new { thumbpath = item.ThumbPath }, new { @class = "btn btn-info btn-xs" })
-                        </p>
-                    </div>
+                    <center>
+                        <div class="caption">
+                            <p style="font-family:courier;font-size:110%;"><b>@Html.DisplayFor(modelItem => item.Name)</b></p>
+                            <p style="font-family:courier;">date: @Html.DisplayFor(modelItem => item.Date)</p>
+                            <p>
+                                @Html.ActionLink("Show image", "showImage", new { thumbpath = item.ThumbPath }, new { @class = "btn btn-info btn-xs" })
+                                @Html.ActionLink("Delete", "Delete", new { thumbpath = item.ThumbPath }, new { @class = "btn btn-info btn-xs" })
+                            </p>
+                        </div>
+                    </center>
                 </div>
             </div>
         }

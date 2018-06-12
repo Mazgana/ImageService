@@ -3,31 +3,38 @@
 }
 
 <div class="jumbotron">
-    <h1>Image Service</h1>
-    <p class="lead">advanced programimng ex 3.</p>
+    <center>
+        <h1 style="font-family:Gabriola;">Image Service</h1>
+        <p style="font-family:Gabriola;" class="lead">advanced programimng ex 3.</p>
+    </center>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Service Status: @ViewBag.status</h2>
+        <h1 style="font-family:Gabriola;"><b>Service Status: </b>@ViewBag.status</h1>
     </div>
     <div class="col-md-4">
-        <h2>Number Of Images In Output Folder: @ViewBag.numOfImages</h2>
+        <h1 style="font-family:Gabriola;">
+            <b>Number Of Images In Folder: </b><br />
+            <center>
+                @ViewBag.numOfImages
+            </center>
+        </h1>
     </div>
     <div class="col-md-4">
-        <h2>Students Details:</h2>
+        <h1 style="font-family:Gabriola;"><b>Students Details:</b></h1>
         <table style="width:100%">
-            <tr>
+            <tr style="font-family:Gabriola;font-size:200%;">
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>T.Z.</th>
             </tr>
-            <tr>
+            <tr style="font-family:Gabriola;font-size:200%;">
                 <td>@ViewBag.student1[0]</td>
                 <td>@ViewBag.student1[1]</td>
                 <td>@ViewBag.student1[2]</td>
             </tr>
-            <tr>
+            <tr style="font-family:Gabriola;font-size:200%;">
                 <td>@ViewBag.student2[0]</td>
                 <td>@ViewBag.student2[1]</td>
                 <td>@ViewBag.student2[2]</td>

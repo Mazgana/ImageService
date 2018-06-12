@@ -4,39 +4,79 @@
     ViewBag.Title = "Config";
 }
 
-<h2>Config</h2>
+<center><h1 style="color: #2e6c80;font-family:Gabriola;"><b>Config</b></h1></center>
+<br />
 
-<div>
-    <h4 style="color: #2e6c80;">Outout directory: <span style="color: #2b2301;">@ViewBag.outputDir</span></h4>
-</div>
+<table width="100%">
+    <tr>
+        <td>
+            <p style="color: #2e6c80;font-family:Gabriola;font-size:200%;">
+                <b>Outout directory: </b>
+            </p>
+        </td>
+        <td>
+            <p style="font-family:Gabriola;font-size:200%;"><b>@ViewBag.outputDir</b></p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #2e6c80;font-family:Gabriola;font-size:200%;">
+                <b>Source name: </b>
+            </p>
+        </td>
+        <td>
+            <p style="font-family:Gabriola;font-size:200%;"><b>@ViewBag.sourceName</b></p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #2e6c80;font-family:Gabriola;font-size:200%;">
+                <b>Log name: </b>
+            </p>
+        </td>
+        <td>
+            <p style="font-family:Gabriola;font-size:200%;"><b>@ViewBag.logName</b></p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #2e6c80;font-family:Gabriola;font-size:200%;">
+                <b>Thumbnail size: </b>
+            </p>
+        </td>
+        <td>
+            <p style="font-family:Gabriola;font-size:200%;"><b>@ViewBag.size</b></p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #2e6c80;font-family:Gabriola;font-size:200%;">
+                <b>Handlers: </b>
+            </p>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <table class="table">
+                @foreach (var item in Model.ServiceConfig.Handlers)
+                {
+                    <tr>
+                        <td>
+                            <button type="button" id="handlerBtn" class="btn btn-default btn-block">
+                                @Html.ActionLink(item, "DeleteHandler", new { handler = item })
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+    </tr>
 
-<div>
-    <h4 style="color: #2e6c80;">Source name: <span style="color: #2b2301;">@ViewBag.sourceName</span></h4>
-</div>
-
-<div>
-    <h4 style="color: #2e6c80;">Log name: <span style="color: #2b2301;">@ViewBag.logName</span></h4>
-</div>
-
-<div>
-    <h4 style="color: #2e6c80;">Thumbnail size: <span style="color: #2b2301;">@ViewBag.size</span></h4>
-</div>
-
-<div>
-    <h4 style="color: #2e6c80;">Handlers: </h4>
-</div>
-
-<table class="table">
-    @foreach (var item in Model.ServiceConfig.Handlers)
-    {
-        <tr>
-            <td>
-                @Html.ActionLink(item, "DeleteHandler", new { handler = item })
-            </td>
-        </tr>
-    }
 </table>
 
+<br />
 <div>
     @Html.ActionLink("Back to home page", "Index")
 </div>

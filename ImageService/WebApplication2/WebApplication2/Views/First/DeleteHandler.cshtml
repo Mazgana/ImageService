@@ -1,12 +1,28 @@
-﻿@{
+﻿@model WebApplication2.Models.Communication
+
+@{
     ViewBag.Title = "DeleteHandler";
 }
 
-<h2>Close handler?</h2>
-<p>
-    <button type="button" id="btnClose" onclick="onClose()">Close</button><br />
-    <button type="button" id="btnCancel" onclick="onCancel()">Cancel</button><br />
-</p>
+<br />
+<br />
+<br />
+<div>
+    <center>
+        <p style="font-family:Gabriola;font-size:200%;">
+            <b>
+                Do you want to close '@Model.CloseHandler'?
+            </b>
+        </p>
+    </center>
+
+    <br />
+
+    <center>
+        <button type="button" id="btnClose" class="btn btn-primary" onclick="onClose()">Close</button>
+        <button type="button" id="btnCancel" class="btn btn-danger" onclick="onCancel()">Cancel</button>
+    </center>
+</div>
 
 <script type="text/javascript">
 	function onClose() {
