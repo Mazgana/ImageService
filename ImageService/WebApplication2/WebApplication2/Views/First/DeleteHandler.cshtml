@@ -4,6 +4,19 @@
 
 <h2>Close handler?</h2>
 <p>
-    @Html.ActionLink("CloseHandler", "CloseHandler", null, new { @class = "btn btn-info btn-xs" })
-    @Html.ActionLink("Cancel", "Cancel", new { @class = "btn btn-info btn-xs" })
+    <button type="button" id="btnClose" onclick="onClose()">Close</button><br />
+    <button type="button" id="btnCancel" onclick="onCancel()">Cancel</button><br />
 </p>
+
+<script type="text/javascript">
+	function onClose() {
+		$("#btnClose").attr('disabled', !this.checked);
+        $("#btnCancel").attr('disabled', !this.checked);
+		window.location.href = '@Url.Action("CloseHandler")';
+	}
+	function onCancel() {
+        $("#btnClose").attr('disabled', !this.checked);
+		$("#btnCancel").attr('disabled', !this.checked);
+		window.location.href = '@Url.Action("Config")';
+	}
+</script>

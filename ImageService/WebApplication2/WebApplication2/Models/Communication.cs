@@ -27,12 +27,18 @@ namespace WebApplication2.Models
 
         [Required]
         [DataType(DataType.Text)]
+        [Display(Name = "CloseHandler")]
+        public string CloseHandler { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
         [Display(Name = "LogList")]
         public ObservableCollection<Log> LogList { get; set; }
 
         String currentLog;
         bool gotLog;
         bool gotConfig;
+        bool handlerDeleted;
 
         public Communication()
         {
@@ -67,7 +73,17 @@ namespace WebApplication2.Models
 
         public bool RemoveHandler(String handler)
         {
-            this.Client.SendCommand(new CommandMessage(4, handler));
+            TcpClientChannel RemoveClient = TcpClientChannel.getInstance();
+
+            RemoveClient.SendCommand(new CommandMessage(4, handler));
+            while (!this.handlerDeleted)
+            {
+                Thread.Sleep(1000);
+            }
+
+            ServiceConfig.Handlers.Remove(handler);
+            RemoveClient.Stop();
+
             return true;
         }
 
@@ -114,6 +130,12 @@ namespace WebApplication2.Models
                     };
                     this.LogList.Insert(0, curr);
                 }
+            }
+
+            //checks if the server's response is the close handler response. if it is - updates the handlers list.
+            if (e.CommandID == 4)
+            {
+                handlerDeleted = true;
             }
 
             //Checks if the recieved data is relevant to the log view and if its message from the current running

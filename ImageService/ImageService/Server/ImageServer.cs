@@ -106,7 +106,7 @@ namespace ImageService.Server
         /// <param name="e"> command details to be executed</param>
         public void GetCommand(object sender, CommandRecievedEventArgs e)
         {
-            m_logging.Log("Getting command from client and execute it.", MessageTypeEnum.INFO);
+            m_logging.Log("Getting command " + e.CommandID + " from client and execute it.", MessageTypeEnum.INFO);
             bool resultSuccess;
             //executing command and saving execution result
             string res = m_controller.ExecuteCommand(e.CommandID, e.Args, out resultSuccess);

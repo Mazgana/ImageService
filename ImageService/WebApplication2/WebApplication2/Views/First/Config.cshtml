@@ -31,10 +31,7 @@
     {
         <tr>
             <td>
-                <a href="#" class="btn btn-info" role="button" onclick="location.href = 'DeleteHandler';">@Html.DisplayFor(modelItem => item)</a>
-            </td>
-            <td>
-                @Html.ActionLink(@item, "DeleteHandler", new { handlerToDelete = item })
+                @Html.ActionLink(item, "DeleteHandler", new { handler = item })
             </td>
         </tr>
     }
@@ -43,15 +40,3 @@
 <div>
     @Html.ActionLink("Back to home page", "Index")
 </div>
-
-@*<script>
-    $("#handlerId").click(function () {
-        var input = {
-            type: $("#handlerId").val(),
-        };
-        $.post("@Url.Action("GetLog")", input, function (data) {
-            $("#lstProducts").append("<li>" + data.Type + " " + data.Message + "</li>");
-        }, "json");
-    });
-
-</script>*@
