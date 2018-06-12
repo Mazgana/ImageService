@@ -155,7 +155,6 @@
     </Compile>
     <Compile Include="Models\Communication.cs" />
     <Compile Include="Models\Config.cs" />
-    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,7 +172,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\First\Edit.cshtml" />
     <Content Include="Views\First\Logs.cshtml" />
     <Content Include="scripts\jquery-3.0.0.min.map" />
     <Content Include="scripts\jquery-3.0.0.slim.min.map" />

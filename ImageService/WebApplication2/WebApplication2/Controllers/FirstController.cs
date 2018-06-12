@@ -15,15 +15,6 @@ namespace WebApplication2.Controllers
         static Communication comm = new Communication();
         static List<Image> images = new List<Image>();
         static List<string> relativeThumbs = new List<string>();
-        static List<Employee> employees = new List<Employee>()
-        {
-          new Employee  { FirstName = "Moshe", LastName = "Aron", Email = "Stam@stam", Salary = 10000, Phone = "08-8888888" },
-          new Employee  { FirstName = "Dor", LastName = "Nisim", Email = "Stam@stam", Salary = 2000, Phone = "08-8888888" },
-          new Employee   { FirstName = "Mor", LastName = "Sinai", Email = "Stam@stam", Salary = 500, Phone = "08-8888888" },
-          new Employee   { FirstName = "Dor", LastName = "Nisim", Email = "Stam@stam", Salary = 20, Phone = "08-8888888" },
-          new Employee   { FirstName = "Dor", LastName = "Nisim", Email = "Stam@stam", Salary = 700, Phone = "08-8888888" }
-        };
-
 
         // GET: First
         public ActionResult Index()
@@ -49,38 +40,7 @@ namespace WebApplication2.Controllers
         {
             return View(comm);
         }
-
-        //[HttpGet]
-        //public JObject GetLog()
-        //{
-        //    JObject data = new JObject();
-        //    data["FirstName"] = "Kuky";
-        //    data["LastName"] = "Mopy";
-        //    return data;
-        //}
-
-        //[HttpPost]
-        //public List<JObject> GetLog(string type)
-        //{
-        //    List<JObject> data = new List<JObject>();
-        //    JObject currentLog = new JObject();
-        //    //List<Log> correctLog = new List<Log>();
-        //    foreach (var log in comm.LogList)
-        //    {
-        //        if (log.Type.Equals(type))
-        //        {
-        //            //JObject data = new JObject();
-        //            currentLog["Type"] = log.Type;
-        //            currentLog["Message"] = log.Message;
-        //            //data.Add(currentLog);
-        //            //return data;
-        //            data.Add(currentLog);
-        //        }
-        //    }
-
-        //    return data;
-        //}
-
+        
         // GET: First/Photos
         public ActionResult Photos()
         {
@@ -109,7 +69,7 @@ namespace WebApplication2.Controllers
         // GET: First/Config
         public ActionResult Config()
         {
-            //comm.GetConfig();
+            //update the view mwmbers to contain the config details
             ViewBag.outputDir = comm.ServiceConfig.OutputDirectory;
             ViewBag.sourceName = comm.ServiceConfig.SourceName;
             ViewBag.logName = comm.ServiceConfig.LogName;
@@ -118,38 +78,8 @@ namespace WebApplication2.Controllers
             return View(comm);
         }
 
-        // POST: First/Config
-        [HttpPost]
-        public ActionResult Config(Employee emp)
-        {
-            try
-            {
-                employees.Add(emp);
-
-                return RedirectToAction("Photos");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        [HttpPost]
-        public ActionResult RemoveHandler(String handlerName)
-        {
-            try
-            {
-                comm.RemoveHandler(handlerName);
-
-                return RedirectToAction("Config");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: First/Edit/5
+        //Display the given image
         public ActionResult showImage(string thumbpath)
         {
             foreach (Image img in images)
@@ -162,41 +92,8 @@ namespace WebApplication2.Controllers
             return View("Error");
         }
 
-        // GET: First/Edit/5
-        public ActionResult Edit(int id)
-        {
-            foreach (Employee emp in employees) {
-                if (emp.ID.Equals(id)) { 
-                    return View(emp);
-                }
-            }
-            return View("Error");
-        }
-
-        // POST: First/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, Employee empT)
-        {
-            try
-            {
-                foreach (Employee emp in employees)
-                {
-                    if (emp.ID.Equals(id))
-                    {
-                        emp.copy(empT);
-                        return RedirectToAction("Index");
-                    }
-                }
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return RedirectToAction("Error");
-            }
-        }
-
         // GET: First/Delete/5
+        //Delete the given image
         public ActionResult DeletePhoto(string thumbpath)
         {
             int i = 0;
@@ -210,11 +107,10 @@ namespace WebApplication2.Controllers
                     }
                     relativeThumbs.Remove(thumbpath);
                     images.RemoveAt(i);
-                  //    if (System.IO.File.Exists("~\\outputCheck"+img.Path))
-                  //    {
+
                     System.IO.File.Delete(img.FullThumbPath);
                     System.IO.File.Delete(img.FullPath);
-                    //  }
+
                     return RedirectToAction("Photos");
                 }
                 i++;
@@ -223,6 +119,7 @@ namespace WebApplication2.Controllers
         }
 
         // GET: First/Delete/5
+        //Delete the given image
         public ActionResult Delete(string thumbpath)
         {
             foreach (Image img in images)
@@ -235,6 +132,7 @@ namespace WebApplication2.Controllers
             return View("Error");
         }
 
+        //Remove handler command send to through the communication model
         [HttpGet]
         public ActionResult DeleteHandler(string handler)
         {
@@ -249,10 +147,10 @@ namespace WebApplication2.Controllers
             return RedirectToAction("Config");
         }
 
+        //When cancel button in 'delete image' is clicked - redirect to photos.
         public ActionResult Cancel()
         {
             return RedirectToAction("photos");
         }
     }
 }
-
