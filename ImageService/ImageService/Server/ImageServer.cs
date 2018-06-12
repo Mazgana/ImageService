@@ -61,7 +61,6 @@ namespace ImageService.Server
             ClientHandler ch = new ClientHandler();
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
             this.tcpServer = new TcpServerChannel(8000, ch, m_logging);
-            //this.tcpServer = new WebTcpServerChannel(8000, ch, m_logging);
             ch.CommandRecieved += GetCommand;
             this.tcpServer.Start();
         }
@@ -106,7 +105,7 @@ namespace ImageService.Server
         /// <param name="e"> command details to be executed</param>
         public void GetCommand(object sender, CommandRecievedEventArgs e)
         {
-            string curr;
+            string curr = "";
             switch(e.CommandID)
             {
                 case 1:
@@ -124,6 +123,7 @@ namespace ImageService.Server
             }
             m_logging.Log("Getting command " + curr + " from client and execute it.", MessageTypeEnum.INFO);
             bool resultSuccess;
+
             //executing command and saving execution result
             string res = m_controller.ExecuteCommand(e.CommandID, e.Args, out resultSuccess);
             if (!resultSuccess)
@@ -131,14 +131,15 @@ namespace ImageService.Server
                 m_logging.Log("execition failed. error: " + res, MessageTypeEnum.ERROR);
             }
             m_logging.Log("command executed", MessageTypeEnum.INFO);
+
             //if handlers were erased from config, close handler classes
             if(e.CommandID == 4){
                 m_logging.Log("closing directory: " + e.RequestDirPath, MessageTypeEnum.INFO);
                 CloseDirHandler(e.RequestDirPath);
             }
+
             //return the result to client
             CommandMessage response = new CommandMessage(e.CommandID, res);
-            //this.tcpServer.Broadcast(response);
             this.tcpServer.notifyAll(response);
             m_logging.Log("notified all", MessageTypeEnum.INFO);
         }
@@ -152,11 +153,9 @@ namespace ImageService.Server
         {
             string mes = e.Status.ToString() + "|" + e.Message;
             CommandMessage response = new CommandMessage(5, mes);
-            //this.tcpServer.Broadcast(response);
 
             tcpServer.notifyAll(response);
         }
-
 
         /// <summary>
         /// Closing the handlers when sever is closing.
@@ -165,7 +164,6 @@ namespace ImageService.Server
         {
             this.tcpServer.Stop();
             m_logging.Log("closing the server.", MessageTypeEnum.INFO);
-            //CloseDirHandler(null);
             CloseCommand?.Invoke(this, null);
         }
 

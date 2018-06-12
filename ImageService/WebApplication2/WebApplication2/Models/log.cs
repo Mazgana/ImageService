@@ -6,7 +6,6 @@ using System.Web;
 
 namespace WebApplication2.Models
 {
-
     public class Log
     {
         static int count = 0;

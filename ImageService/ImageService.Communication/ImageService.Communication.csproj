@@ -55,12 +55,8 @@
     <Compile Include="Model\CommandRecievedEventArgs.cs" />
     <Compile Include="Model\MsgRecievedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SynchTcpClientHandler.cs" />
     <Compile Include="TcpClientChannel.cs" />
     <Compile Include="TcpServerChannel.cs" />
-    <Compile Include="WebClientHandler.cs" />
-    <Compile Include="WebTcpClientChannel.cs" />
-    <Compile Include="WebTcpServerChannel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ImageService.Infrastructure\ImageService.Infrastructure.csproj">

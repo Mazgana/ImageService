@@ -49,12 +49,10 @@ namespace WebApplication2.Models
             this.gotLog = false;
 
             this.Client = TcpClientChannel.getInstance();
-            //this.Client.Start();
 
             if (this.Client.IsConnected)
             {
                 this.IsConnected = true;
-                //this.Client.DataRecieved += ViewUpdate;
                 this.Client.UpdateModel += ViewUpdate;
 
                 this.Client.SendCommand(new CommandMessage(3, null));
