@@ -1,3 +1,291 @@
+commit 4448792bf647ec1b44cf64072fa5acbc9d9eed08
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue Jun 12 21:37:31 2018 +0300
+
+    design
+
+commit 3d902d47fb124d32f887ab60c41556ae6ab35ea9
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue Jun 12 19:36:48 2018 +0300
+
+    delete more unnecessary classes and code
+
+commit e85ba0b0c2c5eb65875d6b4cece8d269dab644a4
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue Jun 12 19:33:28 2018 +0300
+
+    Adding comments and delte unnecessary code.
+
+commit 37d323c68f1d22e5287a7d393e7b8df93d5e5191
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue Jun 12 19:19:35 2018 +0300
+
+    Close handler is working
+
+commit f7d3a12fec693b22385593c74cf4cb87fadf53e8
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 11 21:14:03 2018 +0300
+
+    working on remove handler
+
+commit c82ae439347dff0ffd5eac110b83842c92b2c7d8
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 11 16:23:08 2018 +0300
+
+    Filter by type is working
+
+commit 71eb2694a6a18e55f365ca7098aa3d7c57cb66c6
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Jun 10 15:01:11 2018 +0300
+
+    handlers displays on buttons
+
+commit 9079ab10aae55b982f33acf3aef6f8c277e8fd5d
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Jun 10 14:32:44 2018 +0300
+
+    display handlers
+
+commit fbabb547eb6145066b212ec3d616b339bf13a606
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Jun 10 14:08:15 2018 +0300
+
+    get log and get config is working
+
+commit c331338eb2232941d6941d6d3d777da0075b6fc8
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Jun 10 14:05:20 2018 +0300
+
+    going back to a-synchronic
+
+commit 8b116f35e9099020aabb99478e4f7086b55a9ac9
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sun Jun 10 02:27:21 2018 +0300
+
+    working on synchronic communication
+
+commit dd17b2d08cefc36a8cb6abce7b51744d6548f85a
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Sat Jun 9 22:20:31 2018 +0300
+
+    Logs working
+
+commit 9d0775f1dd7d04607976cf1c784f8a39f93c7326
+Merge: 8df05a1 8a4ab51
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri Jun 8 18:30:52 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService
+
+commit 8df05a132e3f626a1ae98a151ed164c46a2627dd
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Fri Jun 8 18:29:49 2018 +0300
+
+    working on logs
+
+commit 8a4ab51213dc258055fd1a1bb8d84da879d56e34
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Fri Jun 8 10:46:09 2018 +0300
+
+    styling..
+
+commit 9841a0f35ce0d97585a7c773d1354ad4277d5aa3
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Fri Jun 8 10:37:21 2018 +0300
+
+    photos works! including all..:)
+
+commit 0f1c997d4427815c2598a38958d0587b7f61502c
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Thu Jun 7 12:29:50 2018 +0300
+
+    remove image now works! need to take care of thumbnail path.
+    still needs makeover:)
+
+commit 964ddd50a6c1c0b86c730ac589bebc5260cd0506
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Thu Jun 7 08:51:42 2018 +0300
+
+    view and delete both wotking (on web).
+
+commit 9048dbbf787295116db63638079339f548efd053
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Thu Jun 7 08:17:30 2018 +0300
+
+    delete photo works (only on web- need to change paths). bug for double photos fixed.
+
+commit 935d7396321beb3f7391fda881bbd422245f9203
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu Jun 7 00:07:54 2018 +0300
+
+    Communication with service is working, start working on config page
+
+commit a30548f9623d09b3331858780cd4baa00e17c92e
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Wed Jun 6 12:00:25 2018 +0300
+
+    wirking on images
+
+commit 410d8ca55262f0b009457ba6a63e66e8fc4d2319
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Wed Jun 6 09:32:03 2018 +0300
+
+    adding name and date to images. need to organize and do full view
+
+commit 8fc7801c4edd86cc9748e91216b02b57dbad967d
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Wed Jun 6 08:10:19 2018 +0300
+
+    reading images from output and displaying (without full images)
+
+commit a2da3be88a91fd793a8749ed76f53941dd5971ef
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Tue Jun 5 16:59:38 2018 +0300
+
+    changing projects settings
+
+commit 3254997a3c3fe2e006ebf1b4d2fdaf8845d7eccb
+Merge: 1232596 7d6aefa
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Tue Jun 5 16:51:58 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit 7d6aefab77654fa6e68b80af557c0f1cb8c58451
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Tue Jun 5 19:50:20 2018 +0300
+
+    changing projects properties, delete unnecessary files. start working on communication with image service
+
+commit 12325966fa76bb50f7b1e71cb7704f271cbb5a8b
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Tue Jun 5 16:51:49 2018 +0300
+
+    viewphoto working
+
+commit 2725a80b24d326959568fcdfd65f335c7c4aaaf3
+Merge: 1cdddc5 16833c3
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Mon Jun 4 20:04:15 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit 16833c376727503279b0d88d5a2f2d5e5967eb50
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 4 23:03:47 2018 +0300
+
+    add fileds to models
+
+commit 91668d6fa46d6135a522c741e0ab70fa343e1ba0
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 4 22:46:03 2018 +0300
+
+    adding  modles
+
+commit 619a2631c90c1803d2849647079c85b76f955af4
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 4 22:35:42 2018 +0300
+
+    now we can start working thank god
+
+commit 0dd68e53a8eaa1976e1ffca817ad5dbe4c3ddc26
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 4 22:08:10 2018 +0300
+
+    check
+
+commit 1cdddc56faa424b6fbd65e8d3dd7265f6a64da30
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Mon Jun 4 20:04:05 2018 +0300
+
+    making students table
+
+commit 370f879ff006d99fdcb8fc137c3a1d386ce5e074
+Merge: 0e4107a c569f85
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Mon Jun 4 19:02:01 2018 +0300
+
+    Merge branch 'master' of https://github.com/Mazgana/ImageService.git
+
+commit c569f852382e8d52eae43e7eb8fdd7e7a9196a4b
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 4 22:01:39 2018 +0300
+
+    adding students and output files, viewbag for index
+
+commit c9a17eccf60b0cee386e5be9c3b9343e18047bb0
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 4 21:32:17 2018 +0300
+
+    Adding the views
+
+commit d355d84462546c26b0a25b08e57c2d5a806e26fa
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 4 20:30:32 2018 +0300
+
+    adding web project 2
+
+commit 2c6c7b349bdcde603ce7a67e27351a754acec27d
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 4 20:28:27 2018 +0300
+
+    delete
+
+commit 89672a17fd29344f70f8cb70b1011cd6de7f3e8b
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Mon Jun 4 20:20:12 2018 +0300
+
+    adding web project
+
+commit 0e4107acc6df72c7967b7df690014400781ef405
+Author: as <as@DESKTOP-2TPT7KD>
+Date:   Mon Jun 4 19:00:50 2018 +0300
+
+    fixing nuget problems
+
+commit ed1c06511ee863f15b7ca56f052d572eafa9b23c
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Jun 4 10:25:55 2018 +0300
+
+    changing to relative paths, adding output directory to local project
+
+commit e0a1b6bd46aac1ef0e18b27838cc76e6c51f513c
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Jun 4 10:08:50 2018 +0300
+
+    reading details for home page from file and counting images
+
+commit a96e9b2425b44ab806330cae5946c67f840248e9
+Merge: de7b1e4 c1608f9
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Jun 4 08:06:26 2018 +0300
+
+    --
+
+commit de7b1e4d7fc05ae0cfb54b40c12772ed5b87b9a7
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Mon Jun 4 08:05:52 2018 +0300
+
+    from working together on  starting web
+
+commit c1608f96d16399c1e8a797ec9e202048b7c4accf
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Thu May 31 21:05:03 2018 +0300
+
+    Adding views for all pages and methods to the home controller
+
+commit dc0795cd8282036d28acdb6963f0591057218e49
+Author: wachtfl <leah.wach@gmail.com>
+Date:   Wed May 30 17:13:53 2018 +0300
+
+    opening web project
+
+commit 90e6edd8ee7122576c57b9cf788cd722c8435f62
+Author: mazgana <adi.mazgani@gmail.com>
+Date:   Wed May 30 18:31:14 2018 +0300
+
+    adding log file
+
 commit 38d92b98b147d16d47af5c1efcd8560aa1b9322e
 Author: mazgana <adi.mazgani@gmail.com>
 Date:   Sun May 27 16:57:28 2018 +0300
