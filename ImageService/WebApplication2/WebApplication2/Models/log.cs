@@ -8,7 +8,7 @@ namespace WebApplication2.Models
 {
     public class Log
     {
-        static int count = 0;
+        //static int count = 0;
         public Log() { }
 
         public void copy(Log log)

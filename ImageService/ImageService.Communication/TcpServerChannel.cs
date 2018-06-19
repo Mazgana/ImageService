@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ImageService.Logging.Modal;
+using System.Drawing;
 
 namespace ImageService.Communication
 {
@@ -22,6 +23,39 @@ namespace ImageService.Communication
         private IClientHandler ch;
         private ILoggingService logger;
         private List<TcpClient> clients;
+
+        public void ReceiveImage()
+        {
+            foreach (TcpClient client in clients)
+            {
+                if (client.Connected)
+                {
+                    {
+                        NetworkStream stream = client.GetStream();
+                        byte[] data = new byte[4];
+
+                        //Read The Size
+                        stream.Read(data, 0, data.Length);
+                        int size = (BitConverter.ToInt32(data, 0));
+                        // prepare buffer
+                        data = new byte[size];
+
+                        //Load Image
+                        int read = 0;
+                        while (read != data.Length)
+                        {
+                            read += stream.Read(data, read, data.Length - read);
+                        }
+                        //stream.Read(data, 0, data.Length);
+                        //Convert Image Data To Image
+                        MemoryStream imagestream = new MemoryStream(data);
+                        System.Drawing.Bitmap bmp = new Bitmap(imagestream);
+                        bmp.Save("C://Users//as//Desktop//pics", System.Drawing.Imaging.ImageFormat.Png);
+                       // pictureBox1.Image = bmp;
+                    }
+                }
+            }
+        }
 
         public TcpServerChannel(int port, IClientHandler ch, ILoggingService logger)
         {
@@ -38,7 +72,7 @@ namespace ImageService.Communication
         {
             //opening connectio
             IPEndPoint ep = new
-            IPEndPoint(IPAddress.Parse("10.0.2.2"), port);
+            IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
             listener = new TcpListener(ep);
             listener.Start();
 
