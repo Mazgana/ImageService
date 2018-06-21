@@ -43,17 +43,34 @@ namespace ImageService.Communication
 
                         //Load Image
                         int read = 0;
-                        while (read != data.Length)
+                        while (read != size)
                         {
                             read += stream.Read(data, read, data.Length - read);
                         }
+
+
+                        //read the image's name
+                        stream.Read(data, 0, data.Length);
+                        size = (BitConverter.ToInt32(data, 0));
+
+                        byte[] imageNameInBytes = new byte[size];
+                        read = 0;
+                        while (read != size)
+                        {
+                            read += stream.Read(imageNameInBytes, read, data.Length - read);
+                        }
+
+                        string imgName = Encoding.UTF8.GetString(imageNameInBytes, 0, imageNameInBytes.Length);
                         logger.Log("finished while..", MessageTypeEnum.INFO);
                         //stream.Read(data, 0, data.Length);
 
                         //Convert Image Data To Image
                         MemoryStream imagestream = new MemoryStream(data);
-                        System.Drawing.Bitmap bmp = new Bitmap(imagestream);
-                        bmp.Save(handler, System.Drawing.Imaging.ImageFormat.Png);
+                        Image img = Image.FromStream(imagestream);
+                        img.Save(handler + "/" + imgName);
+
+                        //System.Drawing.Bitmap bmp = new Bitmap(imagestream);
+                        //bmp.Save(handler, System.Drawing.Imaging.ImageFormat.Png);
                         logger.Log("saved image..", MessageTypeEnum.INFO);
                         // pictureBox1.Image = bmp;
                     }
