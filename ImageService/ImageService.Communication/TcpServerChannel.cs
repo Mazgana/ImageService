@@ -48,6 +48,7 @@ namespace ImageService.Communication
                         }
 
                         //stream.Read(data, 0, data.Length);
+
                         //Convert Image Data To Image
                         MemoryStream imagestream = new MemoryStream(data);
                         System.Drawing.Bitmap bmp = new Bitmap(imagestream);
