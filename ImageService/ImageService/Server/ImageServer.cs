@@ -62,7 +62,7 @@ namespace ImageService.Server
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
             this.tcpServer = new TcpServerChannel(8000, ch, m_logging);
             ch.CommandRecieved += GetCommand;
-            this.tcpServer.Start(connected[0]);
+            this.tcpServer.Start(connected[0].ToString());
         }
 
         /// <summary>

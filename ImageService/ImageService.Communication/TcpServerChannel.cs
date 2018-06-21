@@ -26,6 +26,7 @@ namespace ImageService.Communication
 
         public void ReceiveImage(string handler)
         {
+            logger.Log("recieving image..",MessageTypeEnum.INFO);
             foreach (TcpClient client in clients)
             {
                 if (client.Connected)
@@ -46,13 +47,14 @@ namespace ImageService.Communication
                         {
                             read += stream.Read(data, read, data.Length - read);
                         }
-
+                        logger.Log("finished while..", MessageTypeEnum.INFO);
                         //stream.Read(data, 0, data.Length);
                         //Convert Image Data To Image
                         MemoryStream imagestream = new MemoryStream(data);
                         System.Drawing.Bitmap bmp = new Bitmap(imagestream);
                         bmp.Save(handler, System.Drawing.Imaging.ImageFormat.Png);
-                       // pictureBox1.Image = bmp;
+                        logger.Log("saved image..", MessageTypeEnum.INFO);
+                        // pictureBox1.Image = bmp;
                     }
                 }
             }
@@ -78,6 +80,7 @@ namespace ImageService.Communication
             listener.Start();
 
             logger.Log("Waiting for connections...", MessageTypeEnum.INFO);
+            logger.Log("first handler: "+firstHandler, MessageTypeEnum.INFO);
             Task task = new Task(() => {
                 while (true)//loop to get more connections, adding to list when client connects
                 {
@@ -88,6 +91,7 @@ namespace ImageService.Communication
                         logger.Log("Got new connection", MessageTypeEnum.INFO);
                         ch.HandleClient(client);
                         ReceiveImage(firstHandler);
+                        logger.Log("finished..", MessageTypeEnum.INFO);
                     }
                     catch (SocketException)
                     {
