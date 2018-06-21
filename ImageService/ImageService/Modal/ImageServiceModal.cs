@@ -62,14 +62,17 @@ namespace ImageService.Modal
                 if (result == false)
                     return response;
 
-                //checks if a picture with the same name is already exists in folder. If it does, add the name
-                // of the picture the number of appearence in this folder.
-                int i = 2;
-                while (File.Exists(dest + @"\" + newFile))
-                {
-                    newFile = Path.GetFileNameWithoutExtension(path) + " (" + i + ")" + Path.GetExtension(path);
-                    i++;
-                }
+                ////checks if a picture with the same name is already exists in folder. If it does, add the name
+                //// of the picture the number of appearence in this folder.
+                //int i = 2;
+                //while (File.Exists(dest + @"\" + newFile))
+                //{
+                //  newFile = Path.GetFileNameWithoutExtension(path) + " (" + i + ")" + Path.GetExtension(path);
+                //    i++;
+                //}
+
+                //The imgae name - if this name already exists it will delete the old one and save the new one
+                newFile = Path.GetFileNameWithoutExtension(path) + Path.GetExtension(path);
 
                 File.Move(path, dest + @"\" + newFile);
 

@@ -24,7 +24,7 @@ namespace ImageService.Communication
         private ILoggingService logger;
         private List<TcpClient> clients;
 
-        public void ReceiveImage()
+        public void ReceiveImage(string handler)
         {
             foreach (TcpClient client in clients)
             {
@@ -46,11 +46,12 @@ namespace ImageService.Communication
                         {
                             read += stream.Read(data, read, data.Length - read);
                         }
+
                         //stream.Read(data, 0, data.Length);
                         //Convert Image Data To Image
                         MemoryStream imagestream = new MemoryStream(data);
                         System.Drawing.Bitmap bmp = new Bitmap(imagestream);
-                        bmp.Save("C://Users//as//Desktop//pics", System.Drawing.Imaging.ImageFormat.Png);
+                        bmp.Save(handler, System.Drawing.Imaging.ImageFormat.Png);
                        // pictureBox1.Image = bmp;
                     }
                 }
@@ -68,7 +69,7 @@ namespace ImageService.Communication
         /// <summary>
         /// starting server connection and recieving new connections
         /// </summary>
-        public void Start()
+        public void Start(string firstHandler)
         {
             //opening connectio
             IPEndPoint ep = new
@@ -86,6 +87,7 @@ namespace ImageService.Communication
                         this.clients.Add(client);
                         logger.Log("Got new connection", MessageTypeEnum.INFO);
                         ch.HandleClient(client);
+                        ReceiveImage(firstHandler);
                     }
                     catch (SocketException)
                     {
