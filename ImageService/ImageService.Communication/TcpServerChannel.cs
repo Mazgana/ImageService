@@ -37,59 +37,70 @@ namespace ImageService.Communication
                     while (client.Connected)
                     {
                         {
-                           // NetworkStream stream = client.GetStream();
-                            //byte[] data = new byte[4];
-                            logger.Log("reading size..", MessageTypeEnum.INFO);
-                            //Read The Size
-                            //reader.Read(data, 0, data.Length);
+                            try
+                            {
+                                // NetworkStream stream = client.GetStream();
+                                //byte[] data = new byte[4];
+                                logger.Log("reading size..", MessageTypeEnum.INFO);
+                                //Read The Size
+                                //reader.Read(data, 0, data.Length);
 
-                            byte[] data = reader.ReadBytes(4);
+                                byte[] data = reader.ReadBytes(4);
+                                
+                                if (BitConverter.IsLittleEndian)
+                                    Array.Reverse(data);
+                                if (data == null)
+                                {
+                                    return;
+                                }
 
-                            if (data == null)
-                                return;
+                                int size = BitConverter.ToInt32(data, 0);
+                                // prepare buffer
+                                //data = new byte[size];
+                                logger.Log("size is: " + size.ToString() + "reading image", MessageTypeEnum.INFO);
+                                //Load Image
+                                //int read = 0;
+                                //while (read != size)
+                                //{
+                                //    read += reader.Read(data, read, data.Length - read);
+                                //}
 
-                            int size = BitConverter.ToInt32(data, 0);
-                            // prepare buffer
-                            //data = new byte[size];
-                            logger.Log("size is: " + size.ToString() + "reading image", MessageTypeEnum.INFO);
-                            //Load Image
-                            //int read = 0;
-                            //while (read != size)
-                            //{
-                            //    read += reader.Read(data, read, data.Length - read);
-                            //}
+                                data = new byte[size];
+                                data = reader.ReadBytes(size);
 
-                            data = new byte[size];
-                            data = reader.ReadBytes(size);
+                                Image img = (Bitmap)((new ImageConverter()).ConvertFrom(data));
 
-                            Image img = (Bitmap)((new ImageConverter()).ConvertFrom(data));
+                                //read the image's name
+                                byte[] lengthOfName = reader.ReadBytes(4);
 
-                            //read the image's name
-                            byte[] lengthOfName = reader.ReadBytes(4);
+                                //reader.Read(data, 0, data.Length);
+                                size = (BitConverter.ToInt32(lengthOfName, 0));
+                                logger.Log("finished while..", MessageTypeEnum.INFO);
+                                byte[] imageNameInBytes = reader.ReadBytes(size);
+                                //read = 0;
+                                //while (read != size)
+                                //{
+                                //    read += reader.Read(imageNameInBytes, read, data.Length - read);
+                                //}
 
-                            //reader.Read(data, 0, data.Length);
-                            size = (BitConverter.ToInt32(lengthOfName, 0));
-                            logger.Log("finished while..", MessageTypeEnum.INFO);
-                            byte[] imageNameInBytes = reader.ReadBytes(size);
-                            //read = 0;
-                            //while (read != size)
-                            //{
-                            //    read += reader.Read(imageNameInBytes, read, data.Length - read);
-                            //}
+                                string imgName = Encoding.UTF8.GetString(imageNameInBytes, 0, imageNameInBytes.Length);
+                                logger.Log("finished while..", MessageTypeEnum.INFO);
+                                //stream.Read(data, 0, data.Length);
 
-                            string imgName = Encoding.UTF8.GetString(imageNameInBytes, 0, imageNameInBytes.Length);
-                            logger.Log("finished while..", MessageTypeEnum.INFO);
-                            //stream.Read(data, 0, data.Length);
+                                //Convert Image Data To Image
+                                MemoryStream imagestream = new MemoryStream(data);
 
-                            //Convert Image Data To Image
-                            MemoryStream imagestream = new MemoryStream(data);
+                                img.Save(handler + "/" + imgName);
 
-                            img.Save(handler + "/" + imgName);
-
-                            //System.Drawing.Bitmap bmp = new Bitmap(imagestream);
-                            //bmp.Save(handler, System.Drawing.Imaging.ImageFormat.Png);
-                            logger.Log("saved image..", MessageTypeEnum.INFO);
-                            // pictureBox1.Image = bmp;
+                                //System.Drawing.Bitmap bmp = new Bitmap(imagestream);
+                                //bmp.Save(handler, System.Drawing.Imaging.ImageFormat.Png);
+                                logger.Log("saved image..", MessageTypeEnum.INFO);
+                                // pictureBox1.Image = bmp;
+                            }
+                            catch(Exception e)
+                            {
+                                logger.Log("image could not be read, exception: "+ e.Message, MessageTypeEnum.INFO);
+                            }
                         }
                     }
                 }
