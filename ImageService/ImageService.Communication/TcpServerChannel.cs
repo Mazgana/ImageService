@@ -60,13 +60,9 @@ namespace ImageService.Communication
                         }
                     }
                 }
-                catch (IOException)
+                catch (Exception)
                 {
-                    //this.clientConnected = false;
-                }
-                catch (ObjectDisposedException)
-                {
-                    //this.clientConnected = false;
+                    logger.Log("could not read image",MessageTypeEnum.ERROR);
                 }
             }
             /*
