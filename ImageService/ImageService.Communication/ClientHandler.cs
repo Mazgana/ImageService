@@ -96,6 +96,7 @@ namespace ImageService.Communication
                                 // pictureBox1.Image = bmp;
                             }
                         }
+                    }
                 }
             }).Start();
         }

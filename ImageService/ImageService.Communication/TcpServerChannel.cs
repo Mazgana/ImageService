@@ -26,6 +26,47 @@ namespace ImageService.Communication
 
         public void ReceiveImage(string handler, TcpClient client)
         {
+            {
+                try
+                {
+                    NetworkStream stream = client.GetStream();
+                    BinaryReader reader = new BinaryReader(stream);
+                    // Get result from server
+                    logger.Log("recieving image..", MessageTypeEnum.INFO);
+                    byte[] sizeInBytes = reader.ReadBytes(4);
+                    logger.Log("got bytes", MessageTypeEnum.INFO);
+                    if (BitConverter.IsLittleEndian)
+                        Array.Reverse(sizeInBytes);
+                    if (sizeInBytes == null)
+                    {
+                        return;
+                    }
+                    int size = BitConverter.ToInt32(sizeInBytes, 0);
+                    logger.Log("size: " + size.ToString(), MessageTypeEnum.INFO);
+                    byte[] message = reader.ReadBytes(size);
+                    Image image = (Bitmap)((new ImageConverter()).ConvertFrom(message));
+                    sizeInBytes = reader.ReadBytes(4);
+                    if (BitConverter.IsLittleEndian)
+                        Array.Reverse(sizeInBytes);
+                    size = BitConverter.ToInt32(sizeInBytes, 0);
+                    byte[] imageNameInBytes = reader.ReadBytes(size);
+                    string imageName = Encoding.UTF8.GetString(imageNameInBytes, 0, imageNameInBytes.Length);
+                    logger.Log("name: "+ imageName, MessageTypeEnum.INFO);
+                    if (Directory.Exists(handler))
+                    {
+                        image.Save(handler + "/" + imageName + ".jpg");
+                    }
+                }
+                catch (IOException)
+                {
+                    //this.clientConnected = false;
+                }
+                catch (ObjectDisposedException)
+                {
+                    //this.clientConnected = false;
+                }
+            }
+            /*
             logger.Log("recieving image..",MessageTypeEnum.INFO);
             //    foreach (TcpClient client in clients)
             //    {
@@ -36,6 +77,7 @@ namespace ImageService.Communication
   
                     while (client.Connected)
                     {
+
                         {
                             try
                             {
@@ -106,6 +148,7 @@ namespace ImageService.Communication
                 
                 // }
             }).Start();
+            */
         }
 
         public TcpServerChannel(int port, IClientHandler ch, ILoggingService logger)
@@ -138,8 +181,8 @@ namespace ImageService.Communication
                         this.clients.Add(client);
                         logger.Log("Got new connection", MessageTypeEnum.INFO);
                         //  ch.HandleClient(client);
-                        //   ReceiveImage(firstHandler, client);
-                        ch.HandleAppClient(client, firstHandler);
+                        ReceiveImage(firstHandler, client);
+                        //ch.HandleAppClient(client, firstHandler);
                         logger.Log("finished..", MessageTypeEnum.INFO);
                     }
                     catch (SocketException)
