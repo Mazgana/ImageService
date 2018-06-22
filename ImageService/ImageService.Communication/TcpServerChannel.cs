@@ -128,7 +128,7 @@ namespace ImageService.Communication
                         logger.Log("Got new connection", MessageTypeEnum.INFO);
                         //  ch.HandleClient(client);
                         //   ReceiveImage(firstHandler, client);
-                        ch.HandleAppClient(client, firstHandler);
+                        ch.HandleAppClient(client, firstHandler, logger);
                         logger.Log("finished..", MessageTypeEnum.INFO);
                     }
                     catch (SocketException)

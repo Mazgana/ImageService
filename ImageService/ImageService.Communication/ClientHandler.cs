@@ -11,6 +11,7 @@ using ImageService.Communication.Interfaces;
 using ImageService.Logging;
 using ImageService.Communication.Model;
 using System.Drawing;
+using ImageService.Logging.Modal;
 
 namespace ImageService.Communication
 {
@@ -24,7 +25,7 @@ namespace ImageService.Communication
         /// reading messages from client and sending them so service
         /// </summary>
         /// <param name="client"> sendind the message </param>
-        public void HandleAppClient(TcpClient client, String handler)
+        public void HandleAppClient(TcpClient client, String handler, ILoggingService logger)
         {
             new Task(() =>
             {
@@ -35,11 +36,10 @@ namespace ImageService.Communication
                     {
                         if (client.Connected)
                         {
-                            {
                                 // NetworkStream stream = client.GetStream();
                                 //byte[] data = new byte[4];
-                                //logger.Log("reading size..", MessageTypeEnum.INFO);
-                                Console.WriteLine("reading size");
+                                logger.Log("reading size..", MessageTypeEnum.INFO);
+                                //Console.WriteLine("reading size");
                                 //Read The Size
                                 //reader.Read(data, 0, data.Length);
 
@@ -51,8 +51,8 @@ namespace ImageService.Communication
                                 int size = BitConverter.ToInt32(data, 0);
                                 // prepare buffer
                                 //data = new byte[size];
-                                Console.WriteLine("size is: " + size.ToString() + "reading image");
-                                //logger.Log("size is: " + size.ToString() + "reading image", MessageTypeEnum.INFO);
+                                //Console.WriteLine("size is: " + size.ToString() + "reading image");
+                                logger.Log("size is: " + size.ToString() + "reading image", MessageTypeEnum.INFO);
                                 //Load Image
                                 //int read = 0;
                                 //while (read != size)
@@ -70,8 +70,8 @@ namespace ImageService.Communication
 
                                 //reader.Read(data, 0, data.Length);
                                 size = (BitConverter.ToInt32(lengthOfName, 0));
-                                //logger.Log("finished while..", MessageTypeEnum.INFO);
-                                Console.WriteLine("finished while..");
+                                logger.Log("finished while..", MessageTypeEnum.INFO);
+                                //Console.WriteLine("finished while..");
                                 byte[] imageNameInBytes = reader.ReadBytes(size);
                                 //read = 0;
                                 //while (read != size)
@@ -80,8 +80,8 @@ namespace ImageService.Communication
                                 //}
 
                                 string imgName = Encoding.UTF8.GetString(imageNameInBytes, 0, imageNameInBytes.Length);
-                                //logger.Log("finished while..", MessageTypeEnum.INFO);
-                                Console.WriteLine("got name");
+                                logger.Log("got name..", MessageTypeEnum.INFO);
+                                //Console.WriteLine("got name");
                                 //stream.Read(data, 0, data.Length);
 
                                 //Convert Image Data To Image
@@ -91,10 +91,9 @@ namespace ImageService.Communication
 
                                 //System.Drawing.Bitmap bmp = new Bitmap(imagestream);
                                 //bmp.Save(handler, System.Drawing.Imaging.ImageFormat.Png);
-                                //logger.Log("saved image..", MessageTypeEnum.INFO);
-                                Console.WriteLine("saved image");
+                                logger.Log("saved image..", MessageTypeEnum.INFO);
+                                //Console.WriteLine("saved image");
                                 // pictureBox1.Image = bmp;
-                            }
                         }
                 }
             }).Start();

@@ -10,7 +10,7 @@ namespace ImageService.Communication.Interfaces
 {
     public interface IClientHandler
     {
-        void HandleAppClient(TcpClient client, String handler);
+        void HandleAppClient(TcpClient client, String handler, ILoggingService logger);
         void HandleClient(TcpClient client);
     }
 }
