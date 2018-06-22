@@ -31,9 +31,9 @@ namespace ImageService.Communication
             //    {
             new Task(() =>
             {
-                using (NetworkStream stream = client.GetStream())
-                using (BinaryReader reader = new BinaryReader(stream))
-                {
+                NetworkStream stream = client.GetStream();
+                BinaryReader reader = new BinaryReader(stream);
+  
                     while (client.Connected)
                     {
                         {
@@ -92,7 +92,7 @@ namespace ImageService.Communication
                             // pictureBox1.Image = bmp;
                         }
                     }
-                }
+                
                 // }
             }).Start();
         }
