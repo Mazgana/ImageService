@@ -60,13 +60,10 @@ namespace ImageService.Communication
                         }
                     }
                 }
-                catch (IOException e)
+
+                catch (Exception)
                 {
-                    logger.Log("exception: " + e.ToString(), MessageTypeEnum.ERROR);
-                }
-                catch (ObjectDisposedException e)
-                {
-                    logger.Log("exception: " + e.ToString(), MessageTypeEnum.ERROR);
+                    logger.Log("could not read image",MessageTypeEnum.ERROR);
                 }
             }
         }
