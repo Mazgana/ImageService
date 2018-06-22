@@ -60,7 +60,7 @@ namespace ImageService.Server
 
             ClientHandler ch = new ClientHandler();
             m_logging.Log("starting server", Logging.Modal.MessageTypeEnum.INFO);
-            this.tcpServer = new TcpServerChannel(8000, ch, m_logging);
+            this.tcpServer = new TcpServerChannel(1234, ch, m_logging);
             ch.CommandRecieved += GetCommand;
 
             string[] firstHandler = connected.Split(';');
