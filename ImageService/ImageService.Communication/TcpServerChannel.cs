@@ -38,32 +38,44 @@ namespace ImageService.Communication
                     {
                         {
                            // NetworkStream stream = client.GetStream();
-                            byte[] data = new byte[4];
+                            //byte[] data = new byte[4];
                             logger.Log("reading size..", MessageTypeEnum.INFO);
                             //Read The Size
-                            reader.Read(data, 0, data.Length);
-                            int size = (BitConverter.ToInt32(data, 0));
+                            //reader.Read(data, 0, data.Length);
+
+                            byte[] data = reader.ReadBytes(4);
+
+                            if (data == null)
+                                return;
+
+                            int size = BitConverter.ToInt32(data, 0);
                             // prepare buffer
-                            data = new byte[size];
+                            //data = new byte[size];
                             logger.Log("size is: " + size.ToString() + "reading image", MessageTypeEnum.INFO);
                             //Load Image
-                            int read = 0;
-                            while (read != size)
-                            {
-                                read += reader.Read(data, read, data.Length - read);
-                            }
+                            //int read = 0;
+                            //while (read != size)
+                            //{
+                            //    read += reader.Read(data, read, data.Length - read);
+                            //}
 
+                            data = new byte[size];
+                            data = reader.ReadBytes(size);
+
+                            Image img = (Bitmap)((new ImageConverter()).ConvertFrom(data));
 
                             //read the image's name
-                            reader.Read(data, 0, data.Length);
-                            size = (BitConverter.ToInt32(data, 0));
+                            byte[] lengthOfName = reader.ReadBytes(4);
+
+                            //reader.Read(data, 0, data.Length);
+                            size = (BitConverter.ToInt32(lengthOfName, 0));
                             logger.Log("finished while..", MessageTypeEnum.INFO);
-                            byte[] imageNameInBytes = new byte[size];
-                            read = 0;
-                            while (read != size)
-                            {
-                                read += reader.Read(imageNameInBytes, read, data.Length - read);
-                            }
+                            byte[] imageNameInBytes = reader.ReadBytes(size);
+                            //read = 0;
+                            //while (read != size)
+                            //{
+                            //    read += reader.Read(imageNameInBytes, read, data.Length - read);
+                            //}
 
                             string imgName = Encoding.UTF8.GetString(imageNameInBytes, 0, imageNameInBytes.Length);
                             logger.Log("finished while..", MessageTypeEnum.INFO);
@@ -71,7 +83,7 @@ namespace ImageService.Communication
 
                             //Convert Image Data To Image
                             MemoryStream imagestream = new MemoryStream(data);
-                            Image img = Image.FromStream(imagestream);
+
                             img.Save(handler + "/" + imgName);
 
                             //System.Drawing.Bitmap bmp = new Bitmap(imagestream);
