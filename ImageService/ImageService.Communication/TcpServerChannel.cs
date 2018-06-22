@@ -31,30 +31,33 @@ namespace ImageService.Communication
                 {
                     NetworkStream stream = client.GetStream();
                     BinaryReader reader = new BinaryReader(stream);
-                    // Get result from server
-                    logger.Log("recieving image..", MessageTypeEnum.INFO);
-                    byte[] sizeInBytes = reader.ReadBytes(4);
-                    logger.Log("got bytes", MessageTypeEnum.INFO);
-                    if (BitConverter.IsLittleEndian)
-                        Array.Reverse(sizeInBytes);
-                    if (sizeInBytes == null)
+                    while (true)
                     {
-                        return;
-                    }
-                    int size = BitConverter.ToInt32(sizeInBytes, 0);
-                    logger.Log("size: " + size.ToString(), MessageTypeEnum.INFO);
-                    byte[] message = reader.ReadBytes(size);
-                    Image image = (Bitmap)((new ImageConverter()).ConvertFrom(message));
-                    sizeInBytes = reader.ReadBytes(4);
-                    if (BitConverter.IsLittleEndian)
-                        Array.Reverse(sizeInBytes);
-                    size = BitConverter.ToInt32(sizeInBytes, 0);
-                    byte[] imageNameInBytes = reader.ReadBytes(size);
-                    string imageName = Encoding.UTF8.GetString(imageNameInBytes, 0, imageNameInBytes.Length);
-                    logger.Log("name: "+ imageName, MessageTypeEnum.INFO);
-                    if (Directory.Exists(handler))
-                    {
-                        image.Save(handler + "/" + imageName + ".jpg");
+                        // Get result from server
+                        logger.Log("recieving image..", MessageTypeEnum.INFO);
+                        byte[] sizeInBytes = reader.ReadBytes(4);
+                        logger.Log("got bytes", MessageTypeEnum.INFO);
+                        if (BitConverter.IsLittleEndian)
+                            Array.Reverse(sizeInBytes);
+                        if (sizeInBytes == null)
+                        {
+                            return;
+                        }
+                        int size = BitConverter.ToInt32(sizeInBytes, 0);
+                        logger.Log("size: " + size.ToString(), MessageTypeEnum.INFO);
+                        byte[] message = reader.ReadBytes(size);
+                        Image image = (Bitmap)((new ImageConverter()).ConvertFrom(message));
+                        sizeInBytes = reader.ReadBytes(4);
+                        if (BitConverter.IsLittleEndian)
+                            Array.Reverse(sizeInBytes);
+                        size = BitConverter.ToInt32(sizeInBytes, 0);
+                        byte[] imageNameInBytes = reader.ReadBytes(size);
+                        string imageName = Encoding.UTF8.GetString(imageNameInBytes, 0, imageNameInBytes.Length);
+                        logger.Log("name: " + imageName, MessageTypeEnum.INFO);
+                        if (Directory.Exists(handler))
+                        {
+                            image.Save(handler + "/" + imageName + ".jpg");
+                        }
                     }
                 }
                 catch (IOException)
