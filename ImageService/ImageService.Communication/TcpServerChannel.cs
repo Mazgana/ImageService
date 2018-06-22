@@ -34,13 +34,13 @@ namespace ImageService.Communication
                     {
                         NetworkStream stream = client.GetStream();
                         byte[] data = new byte[4];
-
+                        logger.Log("reading size..", MessageTypeEnum.INFO);
                         //Read The Size
                         stream.Read(data, 0, data.Length);
                         int size = (BitConverter.ToInt32(data, 0));
                         // prepare buffer
                         data = new byte[size];
-
+                        logger.Log("size is: " + size.ToString() + "reading image", MessageTypeEnum.INFO);
                         //Load Image
                         int read = 0;
                         while (read != size)
@@ -52,7 +52,7 @@ namespace ImageService.Communication
                         //read the image's name
                         stream.Read(data, 0, data.Length);
                         size = (BitConverter.ToInt32(data, 0));
-
+                        logger.Log("finished while..", MessageTypeEnum.INFO);
                         byte[] imageNameInBytes = new byte[size];
                         read = 0;
                         while (read != size)

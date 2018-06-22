@@ -64,7 +64,14 @@ namespace ImageService.Server
             ch.CommandRecieved += GetCommand;
 
             string[] firstHandler = connected.Split(';');
-            this.tcpServer.Start(firstHandler[0].ToString());
+            for(int i=0;i<firstHandler.Length;i++)
+            {
+                if (firstHandler[i].StartsWith("C"))
+                {
+                    this.tcpServer.Start(firstHandler[i].ToString());
+                    break;
+                }
+            }
         }
 
         /// <summary>
